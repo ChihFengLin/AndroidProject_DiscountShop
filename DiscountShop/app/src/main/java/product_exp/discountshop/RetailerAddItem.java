@@ -1,9 +1,15 @@
 package product_exp.discountshop;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class RetailerAddItem extends Activity {
@@ -33,7 +39,26 @@ public class RetailerAddItem extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    /*When clicking the camera button, user can use camera to capture picture*/
+    public void onGet(View v) {
+        Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(it, 100);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == 100) {
+            /*Transform Intent object into Bundle object*/
+            Bundle bd1 = data.getExtras();
+            Bitmap bmp = (Bitmap) bd1.get("data");
+
+            ImageView imv = (ImageView) findViewById(R.id.imageView);
+            imv.setImageBitmap(bmp);
+        } else {
+            Toast.makeText(this, "You Take Picture Unsuccessfully!", Toast.LENGTH_LONG).show();
+        }
     }
 }
