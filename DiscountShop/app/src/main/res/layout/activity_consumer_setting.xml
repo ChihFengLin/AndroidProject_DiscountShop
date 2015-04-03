@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="product_exp.discountshop.ConsumerSetting"
+    android:id="@+id/">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/setting"
+        android:id="@+id/settingTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textSize="36sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Ravi Kumar"
+        android:id="@+id/TextViewConsumerName"
+        android:textSize="33sp"
+        android:layout_below="@+id/settingTextView"
+        android:layout_toStartOf="@+id/settingTextView"
+        android:layout_marginTop="74dp" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/consumerImageView"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="fitCenter"
+        android:layout_below="@+id/TextViewConsumerName"
+        android:layout_alignEnd="@+id/TextViewConsumerName"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="-15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/radarRange"
+        android:id="@+id/TextViewRadarRange"
+        android:textSize="33sp"
+        android:layout_marginTop="62dp"
+        android:layout_below="@+id/consumerImageView"
+        android:layout_alignParentStart="true" />
+
+    <SeekBar
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/radarSeekBar"
+        android:max="50"
+        android:progress="25"
+        android:layout_below="@+id/TextViewRadarRange"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp"
+        android:indeterminate="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="25"
+        android:id="@+id/rangeTextView"
+        android:layout_above="@+id/radarSeekBar"
+        android:layout_toEndOf="@+id/settingTextView"
+        android:textSize="33sp"
+        android:textColor="#218868"/>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:text="@string/logout"
+        android:id="@+id/logoutButton"
+        android:textSize="28sp"
+        android:textColor="#0000ff"
+        android:layout_below="@+id/radarSeekBar"
+        android:layout_alignEnd="@+id/consumerImageView"
+        android:layout_marginTop="10dp" />
+
+</RelativeLayout>

@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_consumer_setting">ConsumerSetting</string>
+    <string name="setting">Setting</string>
+    <string name="radarRange">Radar Range (miles):</string>
+    <string name="logout">LogOut</string>
 </resources>
