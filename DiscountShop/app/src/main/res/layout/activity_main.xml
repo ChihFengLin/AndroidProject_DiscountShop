@@ -3,9 +3,50 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:touchscreenBlocksFocus="false"
+   >
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/logoImageView"
+
+        android:layout_marginTop="78dp"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:textSize="28sp"
+        android:textColor="#0000ff"
+        android:text="Consumer"
+        android:id="@+id/consumerButton"
+        android:layout_below="@+id/entranceTextView"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:textSize="28sp"
+        android:textColor="#0000ff"
+        android:text="Retailer"
+        android:id="@+id/retailerButton"
+        android:layout_below="@+id/consumerButton"
+        android:layout_alignStart="@+id/consumerButton"
+        android:layout_marginTop="69dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/entrance"
+        android:textSize="36sp"
+        android:id="@+id/entranceTextView"
+        android:textStyle="bold"
+        android:layout_below="@+id/logoImageView"
+        android:layout_toStartOf="@+id/consumerButton"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
