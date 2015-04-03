@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Here is Item Name"
-            android:id="@+id/textView"
+            android:id="@+id/AdapterItemName"
             android:layout_gravity="left|top"
             android:textSize="50dp"
             android:textStyle="bold"
@@ -25,8 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView2"
+            android:text="$ 100"
+            android:id="@+id/AdapterItemPrice"
             android:layout_gravity="left|center_vertical"
             android:textSize="30dp"
             android:layout_marginLeft="70dp"
@@ -36,8 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView3"
+            android:text="5 Miles"
+            android:id="@+id/AdapterItemDistance"
             android:layout_gravity="left|bottom"
             android:textSize="30dp"
             android:layout_marginLeft="70dp"
@@ -46,11 +46,12 @@
         <ImageView
             android:layout_width="274dp"
             android:layout_height="200dp"
-            android:id="@+id/imageView2"
+            android:id="@+id/AdapterImage"
             android:layout_gravity="bottom|right"
             android:layout_marginRight="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp" />
+
     </FrameLayout>
 </LinearLayout>
