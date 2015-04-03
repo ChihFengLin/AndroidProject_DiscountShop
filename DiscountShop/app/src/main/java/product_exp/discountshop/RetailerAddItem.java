@@ -48,9 +48,28 @@ public class RetailerAddItem extends Activity {
         startActivityForResult(it, 100);
     }
 
+    /*Pick the pictures from cellphone*/
+    //public void onPick(View v) {
+    //    Intent it = new Intent(Intent.ACTION_GET_CONTENT);
+    //    it.setType("image/*");
+    //    startActivityForResult(it, 101);
+    //}
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == 100) {
+
+            //switch(requestCode) {
+            //case 100:
+            //    Intent it = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, imgUri);
+            //    sendBroadcast(it);
+            //    break;
+
+            //case 101:
+            //    imgUri = convertUri(data.getData());
+            //    break;
+            //}
+
             /*Transform Intent object into Bundle object*/
             Bundle bd1 = data.getExtras();
             Bitmap bmp = (Bitmap) bd1.get("data");
