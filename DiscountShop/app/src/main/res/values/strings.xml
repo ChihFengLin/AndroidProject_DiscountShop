@@ -6,4 +6,5 @@
     <string name="title_activity_item_list_page">ItemListPage</string>
     <string name="title_activity_retailer_add_item">RetailerAddItem</string>
     <string name="client_item_list_page">ClientItemListPage</string>
+    <string name="title_activity_retailer_item_list_page">RetailerItemListPage</string>
 </resources>
