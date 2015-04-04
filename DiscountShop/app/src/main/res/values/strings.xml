@@ -3,9 +3,32 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+<<<<<<< HEAD
     <string name="title_activity_retailer_login">retailerLogin</string>
     <string name="title_activity_display_item_detail">DisplayItemDetail</string>
     <string name="title_activity_retailer_settings">RetailerSettings</string>
     <string name="title_activity_retailer_update_item">RetailerUpdateItem</string>
     <string name="productImage">productImage</string>
+=======
+    <string name="title_activity_consumer_setting">ConsumerSetting</string>
+    <string name="setting">Setting</string>
+    <string name="radarRange">Radar Range (miles):</string>
+    <string name="logout">LogOut</string>
+    <string name="title_activity_consumer_register">ConsumerRegister</string>
+    <string name="entrance">Entrance:</string>
+    <string name="title_activity_consumer_login">ConsumerLogin</string>
+    <string name="title_activity_retailer_register">RetailerRegister</string>
+    <string name="login">Login</string>
+    <string name="username">User Name:</string>
+    <string name="password">Password:</string>
+    <string name="submit">Submit</string>
+    <string name="register">Register</string>
+    <string name="email">Email:</string>
+    <string name="retailerName">Shop Name:</string>
+    <string name="address">Address:</string>
+    <string name="zipcode">Zip Code:</string>
+    <string name="signup">Sign Up</string>
+    <string name="camera">Camera</string>
+    <string name="album">Album</string>
+>>>>>>> origin/jingyu
 </resources>

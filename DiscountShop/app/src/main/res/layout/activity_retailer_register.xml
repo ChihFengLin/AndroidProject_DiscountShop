@@ -1,0 +1,150 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="product_exp.discountshop.RetailerRegister"
+   >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/register"
+        android:id="@+id/rregisterTextView"
+        android:layout_marginTop="71dp"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/email"
+        android:id="@+id/rremailTextView"
+        android:textSize="36sp"
+        android:layout_below="@+id/rregisterTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/username"
+        android:id="@+id/rrusernameTextView"
+        android:textSize="36sp"
+        android:layout_below="@+id/rremailTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/password"
+        android:id="@+id/rrpasswordTextView"
+        android:textSize="36sp"
+        android:layout_below="@+id/rrusernameTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp" />
+
+    <EditText
+        android:layout_width="370dp"
+        android:layout_height="80dp"
+        android:id="@+id/rremailEditText"
+        android:layout_marginLeft="-50dp"
+        android:layout_above="@+id/rrusernameTextView"
+        android:layout_alignEnd="@+id/rrusernameEditText"
+        android:layout_marginBottom="-10dp" />
+
+    <EditText
+        android:layout_width="320dp"
+        android:layout_height="80dp"
+        android:id="@+id/rrusernameEditText"
+        android:layout_alignBottom="@+id/rrusernameTextView"
+        android:layout_alignStart="@+id/rregisterTextView"
+        android:layout_marginBottom="-10dp" />
+
+    <EditText
+        android:layout_width="320dp"
+        android:layout_height="80dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/rrpasswordEditText"
+        android:layout_alignTop="@+id/rrpasswordTextView"
+        android:layout_alignStart="@+id/rrusernameEditText"
+        android:layout_marginTop="-25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/retailerName"
+        android:id="@+id/rrshopnameTextView"
+        android:textSize="36sp"
+        android:layout_below="@+id/rrpasswordEditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:layout_width="320dp"
+        android:layout_height="80dp"
+        android:id="@+id/rrshopnameEditText"
+        android:layout_alignTop="@+id/rrshopnameTextView"
+        android:layout_alignStart="@+id/rrpasswordEditText"
+        android:layout_marginTop="-20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/address"
+        android:id="@+id/rraddressTextView"
+        android:textSize="36sp"
+        android:layout_below="@+id/rrshopnameEditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:layout_width="320dp"
+        android:layout_height="80dp"
+        android:id="@+id/rraddressEditText"
+        android:layout_alignTop="@+id/rraddressTextView"
+        android:layout_alignStart="@+id/rrshopnameEditText"
+        android:layout_marginTop="-20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/zipcode"
+        android:id="@+id/rrzipcodeTextView"
+        android:textSize="36sp"
+        android:layout_below="@+id/rraddressEditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp" />
+
+    <EditText
+        android:layout_width="320dp"
+        android:layout_height="80dp"
+        android:id="@+id/rrzipcodeEditText"
+        android:layout_below="@+id/rraddressEditText"
+        android:layout_alignEnd="@+id/rraddressEditText"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:textSize="28sp"
+        android:textColor="#0000ff"
+        android:text="@string/submit"
+        android:id="@+id/rrsubmitButton"
+        android:layout_below="@+id/rrzipcodeEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+</RelativeLayout>
