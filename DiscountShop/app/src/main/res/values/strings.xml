@@ -20,4 +20,7 @@
     <string name="retailerName">Shop Name:</string>
     <string name="address">Address:</string>
     <string name="zipcode">Zip Code:</string>
+    <string name="signup">Sign Up</string>
+    <string name="camera">Camera</string>
+    <string name="album">Album</string>
 </resources>

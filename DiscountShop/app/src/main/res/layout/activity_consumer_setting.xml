@@ -85,4 +85,24 @@
         android:layout_alignEnd="@+id/consumerImageView"
         android:layout_marginTop="10dp" />
 
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:text="@string/camera"
+        android:textSize="28sp"
+        android:id="@+id/cscameraButton"
+        android:onClick="onGet"
+        android:layout_alignTop="@+id/consumerImageView"
+        android:layout_alignEnd="@+id/radarSeekBar" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:text="@string/album"
+        android:textSize="28sp"
+        android:id="@+id/csalbumButton"
+        android:onClick="onGet"
+        android:layout_alignBottom="@+id/consumerImageView"
+        android:layout_alignStart="@+id/cscameraButton" />
+
 </RelativeLayout>

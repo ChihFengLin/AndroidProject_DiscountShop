@@ -46,8 +46,8 @@
         android:textColor="#0000ff"
         android:text="@string/submit"
         android:id="@+id/loginSubmitButton"
-        android:layout_marginTop="131dp"
-        android:layout_below="@+id/passwordTextView"
+        android:layout_marginTop="71dp"
+        android:layout_below="@+id/passwordEditText"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -66,4 +66,15 @@
         android:layout_alignBottom="@+id/usernameTextView"
         android:layout_alignEnd="@+id/passwordEditText"
         android:layout_marginBottom="-20dp" />
+
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:textSize="28sp"
+        android:textColor="#0099ff"
+        android:text="@string/signup"
+        android:id="@+id/signupButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/loginSubmitButton"
+        android:layout_marginBottom="62dp" />
 </RelativeLayout>
