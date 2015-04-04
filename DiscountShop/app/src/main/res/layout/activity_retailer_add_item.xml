@@ -1,0 +1,110 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="product_exp.discountshop.RetailerAddItem">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Item Name : "
+        android:id="@+id/txv1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="92dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_below="@+id/txv1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="New Price : "
+        android:id="@+id/txv2"
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:layout_alignBottom="@+id/txv2"
+        android:layout_toEndOf="@+id/txv2"
+        android:layout_marginLeft="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Add Picture : "
+        android:id="@+id/txv3"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/txv2"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Camera"
+        android:id="@+id/button1"
+        android:layout_alignBottom="@+id/txv3"
+        android:layout_alignStart="@+id/editText2"
+        android:layout_marginStart="46dp"
+        android:onClick="onGet" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Photos"
+        android:id="@+id/button2"
+        android:layout_alignTop="@+id/button1"
+        android:layout_toEndOf="@+id/button1"
+        android:layout_marginStart="43dp"
+        android:onClick="onPick" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/editText"
+        android:layout_below="@+id/txv3"
+        android:layout_marginBottom="150dp"
+        android:src="@mipmap/din004"
+        android:layout_marginTop="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Item"
+        android:id="@+id/button3"
+        android:layout_marginBottom="59dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="25dp"
+        android:onClick="addItem" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Added Item Information"
+        android:id="@+id/txv0"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
