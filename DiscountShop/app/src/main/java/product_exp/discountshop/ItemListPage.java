@@ -28,9 +28,7 @@ public class ItemListPage extends ListActivity {
         return super.onCreateOptionsMenu(menu);
 
     }
-    /* (non-Javadoc)
-     * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-     */
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub

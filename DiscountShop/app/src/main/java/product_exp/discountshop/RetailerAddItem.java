@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 public class RetailerAddItem extends Activity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,7 @@ public class RetailerAddItem extends Activity {
     public  void addItem(View v) {
         Intent it = new Intent();
         it.setClass(this, RetailerItemListPage.class);
+        it.putExtra("Add Item", true);
         startActivity(it);
     }
 

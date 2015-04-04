@@ -29,7 +29,7 @@
             android:id="@+id/AdapterItemPrice"
             android:layout_gravity="left|center_vertical"
             android:textSize="30dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="45dp"
             android:layout_marginBottom="10dp" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:id="@+id/AdapterItemDistance"
             android:layout_gravity="left|bottom"
             android:textSize="30dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="45dp"
             android:layout_marginBottom="60dp" />
 
         <ImageView

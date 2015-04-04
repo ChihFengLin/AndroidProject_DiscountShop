@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class MyAdapter extends BaseAdapter{
 
     private LayoutInflater adapterLayoutInflater;
-    private ArrayList<Integer> arrayList;
+    private  ArrayList<Integer> arrayList;
 
     /*Constructor*/
     public MyAdapter(Context c){
@@ -71,14 +71,12 @@ public class MyAdapter extends BaseAdapter{
             tag = (TagView)view.getTag();
         }
         /*Set the content on the widget*/
-        tag.image.setBackgroundResource(R.mipmap.dazzling);
+        tag.image.setBackgroundResource(R.mipmap.din004);
         tag.itemName.setText("Item Name " + arrayList.get(position));
         tag.itemPrice.setText("Item Price " + arrayList.get(position));
         tag.itemDistance.setText("Item Distance " + arrayList.get(position));
         return view;
     }
-
-
 
 
 }
