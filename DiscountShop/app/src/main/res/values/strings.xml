@@ -3,4 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_retailer_login">retailerLogin</string>
+    <string name="title_activity_display_item_detail">DisplayItemDetail</string>
+    <string name="title_activity_retailer_settings">RetailerSettings</string>
+    <string name="title_activity_retailer_update_item">RetailerUpdateItem</string>
+    <string name="productImage">productImage</string>
 </resources>

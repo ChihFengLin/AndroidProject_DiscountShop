@@ -2,6 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="product_exp.discountshop" >
 
+    <permission
+        android:name="product_exp.discountshop.DisplayItemDetail.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="product_exp.discountshop.DisplayItemDetail.permission.MAPS_RECEIVE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +27,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".retailerLogin"
+            android:label="@string/title_activity_retailer_login" >
+        </activity>
+        <activity
+            android:name=".DisplayItemDetail"
+            android:label="@string/title_activity_display_item_detail" >
+        </activity>
+        <activity
+            android:name=".RetailerSettings"
+            android:label="@string/title_activity_retailer_settings" >
+        </activity>
+        <activity
+            android:name=".RetailerUpdateItem"
+            android:label="@string/title_activity_retailer_update_item" >
+        </activity>
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDGHPsG-RrXYvczhQ3aI-k5B1CBbIs1WJc" />
     </application>
 
 </manifest>

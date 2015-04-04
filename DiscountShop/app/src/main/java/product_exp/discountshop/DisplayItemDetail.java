@@ -1,21 +1,24 @@
 package product_exp.discountshop;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 
-public class MainActivity extends Activity {
 
+public class DisplayItemDetail extends FragmentActivity {
+    private GoogleMap map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this, DisplayItemDetail.class);
-        startActivity(intent);
-
+        setContentView(R.layout.activity_display_item_detail);
+       // Intent i = new Intent()
+        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+              .getMap();
     }
 
 
@@ -41,3 +44,4 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 }
+
