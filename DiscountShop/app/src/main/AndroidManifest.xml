@@ -27,17 +27,19 @@
             </intent-filter>
         </activity>
         <activity
-<<<<<<< HEAD
             android:name=".retailerLogin"
             android:label="@string/title_activity_retailer_login" >
+
         </activity>
         <activity
             android:name=".DisplayItemDetail"
             android:label="@string/title_activity_display_item_detail" >
+
         </activity>
         <activity
             android:name=".RetailerSettings"
             android:label="@string/title_activity_retailer_settings" >
+
         </activity>
         <activity
             android:name=".RetailerUpdateItem"
@@ -46,7 +48,7 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDGHPsG-RrXYvczhQ3aI-k5B1CBbIs1WJc" />
-=======
+         <activity
             android:name=".ConsumerSetting"
             android:label="@string/title_activity_consumer_setting" >
 
@@ -66,7 +68,7 @@
             android:label="@string/title_activity_retailer_register" >
 
         </activity>
->>>>>>> origin/jingyu
+
     </application>
 
 </manifest>
