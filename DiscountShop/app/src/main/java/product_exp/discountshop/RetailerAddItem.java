@@ -42,6 +42,13 @@ public class RetailerAddItem extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    /* The action for click "Add Item" button*/
+    public  void addItem(View v) {
+        Intent it = new Intent();
+        it.setClass(this, RetailerItemListPage.class);
+        startActivity(it);
+    }
+
     /*When clicking the camera button, user can use camera to capture picture*/
     public void onGet(View v) {
         Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

@@ -93,7 +93,8 @@
         android:layout_marginBottom="59dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:onClick="addItem" />
 
     <TextView
         android:layout_width="wrap_content"
