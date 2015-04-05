@@ -76,8 +76,13 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:textSize="28sp"
-        android:textColor="#0000ff"
+        android:textColor="#CBD4CB"
+        android:textSize="30sp"
+        android:background="@drawable/save_button"
+        android:shadowColor="#707070"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
 
         android:text="@string/logout"
         android:id="@+id/logoutButton"
@@ -90,10 +95,11 @@
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:text="@string/camera"
+        android:textColor="#0099ff"
         android:textSize="28sp"
         android:id="@+id/cscameraButton"
         android:onClick="getSelfPicture"
-        android:layout_alignTop="@+id/consumerImageView"
+        android:layout_above="@+id/consumerImageView"
         android:layout_alignEnd="@+id/radarSeekBar" />
 
     <Button
@@ -104,6 +110,7 @@
         android:id="@+id/csalbumButton"
         android:onClick="onGet"
         android:layout_alignBottom="@+id/consumerImageView"
-        android:layout_alignStart="@+id/cscameraButton" />
+        android:layout_alignStart="@+id/cscameraButton"
+        android:enabled="false" />
 
 </RelativeLayout>

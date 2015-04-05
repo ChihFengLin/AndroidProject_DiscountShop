@@ -58,6 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Camera"
+        android:textColor="#0099ff"
         android:id="@+id/button1"
         android:onClick="onGet"
         android:layout_above="@+id/imageView"
@@ -70,7 +71,8 @@
         android:id="@+id/button2"
         android:layout_alignTop="@+id/button1"
         android:layout_toEndOf="@+id/button3"
-        android:onClick="onPick" />
+        android:onClick="onPick"
+        android:enabled="false" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -88,7 +90,13 @@
         android:layout_height="wrap_content"
         android:text="Add Item"
         android:id="@+id/button3"
-        android:textSize="25dp"
+        android:textColor="#CBD4CB"
+        android:textSize="25sp"
+        android:background="@drawable/save_button"
+        android:shadowColor="#707070"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
         android:onClick="addItem"
         android:layout_marginBottom="66dp"
         android:layout_alignParentBottom="true"

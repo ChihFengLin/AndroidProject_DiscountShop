@@ -27,7 +27,7 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
 
         /*Check whether a new item is added or not*/
         Intent it = getIntent();
-        if(it.getBooleanExtra("Add Item", false)) {
+        if(it.getBooleanExtra("Profile & Item Setting", false)) {
             myAdapter.addItem(myAdapter.getCount()+1);
             this.setSelection(myAdapter.getCount()+1);
         }
@@ -48,7 +48,7 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // TODO Auto-generated method stub
-        menu.add(0, Menu.FIRST, 0, "Add Item");
+        menu.add(0, Menu.FIRST, 0, "Profile & Item Setting");
         menu.add(0, Menu.FIRST+1, 0, "Return Last Page");
         return super.onCreateOptionsMenu(menu);
 
