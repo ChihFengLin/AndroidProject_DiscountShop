@@ -92,7 +92,7 @@
         android:text="@string/camera"
         android:textSize="28sp"
         android:id="@+id/cscameraButton"
-        android:onClick="onGet"
+        android:onClick="getSelfPicture"
         android:layout_alignTop="@+id/consumerImageView"
         android:layout_alignEnd="@+id/radarSeekBar" />
 

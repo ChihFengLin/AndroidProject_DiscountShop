@@ -2,10 +2,14 @@ package product_exp.discountshop;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class ConsumerSetting extends Activity {
@@ -43,5 +47,36 @@ public class ConsumerSetting extends Activity {
         Intent goToMain = new Intent();
         goToMain.setClass(this, MainActivity.class);
         startActivity(goToMain);
+    }
+
+    public void getSelfPicture(View v) {
+        Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(it, 102);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == 102) {
+
+            //switch(requestCode) {
+            //case 100:
+            //    Intent it = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, imgUri);
+            //    sendBroadcast(it);
+            //    break;
+
+            //case 101:
+            //    imgUri = convertUri(data.getData());
+            //    break;
+            //}
+
+            /*Transform Intent object into Bundle object*/
+            Bundle bd1 = data.getExtras();
+            Bitmap bmp = (Bitmap) bd1.get("data");
+
+            ImageView imv = (ImageView) findViewById(R.id.consumerImageView);
+            imv.setImageBitmap(bmp);
+        } else {
+            Toast.makeText(this, "You Take Picture Unsuccessfully!", Toast.LENGTH_LONG).show();
+        }
     }
 }

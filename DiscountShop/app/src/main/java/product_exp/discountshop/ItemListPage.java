@@ -44,7 +44,7 @@ public class ItemListPage extends ListActivity implements AdapterView.OnItemClic
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // TODO Auto-generated method stub
-        menu.add(0, Menu.FIRST, 0, "Setting");
+        menu.add(0, Menu.FIRST, 0, "Profile Setting");
         menu.add(0, Menu.FIRST+1, 0, "Return Last Page");
         return super.onCreateOptionsMenu(menu);
 
