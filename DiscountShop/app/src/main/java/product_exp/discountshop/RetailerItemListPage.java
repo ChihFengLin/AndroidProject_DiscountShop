@@ -27,7 +27,7 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
 
         /*Check whether a new item is added or not*/
         Intent it = getIntent();
-        if(it.getBooleanExtra("Profile & Item Setting", false)) {
+        if(it.getBooleanExtra("Add Item", false)) {
             myAdapter.addItem(myAdapter.getCount()+1);
             this.setSelection(myAdapter.getCount()+1);
         }
