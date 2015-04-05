@@ -2,9 +2,11 @@ package product_exp.discountshop;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class retailerLogin extends Activity {
@@ -37,4 +39,17 @@ public class retailerLogin extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void goRetailerItemList(View v) {
+        Intent goToRetailerItemList = new Intent();
+        goToRetailerItemList.setClass(this, RetailerItemListPage.class);
+        startActivity(goToRetailerItemList);
+    }
+
+    public void goSignUp(View v) {
+        Intent goToSignUp = new Intent();
+        goToSignUp.setClass(this, RetailerRegister.class);
+        startActivity(goToSignUp);
+    }
+
 }

@@ -1,9 +1,11 @@
 package product_exp.discountshop;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class ConsumerSetting extends Activity {
@@ -35,5 +37,11 @@ public class ConsumerSetting extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void goMain(View v) {
+        Intent goToMain = new Intent();
+        goToMain.setClass(this, MainActivity.class);
+        startActivity(goToMain);
     }
 }

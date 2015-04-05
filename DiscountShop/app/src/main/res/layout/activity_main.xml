@@ -24,7 +24,8 @@
         android:text="Consumer"
         android:id="@+id/consumerButton"
         android:layout_below="@+id/entranceTextView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="goConsumer" />
 
     <Button
         android:layout_width="180dp"
@@ -35,7 +36,8 @@
         android:id="@+id/retailerButton"
         android:layout_below="@+id/consumerButton"
         android:layout_alignStart="@+id/consumerButton"
-        android:layout_marginTop="69dp" />
+        android:layout_marginTop="69dp"
+        android:onClick="goRetailer" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -1,9 +1,11 @@
 package product_exp.discountshop;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class ConsumerRegister extends Activity {
@@ -35,5 +37,11 @@ public class ConsumerRegister extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void goItemList(View v) {
+        Intent goToItemList = new Intent();
+        goToItemList.setClass(this, ItemListPage.class);
+        startActivity(goToItemList);
     }
 }

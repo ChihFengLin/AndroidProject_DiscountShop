@@ -48,7 +48,8 @@
         android:id="@+id/loginSubmitButton"
         android:layout_marginTop="71dp"
         android:layout_below="@+id/passwordEditText"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="goItemList" />
 
     <EditText
         android:layout_width="320dp"
@@ -76,5 +77,6 @@
         android:id="@+id/signupButton"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/loginSubmitButton"
-        android:layout_marginBottom="62dp" />
+        android:layout_marginBottom="62dp"
+        android:onClick="goRegister" />
 </RelativeLayout>

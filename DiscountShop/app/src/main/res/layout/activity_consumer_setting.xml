@@ -83,7 +83,8 @@
         android:id="@+id/logoutButton"
         android:layout_below="@+id/radarSeekBar"
         android:layout_alignEnd="@+id/consumerImageView"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:onClick="goMain" />
 
     <Button
         android:layout_width="150dp"

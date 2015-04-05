@@ -44,7 +44,7 @@ public class RetailerAddItem extends Activity {
     }
 
     /* The action for click "Add Item" button*/
-    public  void addItem(View v) {
+    public void addItem(View v) {
         Intent it = new Intent();
         it.setClass(this, RetailerItemListPage.class);
         it.putExtra("Add Item", true);

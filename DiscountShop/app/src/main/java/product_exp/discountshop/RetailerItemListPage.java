@@ -41,16 +41,15 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
         Intent it = new Intent();
-        it.setClass(this, ItemListPage.class);
+        it.setClass(this, RetailerUpdateItem.class);
         startActivity(it);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // TODO Auto-generated method stub
-        menu.add(0, Menu.FIRST, 0, "add item");
-        menu.add(0, Menu.FIRST+1, 0, "remove item");
-        menu.add(0, Menu.FIRST+2, 0, "return last page");
+        menu.add(0, Menu.FIRST, 0, "Setting");
+        menu.add(0, Menu.FIRST+1, 0, "Return Last Page");
         return super.onCreateOptionsMenu(menu);
 
     }
@@ -59,6 +58,15 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub
         switch(item.getItemId()){
+            case Menu.FIRST:
+                Intent goToRetailerSetting = new Intent();
+                goToRetailerSetting.setClass(this, RetailerSettings.class);
+                startActivity(goToRetailerSetting);
+                break;
+            case Menu.FIRST+1:
+                finish();
+                break;
+            /*
             case Menu.FIRST:
                 myAdapter.addItem(myAdapter.getCount()+1);
                 this.setSelection(myAdapter.getCount()+1);
@@ -69,6 +77,7 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
             case Menu.FIRST+2:
                 finish();
                 break;
+            */
         }
         return super.onOptionsItemSelected(item);
     }

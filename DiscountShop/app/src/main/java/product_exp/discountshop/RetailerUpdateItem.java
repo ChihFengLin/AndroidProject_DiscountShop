@@ -1,9 +1,11 @@
 package product_exp.discountshop;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class RetailerUpdateItem extends Activity {
@@ -35,5 +37,11 @@ public class RetailerUpdateItem extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void deleteItem(View v) {
+        Intent delete = new Intent();
+        delete.setClass(this, RetailerItemListPage.class);
+        startActivity(delete);
     }
 }

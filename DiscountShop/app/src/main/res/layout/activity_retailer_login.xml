@@ -85,18 +85,30 @@
             android:textColor="#CBD4CB"
             android:textSize="30sp"
             android:gravity="center"
-            android:layout_below="@+id/passwordinput"
             android:layout_width="250dp"
             android:layout_height="60dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="61dp"
             android:background="@drawable/save_button"
             android:shadowColor="#707070"
             android:shadowDx="0"
             android:shadowDy="0"
             android:layout_marginLeft="180dp"
             android:shadowRadius="5"
-            />
+            android:layout_below="@+id/password"
+            android:layout_centerHorizontal="true"
+            android:onClick="goRetailerItemList" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:id="@+id/sgn_btn"
+            android:layout_below="@+id/save_btn"
+            android:layout_alignStart="@+id/save_btn"
+            android:layout_marginTop="45dp"
+            android:layout_alignEnd="@+id/save_btn"
+            android:textSize="30dp"
+            android:onClick="goSignUp" />
 
     </RelativeLayout>
 
