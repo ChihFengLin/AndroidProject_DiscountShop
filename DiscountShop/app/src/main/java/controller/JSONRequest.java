@@ -28,7 +28,7 @@ import product_exp.discountshop.ConsumerLogin;
  */
 public class JSONRequest extends IntentService {
 
-    private final String databaseUrl="http://10.0.0.111:8080/DiscountShopWebService/";
+    private final String webServiceUrl="http://www.codeee.com:8080/DiscountShopWebService/";
     ///////////////
     public static final String IN_MSG="requestType";
     private String inMessage;
@@ -49,7 +49,19 @@ public class JSONRequest extends IntentService {
             String username=intent.getStringExtra("username");
                 getLoginInfo(loginType,username);
                 break;
+            case "createUser":
+            String userType=intent.getStringExtra("userType");
 
+            if(userType.equals("consumer")){
+            String email=intent.getStringExtra("email");
+               String consumer_username = intent.getStringExtra("username");
+            String password=intent.getStringExtra("password");
+            createConsumer("consumer",email,consumer_username,password);
+            }else{
+
+            }
+
+                break;
 
 
             default:
@@ -67,11 +79,26 @@ public class JSONRequest extends IntentService {
         nameValuePairs.add(new BasicNameValuePair("username",username));
 
         //prepare to make HTTP request
-        String url=databaseUrl+"LoginServlet";
+        String url=webServiceUrl+"LoginServlet";
         // make http request and broadcast the request
         requestBroadcastProcess(url,nameValuePairs);
 
     }
+
+    private void createConsumer(String userType,String email,String username, String password){
+        //add email, username, password for the create consumer request
+        List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(4);
+        nameValuePairs.add(new BasicNameValuePair("userType",userType));
+        nameValuePairs.add(new BasicNameValuePair("email",email));
+        nameValuePairs.add(new BasicNameValuePair("username",username));
+        nameValuePairs.add(new BasicNameValuePair("password",password));
+        //prepare to make HTTP request
+        String url=webServiceUrl+"CreateUserServlet";
+        // make http request and broadcast the request
+        requestBroadcastProcess(url,nameValuePairs);
+    }
+
+
 
     // integration of sendHttpRequest and broadcastResponse functions
     private void requestBroadcastProcess(String url, List<NameValuePair> nameValuePairs){

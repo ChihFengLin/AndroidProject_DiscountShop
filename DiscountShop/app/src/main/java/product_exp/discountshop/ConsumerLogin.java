@@ -132,8 +132,6 @@ public class ConsumerLogin extends Activity {
     //parse and display JSON response
     private void processJsonResponse(String response){
         JSONObject responseObj=null;
-        TextView errorMessage = (TextView)findViewById(R.id.errorMessage);
-
         try {
             //create JSON object from JSON string
             responseObj = new JSONObject(response);
