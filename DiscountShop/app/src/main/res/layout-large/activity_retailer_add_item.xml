@@ -12,9 +12,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/item_name"
         android:id="@+id/txv1"
-        android:layout_below="@+id/txv0"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="92dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/new_price"
         android:id="@+id/txv2"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="62dp"
         android:layout_below="@+id/editText"
         android:layout_alignParentStart="true" />
 
@@ -40,7 +40,7 @@
         android:id="@+id/editText2"
         android:layout_alignBottom="@+id/txv2"
         android:layout_toEndOf="@+id/txv2"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="30dp"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="30dp" />
 
@@ -61,8 +61,8 @@
         android:textColor="#0099ff"
         android:id="@+id/button1"
         android:onClick="onGet"
-        android:layout_alignBottom="@+id/txv3"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/imageView"
+        android:layout_alignStart="@+id/button3" />
 
     <Button
         android:layout_width="wrap_content"
@@ -75,28 +75,30 @@
         android:enabled="false" />
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/imageView"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/editText"
+        android:layout_below="@+id/txv3"
         android:src="@drawable/cheesecake"
-        android:layout_above="@+id/button3"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginTop="15dp"
+        android:layout_above="@+id/button3" />
 
     <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/add_item"
         android:id="@+id/button3"
         android:textColor="#CBD4CB"
-        android:textSize="15sp"
+        android:textSize="25sp"
         android:background="@drawable/save_button"
         android:shadowColor="#707070"
         android:shadowDx="0"
         android:shadowDy="0"
-        android:shadowRadius="1"
+        android:shadowRadius="5"
         android:onClick="addItem"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="66dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -108,7 +110,7 @@
         android:id="@+id/txv0"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:textStyle="bold" />
 
 </RelativeLayout>

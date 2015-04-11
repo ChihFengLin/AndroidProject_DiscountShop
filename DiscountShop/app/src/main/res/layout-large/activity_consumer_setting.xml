@@ -8,34 +8,46 @@
     android:id="@+id/test">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/setting"
+        android:id="@+id/settingTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textSize="36sp"/>
+
+    <TextView
         android:id="@+id/TextViewConsumerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/consumer"
         android:textSize="33sp"
-        android:layout_marginTop="10dp"
         android:layout_below="@+id/settingTextView"
-        android:layout_alignParentStart="true" />
+        android:layout_toStartOf="@+id/settingTextView"
+        android:layout_marginTop="74dp" />
 
     <ImageView
         android:id="@+id/consumerImageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:src="@mipmap/ic_launcher"
         android:scaleType="fitCenter"
         android:layout_below="@+id/TextViewConsumerName"
-        android:layout_marginTop="10dp"
-        android:layout_alignEnd="@+id/TextViewConsumerName" />
+        android:layout_alignEnd="@+id/TextViewConsumerName"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="-15dp" />
 
     <TextView
         android:id="@+id/TextViewRadarRange"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/radarRange"
-        android:textSize="30sp"
-        android:layout_marginTop="30dp"
+        android:textSize="33sp"
+        android:layout_marginTop="62dp"
         android:layout_below="@+id/consumerImageView"
         android:layout_alignParentStart="true" />
 
@@ -52,19 +64,19 @@
 
     <TextView
         android:id="@+id/rangeTextView"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/distanceRange"
-        android:textSize="40sp"
-        android:textColor="#218868"
-        android:layout_alignTop="@+id/TextViewRadarRange"
-        android:layout_alignStart="@+id/csalbumButton" />
+        android:layout_above="@+id/radarSeekBar"
+        android:layout_toEndOf="@+id/settingTextView"
+        android:textSize="33sp"
+        android:textColor="#218868"/>
 
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:textColor="#CBD4CB"
         android:textSize="30sp"
         android:background="@drawable/save_button"
@@ -75,7 +87,7 @@
         android:text="@string/logout"
         android:layout_below="@+id/radarSeekBar"
         android:layout_alignEnd="@+id/consumerImageView"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:onClick="goMain" />
 
     <Button
@@ -86,7 +98,7 @@
         android:textColor="#0099ff"
         android:textSize="28sp"
         android:onClick="getSelfPicture"
-        android:layout_alignTop="@+id/consumerImageView"
+        android:layout_above="@+id/consumerImageView"
         android:layout_alignEnd="@+id/radarSeekBar" />
 
     <Button
@@ -96,8 +108,8 @@
         android:text="@string/album"
         android:textSize="28sp"
         android:onClick="onGet"
-        android:enabled="false"
         android:layout_alignBottom="@+id/consumerImageView"
-        android:layout_alignStart="@+id/cscameraButton" />
+        android:layout_alignStart="@+id/cscameraButton"
+        android:enabled="false" />
 
 </RelativeLayout>

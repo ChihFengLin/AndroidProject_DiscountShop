@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.40">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/here_is_item_name"
+            android:id="@+id/AdapterItemName"
+            android:layout_gravity="left|top"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:layout_margin="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="$ 100"
+            android:id="@+id/AdapterItemPrice"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="30dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="5 Miles"
+            android:id="@+id/AdapterItemDistance"
+            android:layout_gravity="left|bottom"
+            android:textSize="30dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginBottom="60dp" />
+
+        <ImageView
+            android:layout_width="264dp"
+            android:layout_height="191dp"
+            android:id="@+id/AdapterImage"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp" />
+
+    </FrameLayout>
+</LinearLayout>
