@@ -3,7 +3,6 @@ package controller;
 import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
@@ -17,7 +16,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,11 +28,12 @@ import product_exp.discountshop.ConsumerLogin;
  */
 public class JSONRequest extends IntentService {
 
-    private String inMessage;
-
+    private final String databaseUrl="http://10.0.0.111:8080/DiscountShopWebService/";
+    ///////////////
     public static final String IN_MSG="requestType";
+    private String inMessage;
     public static final String OUT_MSG= "outputMessage";
-
+    private String process_response_filter;
 
     public JSONRequest() {
         super("JSONRequest");
@@ -42,40 +41,46 @@ public class JSONRequest extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        inMessage=intent.getStringExtra(IN_MSG);
-        if(inMessage.trim().equalsIgnoreCase("getLoginInfo")){
+        process_response_filter=intent.getStringExtra("processType");
+        inMessage=intent.getStringExtra(IN_MSG).trim();
+        switch(inMessage){
+            case "getLoginInfo":
             String loginType=intent.getStringExtra("loginType");
             String username=intent.getStringExtra("username");
-            Log.v("loginType","test:"+loginType);
-            Log.v("username","test:"+username);
-            getLoginInfo(loginType,username);
-        }
-        else if (inMessage.trim().equalsIgnoreCase("getSomethingElse")){
+                getLoginInfo(loginType,username);
+                break;
 
+
+
+            default:
+                break;
         }
+
     }
 
-    private void getLoginInfo(String loginType,String username){
-        //prepare to make HTTP request
-        String url="http://www.codeee.com:8080/DiscountShopWebService"+"/LoginServlet";
 
+// To get Login info: first, send http request; then receive response and finally broadcast the result
+    private void getLoginInfo(String loginType,String username){
         //add name value pair for the login info request
         List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(2);
         nameValuePairs.add(new BasicNameValuePair("loginType",loginType));
         nameValuePairs.add(new BasicNameValuePair("username",username));
-        String response=sendHttpRequest(url,nameValuePairs);
 
-        //broadcast message that we have received the response
-        //from the web service
-        Intent broadcastIntent = new Intent();
-        broadcastIntent.setAction(ConsumerLogin.MyRequestReceiver.PROCESS_RESPONSE);
-        broadcastIntent.addCategory(Intent.CATEGORY_DEFAULT);
-        broadcastIntent.putExtra(IN_MSG,inMessage);
-        broadcastIntent.putExtra(OUT_MSG,response);
-        sendBroadcast(broadcastIntent);
+        //prepare to make HTTP request
+        String url=databaseUrl+"LoginServlet";
+        // make http request and broadcast the request
+        requestBroadcastProcess(url,nameValuePairs);
 
     }
 
+    // integration of sendHttpRequest and broadcastResponse functions
+    private void requestBroadcastProcess(String url, List<NameValuePair> nameValuePairs){
+        String response=sendHttpRequest(url,nameValuePairs);
+        broadcastResponse(response);
+
+    }
+
+// send Http request to servlet by name value pair
     private String sendHttpRequest(String url,List<NameValuePair> nameValuePairs){
         int REGISTRATION_TIMEOUT = 15 * 1000;
         int WAIT_TIMEOUT = 60 * 1000;
@@ -122,6 +127,17 @@ public class JSONRequest extends IntentService {
 
         //send back the JSON response String
         return content;
+    }
+
+    //broadcast message that we have received the response
+    //from the web service
+    private void broadcastResponse(String response){
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction(process_response_filter);
+        broadcastIntent.addCategory(Intent.CATEGORY_DEFAULT);
+        broadcastIntent.putExtra(IN_MSG,inMessage);
+        broadcastIntent.putExtra(OUT_MSG,response);
+        sendBroadcast(broadcastIntent);
     }
 
 }
