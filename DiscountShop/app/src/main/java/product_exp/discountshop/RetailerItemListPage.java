@@ -16,7 +16,7 @@ import android.widget.ListView;
 public class RetailerItemListPage extends ListActivity implements OnItemClickListener{
 
     private static MyAdapter myAdapter;
-
+    private String username;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
 
         /*Check whether a new item is added or not*/
         Intent it = getIntent();
+        username=it.getStringExtra("username");
         if(it.getBooleanExtra("Add Item", false)) {
             myAdapter.addItem(myAdapter.getCount()+1);
             this.setSelection(myAdapter.getCount()+1);
@@ -60,6 +61,7 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
         switch(item.getItemId()){
             case Menu.FIRST:
                 Intent goToRetailerSetting = new Intent();
+                goToRetailerSetting.putExtra("username",username);
                 goToRetailerSetting.setClass(this, RetailerSettings.class);
                 startActivity(goToRetailerSetting);
                 break;

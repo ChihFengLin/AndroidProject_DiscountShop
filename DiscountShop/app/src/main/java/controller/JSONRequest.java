@@ -50,16 +50,34 @@ public class JSONRequest extends IntentService {
                 break;
             case "createUser":
             String userType=intent.getStringExtra("userType");
-
+            //consumer creating
             if(userType.equals("consumer")){
             String email=intent.getStringExtra("email");
-               String consumer_username = intent.getStringExtra("username");
+            String consumer_username = intent.getStringExtra("username");
             String password=intent.getStringExtra("password");
             createConsumer("consumer",email,consumer_username,password);
-            }else{
-
             }
+            //retailer creating
+            else{
+            String email=intent.getStringExtra("email");
+            String retailer_username = intent.getStringExtra("username");
+            String password=intent.getStringExtra("password");
+            String retailerName=intent.getStringExtra("retailerName");
+            String address=intent.getStringExtra("address");
+            String zipCode=intent.getStringExtra("zipCode");
+            createRetailer("retailer",email,retailer_username,password,retailerName,address,zipCode);
+            }
+             break;
 
+            case "update":
+            String updateType=intent.getStringExtra("updateType");
+            if(updateType.equals("address")) {
+                String username_update = intent.getStringExtra("username");
+                String newAddress = intent.getStringExtra("newAddress");
+                Log.v("username_update","test:"+username_update);
+                Log.v("newAddress","test:"+newAddress);
+                update("address",username_update,"newAddress",newAddress);
+            }
                 break;
 
 
@@ -83,7 +101,7 @@ public class JSONRequest extends IntentService {
         requestBroadcastProcess(url,nameValuePairs);
 
     }
-
+//create consumer, http request
     private void createConsumer(String userType,String email,String username, String password){
         //add email, username, password for the create consumer request
         List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(4);
@@ -96,7 +114,36 @@ public class JSONRequest extends IntentService {
         // make http request and broadcast the request
         requestBroadcastProcess(url,nameValuePairs);
     }
+//create retailer, http request
+    private void createRetailer(String userType,String email,String username, String password, String retailerName, String address, String zipCode){
+        List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(7);
+        nameValuePairs.add(new BasicNameValuePair("userType",userType));
+        nameValuePairs.add(new BasicNameValuePair("email",email));
+        nameValuePairs.add(new BasicNameValuePair("username",username));
+        nameValuePairs.add(new BasicNameValuePair("password",password));
+        nameValuePairs.add(new BasicNameValuePair("retailerName",retailerName));
+        nameValuePairs.add(new BasicNameValuePair("address",address));
+        nameValuePairs.add(new BasicNameValuePair("zipCode",zipCode));
+        //prepare to make HTTP request
+        String url=webServiceUrl+"CreateUserServlet";
+        // make http request and broadcast the request
+        requestBroadcastProcess(url,nameValuePairs);
+    }
 
+    //update, http request
+    private void update(String updateType,String username, String updateKey, String updateValue){
+        if(updateType.equals("address")) {
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+            nameValuePairs.add(new BasicNameValuePair("updateType", "address"));
+            nameValuePairs.add(new BasicNameValuePair("username", username));
+            nameValuePairs.add(new BasicNameValuePair(updateKey, updateValue));
+            //prepare to make HTTP request
+            String url=webServiceUrl+"UpdateServlet";
+            // make http request and broadcast the request
+            requestBroadcastProcess(url,nameValuePairs);
+        }
+
+    }
 
 
     // integration of sendHttpRequest and broadcastResponse functions

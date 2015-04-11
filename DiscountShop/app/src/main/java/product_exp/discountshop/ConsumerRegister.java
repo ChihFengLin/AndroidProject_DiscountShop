@@ -11,17 +11,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import controller.JSONRequest;
 import controller.NetworkStatus;
-import model.Login;
 
 
 public class ConsumerRegister extends Activity {
@@ -40,7 +36,7 @@ public class ConsumerRegister extends Activity {
         setContentView(R.layout.activity_consumer_register);
 
         emailText=(EditText)findViewById(R.id.cremailEditText);
-        usernameText=(EditText)findViewById(R.id.crusernameEditText);
+        usernameText=(EditText)findViewById(R.id.rrusernameEditText);
         passwordText=(EditText)findViewById(R.id.crpasswordEditText);
 
         // Register receiver so that this Activity can be notified
@@ -138,12 +134,15 @@ public class ConsumerRegister extends Activity {
             //get the success property
             boolean success=responseObj.getBoolean("success");
             if(success){
+                Toast toast = Toast.makeText(this, "Creating account is successful!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 105, 50);
+                toast.show();
                 Intent goToItemList = new Intent();
                 goToItemList.setClass(this, ItemListPage.class);
                 startActivity(goToItemList);
 
             }else{
-                Toast toast = Toast.makeText(this, "Create account failure, Please try again!", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, "Creating account failure, maybe username does exist, Please try again!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
                 //  errorMessage.setText();

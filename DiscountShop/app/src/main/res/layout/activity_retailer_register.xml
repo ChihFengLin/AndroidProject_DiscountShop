@@ -58,13 +58,13 @@
         android:id="@+id/rremailEditText"
         android:layout_marginLeft="-50dp"
         android:layout_above="@+id/rrusernameTextView"
-        android:layout_alignEnd="@+id/crusernameEditText"
+        android:layout_alignEnd="@+id/rrusernameEditText"
         android:layout_marginBottom="-10dp" />
 
     <EditText
         android:layout_width="320dp"
         android:layout_height="80dp"
-        android:id="@+id/crusernameEditText"
+        android:id="@+id/rrusernameEditText"
         android:layout_alignBottom="@+id/rrusernameTextView"
         android:layout_alignStart="@+id/rregisterTextView"
         android:layout_marginBottom="-10dp" />
@@ -76,7 +76,7 @@
         android:ems="10"
         android:id="@+id/rrpasswordEditText"
         android:layout_alignTop="@+id/rrpasswordTextView"
-        android:layout_alignStart="@+id/crusernameEditText"
+        android:layout_alignStart="@+id/rrusernameEditText"
         android:layout_marginTop="-25dp" />
 
     <TextView
@@ -134,7 +134,8 @@
         android:id="@+id/rrzipcodeEditText"
         android:layout_below="@+id/rraddressEditText"
         android:layout_alignEnd="@+id/rraddressEditText"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:inputType="number" />
 
     <Button
         android:layout_width="180dp"

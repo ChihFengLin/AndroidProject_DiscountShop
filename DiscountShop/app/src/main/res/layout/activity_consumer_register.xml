@@ -32,7 +32,7 @@
     <EditText
         android:layout_width="320dp"
         android:layout_height="80dp"
-        android:id="@+id/crusernameEditText"
+        android:id="@+id/rrusernameEditText"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/cregisterTextView" />
 
@@ -43,7 +43,7 @@
         android:text="@string/password"
         android:id="@+id/crpasswordTextView"
         android:textSize="36sp"
-        android:layout_below="@+id/crusernameEditText"
+        android:layout_below="@+id/rrusernameEditText"
         android:layout_alignParentStart="true"
         android:layout_marginTop="62dp" />
 
@@ -54,7 +54,7 @@
         android:ems="10"
         android:id="@+id/crpasswordEditText"
         android:layout_alignBottom="@+id/crpasswordTextView"
-        android:layout_alignStart="@+id/crusernameEditText" />
+        android:layout_alignStart="@+id/rrusernameEditText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
         android:text="@string/email"
         android:id="@+id/cemailTextView"
         android:textSize="36sp"
-        android:layout_above="@+id/crusernameEditText"
+        android:layout_above="@+id/rrusernameEditText"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="54dp" />
 
