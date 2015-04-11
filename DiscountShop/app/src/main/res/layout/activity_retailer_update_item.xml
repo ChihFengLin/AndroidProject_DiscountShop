@@ -73,7 +73,7 @@
 
             <Button
                 android:id="@+id/save_btn"
-                android:text="Save"
+                android:text="@string/save"
                 android:textColor="#CBD4CB"
                 android:textSize="30sp"
                 android:gravity="center"
@@ -92,7 +92,7 @@
 
             <Button
                 android:id="@+id/del_btn"
-                android:text="Delete"
+                android:text="@string/delete"
                 android:textColor="#CBD4CB"
                 android:textSize="30sp"
                 android:gravity="center"

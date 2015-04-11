@@ -17,7 +17,7 @@
         android:textSize="40sp"
         android:textColor="#000000"
         android:gravity="center"
-        android:text="Profile Settings"
+        android:text="@string/profile_setting"
         android:textStyle="bold"/>
 
 
@@ -38,7 +38,7 @@
 
     <Button
         android:id="@+id/add_item"
-        android:text="Add Item"
+        android:text="@string/add_item"
         android:textColor="#CBD4CB"
         android:textSize="30sp"
         android:gravity="center"
@@ -64,7 +64,7 @@
         android:textSize="35sp"
         android:gravity="left"
         android:contentDescription="address"
-        android:text="Update Address:"
+        android:text="@string/update_address"
         android:textColor="#000066"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/settings"/>
@@ -83,7 +83,7 @@
 
     <Button
         android:id="@+id/save_settings"
-        android:text="Save"
+        android:text="@string/save"
         android:textColor="#CBD4CB"
         android:textSize="30sp"
         android:gravity="center"
@@ -103,7 +103,7 @@
 
     <Button
         android:id="@+id/logout"
-        android:text="logout"
+        android:text="@string/logout"
         android:textColor="#CBD4CB"
         android:textSize="30sp"
         android:gravity="center"

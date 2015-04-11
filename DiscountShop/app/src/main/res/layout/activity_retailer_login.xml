@@ -28,7 +28,7 @@
             android:textSize="35sp"
             android:gravity="left"
             android:contentDescription="Price"
-            android:text="Username :"
+            android:text="@string/username"
             android:textColor="#000066"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/Discount"
@@ -58,7 +58,7 @@
             android:textSize="35sp"
             android:gravity="left"
             android:contentDescription="Price"
-            android:text="Password :"
+            android:text="@string/password"
             android:textColor="#000066"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/username"
@@ -81,7 +81,7 @@
 
         <Button
             android:id="@+id/save_btn"
-            android:text="L o g i n"
+            android:text="@string/login"
 
             android:textColor="#CBD4CB"
             android:textSize="30sp"
@@ -104,7 +104,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
+            android:text="@string/signup"
             android:textColor="#0099ff"
             android:id="@+id/sgn_btn"
             android:layout_below="@+id/save_btn"

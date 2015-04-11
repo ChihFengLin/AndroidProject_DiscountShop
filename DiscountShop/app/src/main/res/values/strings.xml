@@ -35,5 +35,11 @@
     <string name="signup">Sign Up</string>
     <string name="camera">Camera</string>
     <string name="album">Album</string>
+    <string name="here_is_item_name">Here Is Item Name</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="profile_setting">Profile Settings</string>
+    <string name="add_item">Add Item</string>
+    <string name="update_address">Update Address:</string>
 
 </resources>
