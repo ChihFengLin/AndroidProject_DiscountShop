@@ -1,7 +1,10 @@
 package model;
 
 
-public class Retailer {
+import entities.RetailerInterface;
+
+public class Retailer implements RetailerInterface{
+
     private String email;
     private String username;
     private String password;

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import utility.MyAdapter;
 
 
 public class RetailerItemListPage extends ListActivity implements OnItemClickListener{

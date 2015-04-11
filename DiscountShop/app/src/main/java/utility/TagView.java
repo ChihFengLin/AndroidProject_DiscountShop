@@ -1,4 +1,4 @@
-package product_exp.discountshop;
+package utility;
 
 import android.widget.ImageView;
 import android.widget.TextView;

@@ -1,7 +1,9 @@
 package model;
 
 
-public class Item {
+import entities.ItemInterface;
+
+public class Item implements ItemInterface{
     private String itemName;
     private float price;
     private String imageFilePath;

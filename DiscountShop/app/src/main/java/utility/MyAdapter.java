@@ -1,4 +1,4 @@
-package product_exp.discountshop;
+package utility;
 
 
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import product_exp.discountshop.R;
 
 public class MyAdapter extends BaseAdapter{
 

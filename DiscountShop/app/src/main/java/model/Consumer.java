@@ -1,7 +1,10 @@
 package model;
 
 
-public class Consumer {
+import entities.ConsumerInterface;
+
+public class Consumer implements ConsumerInterface{
+
     private String email;
     private String username;
     private String password;

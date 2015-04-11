@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import utility.MyAdapter;
+
 
 public class ItemListPage extends ListActivity implements AdapterView.OnItemClickListener{
 
