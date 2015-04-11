@@ -1,8 +1,6 @@
 package model;
 
-/**
- * Created by jingyuh on 15/4/10.
- */
+
 public class Login {
     private String username = null;
     private String password = null;

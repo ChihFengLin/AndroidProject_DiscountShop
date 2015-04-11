@@ -5,9 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-/**
- * Created by jingyuh on 15/4/10.
- */
+
+
 public class NetworkStatus {
 
     public boolean isNetworkAvailable(Context context){

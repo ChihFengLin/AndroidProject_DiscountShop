@@ -23,9 +23,8 @@ import java.util.List;
 
 import product_exp.discountshop.ConsumerLogin;
 
-/**
- * Created by jingyuh on 15/4/10.
- */
+
+
 public class JSONRequest extends IntentService {
 
     private final String webServiceUrl="http://www.codeee.com:8080/DiscountShopWebService/";

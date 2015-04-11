@@ -1,8 +1,6 @@
 package model;
 
-/**
- * Created by jingyuh on 15/4/11.
- */
+
 public class Item {
     private String itemName;
     private float price;

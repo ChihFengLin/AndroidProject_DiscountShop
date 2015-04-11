@@ -1,8 +1,6 @@
 package model;
 
-/**
- * Created by jingyuh on 15/4/10.
- */
+
 public class Consumer {
     private String email;
     private String username;
