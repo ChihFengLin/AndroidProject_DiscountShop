@@ -18,7 +18,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
+        <service android:name="controller.JSONRequest"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -88,7 +88,7 @@
         </activity>
 
         <activity
-            android:name=".Login"
+            android:name=".ConsumerLogin"
             android:label="@string/title_activity_consumer_login" >
 
         </activity>

@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
 
     public void goConsumer(View v) {
         Intent goToConsumer = new Intent();
-        goToConsumer.setClass(this, Login.class);
+        goToConsumer.setClass(this, ConsumerLogin.class);
         startActivity(goToConsumer);
     }
 
