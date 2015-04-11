@@ -26,11 +26,12 @@ import model.Login;
 
 public class ConsumerLogin extends Activity {
 
-    private MyRequestReceiver receiver;
+    private BroadcastReceiver receiver;
     private EditText usernameText;
     private EditText passwordText;
     private String username;
     private String password;
+    private final String process_response_filter="action.getConsumerLoginInfo";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +42,23 @@ public class ConsumerLogin extends Activity {
 
         // Register receiver so that this Activity can be notified
         // when the JSON response came back
-        IntentFilter filter = new IntentFilter(MyRequestReceiver.PROCESS_RESPONSE);
+        //set the receiver filter
+        IntentFilter filter = new IntentFilter(process_response_filter);
         filter.addCategory(Intent.CATEGORY_DEFAULT);
-        receiver=new MyRequestReceiver();
+        // implement the receiving details,
+        receiver= new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String response= null;
+                String responseType=intent.getStringExtra(JSONRequest.IN_MSG);
+                if(responseType.trim().equalsIgnoreCase("getLoginInfo")){
+                    response=intent.getStringExtra(JSONRequest.OUT_MSG);
+                    // switch to another activity is included
+                    processJsonResponse(response);
+                }
+            }
+        };
+
         registerReceiver(receiver,filter);
     }
 
@@ -72,14 +87,12 @@ public class ConsumerLogin extends Activity {
 
     @Override
     protected void onDestroy(){
-        Log.v("DiscountShopActivity", "onDestory");
         unregisterReceiver(receiver);
         super.onDestroy();
     }
     public void goItemList(View v) {
 
-        getLoginInfo();
-
+        askToGetLoginInfo();
 
     }
 
@@ -89,7 +102,9 @@ public class ConsumerLogin extends Activity {
         startActivity(goToRegister);
     }
 
-    private void getLoginInfo(){
+    //sending...
+    //ask to send JSON request
+    private void askToGetLoginInfo(){
         NetworkStatus networkStatus = new NetworkStatus();
         boolean internet = networkStatus.isNetworkAvailable(this);
         if(internet){
@@ -107,27 +122,13 @@ public class ConsumerLogin extends Activity {
                 msgIntent.putExtra(JSONRequest.IN_MSG,"getLoginInfo");
                 msgIntent.putExtra("username",username.trim());
                 msgIntent.putExtra("loginType","consumer");
+                msgIntent.putExtra("processType",process_response_filter);
                 startService(msgIntent);
             }
         }
     }
-    //broadcast receiver to receive messages sent from the JSON IntentService
-    public class MyRequestReceiver extends BroadcastReceiver{
-        public static final String PROCESS_RESPONSE="intent.action.PROCESS_RESPONSE";
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String response= null;
-            String responseType=intent.getStringExtra(JSONRequest.IN_MSG);
-            if(responseType.trim().equalsIgnoreCase("getLoginInfo")){
-                response=intent.getStringExtra(JSONRequest.OUT_MSG);
-                processJsonResponse(response);
-            }
-            else if (responseType.trim().equalsIgnoreCase("getSomethingElse")){
-
-            }
-        }
-    }
+    //receiving...
     //parse and display JSON response
     private void processJsonResponse(String response){
         JSONObject responseObj=null;
@@ -150,13 +151,19 @@ public class ConsumerLogin extends Activity {
                     startActivity(goToItemList);
                 }
                 else{
-                    errorMessage.setText("Invalid password");
+                    Toast toast = Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP, 105, 50);
+                    toast.show();
+                 //   errorMessage.setText();
                 }
 
 
 
             }else{
-                errorMessage.setText("Username doesn't exist! Please register!");
+                Toast toast = Toast.makeText(this, "Username doesn't exist! Please register!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 105, 50);
+                toast.show();
+              //  errorMessage.setText();
             }
 
 
