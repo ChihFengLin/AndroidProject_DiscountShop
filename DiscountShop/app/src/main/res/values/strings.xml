@@ -41,5 +41,13 @@
     <string name="profile_setting">Profile Settings</string>
     <string name="add_item">Add Item</string>
     <string name="update_address">Update Address:</string>
+    <string name="item_name">Item Name : </string>
+    <string name="new_price">New Price : </string>
+    <string name="add_pic">Add Picture : </string>
+    <string name="photo">Photos</string>
+    <string name="added_item_info">Added Item Information</string>
+    <string name="consumer">Consumer</string>
+    <string name="retailer">Retailer</string>
+
 
 </resources>
