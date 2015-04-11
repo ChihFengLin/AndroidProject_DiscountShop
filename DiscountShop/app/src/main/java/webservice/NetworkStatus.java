@@ -1,4 +1,4 @@
-package controller;
+package webservice;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

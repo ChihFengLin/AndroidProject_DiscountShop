@@ -16,8 +16,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import controller.JSONRequest;
-import controller.NetworkStatus;
+import webservice.JSONRequest;
+import webservice.NetworkStatus;
 
 
 public class ConsumerRegister extends Activity {

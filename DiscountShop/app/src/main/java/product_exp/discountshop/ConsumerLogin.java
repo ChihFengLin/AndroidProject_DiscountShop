@@ -6,21 +6,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import controller.JSONRequest;
+import webservice.JSONRequest;
 import com.google.gson.Gson;
-import controller.NetworkStatus;
+import webservice.NetworkStatus;
 import model.Login;
 
 

@@ -19,8 +19,8 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import controller.JSONRequest;
-import controller.NetworkStatus;
+import webservice.JSONRequest;
+import webservice.NetworkStatus;
 import model.Login;
 
 
@@ -85,6 +85,11 @@ public class retailerLogin extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onDestroy(){
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 
     public void goRetailerItemList(View v) {

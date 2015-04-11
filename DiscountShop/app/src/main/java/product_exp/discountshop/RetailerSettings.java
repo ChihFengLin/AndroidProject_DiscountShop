@@ -16,8 +16,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import controller.JSONRequest;
-import controller.NetworkStatus;
+import webservice.JSONRequest;
+import webservice.NetworkStatus;
 
 
 public class RetailerSettings extends Activity {
@@ -77,7 +77,11 @@ public class RetailerSettings extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    @Override
+    protected void onDestroy(){
+        unregisterReceiver(receiver);
+        super.onDestroy();
+    }
     public void updateAddress(View v){
     askToUpdateAddress();
     }
