@@ -14,59 +14,70 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:contentDescription="Item"
-        android:textSize="35sp"
+        android:textSize="40sp"
         android:textColor="#000000"
         android:gravity="center"
         android:text="@string/profile_setting"
         android:textStyle="bold"/>
 
+
     <TextView
         android:id="@+id/price"
         android:gravity="center"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:textSize="25sp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="40dp"
+        android:textSize="35sp"
         android:contentDescription="Price"
-        android:text="@string/retailer"
-        android:textColor="#000066" />
+        android:text="Gaint Eagle"
+        android:textColor="#000066"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/settings"/>
 
 
     <Button
         android:id="@+id/add_item"
         android:text="@string/add_item"
         android:textColor="#CBD4CB"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:gravity="center"
+        android:layout_below="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/save_button"
         android:shadowColor="#707070"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
         android:shadowDx="0"
         android:shadowDy="0"
+        android:layout_marginLeft="10dp"
         android:shadowRadius="5"
         android:onClick="goAddItem" />
 
     <TextView
         android:id="@+id/address"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="25dp"
-        android:textSize="25sp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="50dp"
+        android:textSize="35sp"
+        android:gravity="left"
+        android:contentDescription="address"
         android:text="@string/update_address"
-        android:textColor="#000066" />
+        android:textColor="#000066"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/settings"/>
 
 
     <EditText
         android:id="@+id/editAddress"
         android:inputType="textMultiLine"
         android:lines="4"
+        android:gravity="top|left"
         android:maxLines="10"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_width="500dp"
         android:scrollbars="vertical"
         />
 
@@ -74,33 +85,33 @@
         android:id="@+id/save_settings"
         android:text="@string/save"
         android:textColor="#CBD4CB"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:gravity="center"
         android:layout_below="@+id/editAddress"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="400dp"
         android:background="@drawable/save_button"
         android:shadowColor="#707070"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
-        android:layout_gravity="right" />
+        />
 
 
     <Button
         android:id="@+id/logout"
         android:text="@string/logout"
         android:textColor="#CBD4CB"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:gravity="center"
         android:layout_below="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/save_button"
         android:shadowColor="#707070"
         android:shadowDx="0"

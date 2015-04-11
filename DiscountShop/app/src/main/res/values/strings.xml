@@ -48,6 +48,8 @@
     <string name="added_item_info">Added Item Information</string>
     <string name="consumer">Consumer</string>
     <string name="retailer">Retailer</string>
+    <string name="distanceRange">X.X</string>
+    <string name="price">Y $</string>
 
 
 </resources>

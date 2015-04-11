@@ -36,7 +36,7 @@ public class ConsumerRegister extends Activity {
         setContentView(R.layout.activity_consumer_register);
 
         emailText=(EditText)findViewById(R.id.cremailEditText);
-        usernameText=(EditText)findViewById(R.id.rrusernameEditText);
+        usernameText=(EditText)findViewById(R.id.crusernameEditText);
         passwordText=(EditText)findViewById(R.id.crpasswordEditText);
 
         // Register receiver so that this Activity can be notified
