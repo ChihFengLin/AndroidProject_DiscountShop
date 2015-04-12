@@ -6,7 +6,7 @@ import android.view.Gravity;
 import android.widget.Toast;
 
 import model.Login;
-import product_exp.discountshop.ConsumerLogin;
+import product_exp.view.ConsumerLogin;
 import webservice.JSONRequest;
 import webservice.NetworkStatus;
 

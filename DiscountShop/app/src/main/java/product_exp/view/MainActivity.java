@@ -1,7 +1,6 @@
-package product_exp.discountshop;
+package product_exp.view;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,19 +10,37 @@ import intents.ClickInterface;
 import intents.IntentFactory;
 
 
-public class RetailerUpdateItem extends Activity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retailer_update_item);
+        setContentView(R.layout.activity_main);
+        //Intent intent = new Intent(this, DisplayItemDetail.class);
+        //startActivity(intent);
+
+    }
+
+
+    public void goConsumer(View v) {
+        ClickInterface click = IntentFactory.goToNext(this, ConsumerLogin.class, null, null);
+        //Intent goToConsumer = new Intent();
+        //goToConsumer.setClass(this, ConsumerLogin.class);
+        //startActivity(goToConsumer);
+    }
+
+    public void goRetailer(View v) {
+        ClickInterface click = IntentFactory.goToNext(this, RetailerLogin.class, null, null);
+        //Intent goToRetailer = new Intent();
+       // goToRetailer.setClass(this, retailerLogin.class);
+        //startActivity(goToRetailer);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_retailer_update_item, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -40,12 +57,5 @@ public class RetailerUpdateItem extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void deleteItem(View v) {
-        ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, null);
-        //Intent delete = new Intent();
-        //delete.setClass(this, RetailerItemListPage.class);
-        //startActivity(delete);
     }
 }

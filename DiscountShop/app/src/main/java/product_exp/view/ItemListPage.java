@@ -1,4 +1,4 @@
-package product_exp.discountshop;
+package product_exp.view;
 
 import android.app.ListActivity;
 import android.content.Intent;

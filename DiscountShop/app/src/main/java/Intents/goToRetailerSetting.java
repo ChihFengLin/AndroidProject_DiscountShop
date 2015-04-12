@@ -3,8 +3,7 @@ package intents;
 import android.content.Context;
 import android.content.Intent;
 
-import product_exp.discountshop.RetailerItemListPage;
-import product_exp.discountshop.RetailerSettings;
+import product_exp.view.RetailerSettings;
 
 /**
  * Created by Ravi on 4/11/2015.

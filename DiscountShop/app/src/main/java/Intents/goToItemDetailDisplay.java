@@ -3,7 +3,7 @@ package intents;
 import android.content.Context;
 import android.content.Intent;
 
-import product_exp.discountshop.DisplayItemDetail;
+import product_exp.view.DisplayItemDetail;
 ;
 
 /**

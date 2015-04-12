@@ -1,4 +1,4 @@
-package product_exp.discountshop;
+package product_exp.view;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -17,27 +17,36 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import webservice.JSONRequest;
-import com.google.gson.Gson;
 import webservice.NetworkStatus;
-import model.Login;
 
 
-public class ConsumerLogin extends Activity {
-
+public class RetailerRegister extends Activity {
     private BroadcastReceiver receiver;
+    private EditText emailText;
     private EditText usernameText;
     private EditText passwordText;
+    private EditText retailerNameText;
+    private EditText addressText;
+    private EditText zipCodeText;
+
+    private String email;
     private String username;
     private String password;
-    private final String process_response_filter="action.getConsumerLoginInfo";
+    private String retailerName;
+    private String address;
+    private String zipCode;
+    private final String process_response_filter="action.createUser";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_retailer_register);
 
-        usernameText=(EditText)findViewById(R.id.usernameEditText);
-        passwordText=(EditText)findViewById(R.id.passwordEditText);
-
+        emailText=(EditText)findViewById(R.id.rremailEditText);
+        usernameText=(EditText)findViewById(R.id.rrusernameEditText);
+        passwordText=(EditText)findViewById(R.id.rrpasswordEditText);
+        retailerNameText=(EditText)findViewById(R.id.rrshopnameEditText);
+        addressText=(EditText)findViewById(R.id.rraddressEditText);
+        zipCodeText=(EditText)findViewById(R.id.rrzipcodeEditText);
         // Register receiver so that this Activity can be notified
         // when the JSON response came back
         //set the receiver filter
@@ -49,7 +58,7 @@ public class ConsumerLogin extends Activity {
             public void onReceive(Context context, Intent intent) {
                 String response= null;
                 String responseType=intent.getStringExtra(JSONRequest.IN_MSG);
-                if(responseType.trim().equalsIgnoreCase("getLoginInfo")){
+                if(responseType.trim().equalsIgnoreCase("createUser")){
                     response=intent.getStringExtra(JSONRequest.OUT_MSG);
                     // switch to another activity is included
                     processJsonResponse(response);
@@ -64,7 +73,7 @@ public class ConsumerLogin extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_consumer_login, menu);
+        getMenuInflater().inflate(R.menu.menu_retailer_register, menu);
         return true;
     }
 
@@ -88,38 +97,41 @@ public class ConsumerLogin extends Activity {
         unregisterReceiver(receiver);
         super.onDestroy();
     }
-    public void goItemList(View v) {
 
-        askToGetLoginInfo();
+    public void goRetailerItemList(View v) {
+        askToCreateRetailer();
 
-    }
-
-    public void goRegister(View v) {
-        Intent goToRegister = new Intent();
-        goToRegister.setClass(this, ConsumerRegister.class);
-        startActivity(goToRegister);
     }
 
     //sending...
     //ask to send JSON request
-    private void askToGetLoginInfo(){
+    private void askToCreateRetailer(){
         NetworkStatus networkStatus = new NetworkStatus();
         boolean internet = networkStatus.isNetworkAvailable(this);
         if(internet){
-            username=usernameText.getText().toString();
-            password=passwordText.getText().toString();
+            email=emailText.getText().toString().trim();
+            username=usernameText.getText().toString().trim();
+            password=passwordText.getText().toString().trim();
+            retailerName=retailerNameText.getText().toString().trim();
+            address=addressText.getText().toString().trim();
+            zipCode=zipCodeText.getText().toString().trim();
             //if not username was entered
-            if (username.trim().isEmpty()||password.trim().isEmpty()){
-                Toast toast = Toast.makeText(this, "Please enter your username and password!", Toast.LENGTH_SHORT);
+            if (username.isEmpty()||password.isEmpty()||email.isEmpty()||retailerName.isEmpty()||address.isEmpty()||zipCode.isEmpty()){
+                Toast toast = Toast.makeText(this, "Please don't leave the input blank!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
             }else{
                 //pass the request to web service so that it can
                 //run outside the scope of the main UI thread
                 Intent msgIntent= new Intent(this, JSONRequest.class);
-                msgIntent.putExtra(JSONRequest.IN_MSG,"getLoginInfo");
-                msgIntent.putExtra("username",username.trim());
-                msgIntent.putExtra("loginType","consumer");
+                msgIntent.putExtra(JSONRequest.IN_MSG,"createUser");
+                msgIntent.putExtra("email",email);
+                msgIntent.putExtra("username",username);
+                msgIntent.putExtra("password",password);
+                msgIntent.putExtra("retailerName",retailerName);
+                msgIntent.putExtra("address",address);
+                msgIntent.putExtra("zipCode",zipCode);
+                msgIntent.putExtra("userType","retailer");
                 msgIntent.putExtra("processType",process_response_filter);
                 startService(msgIntent);
             }
@@ -136,27 +148,15 @@ public class ConsumerLogin extends Activity {
             //get the success property
             boolean success=responseObj.getBoolean("success");
             if(success){
-                Gson gson = new Gson();
-                //get the login information property
-                String loginInfo=responseObj.getString("loginInfo");
-                //create java object from the JSON object
-                Login login = gson.fromJson(loginInfo,Login.class);
-                if(login.getPassword().equals(password)){
-                    Intent goToItemList = new Intent();
-                    goToItemList.setClass(this, ItemListPage.class);
-                    startActivity(goToItemList);
-                }
-                else{
-                    Toast toast = Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.TOP, 105, 50);
-                    toast.show();
-                    //   errorMessage.setText();
-                }
-
-
-
+                Toast toast = Toast.makeText(this, "Creating account is successful!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 105, 50);
+                toast.show();
+                Intent goToRetailerItemList = new Intent();
+                goToRetailerItemList.setClass(this, RetailerItemListPage.class);
+                goToRetailerItemList.putExtra("username",username);
+                startActivity(goToRetailerItemList);
             }else{
-                Toast toast = Toast.makeText(this, "Username doesn't exist! Please register!", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, "Creating account failure, maybe username does exist, Please try again!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
                 //  errorMessage.setText();
@@ -169,7 +169,6 @@ public class ConsumerLogin extends Activity {
 
 
     }
-
 
 
 }

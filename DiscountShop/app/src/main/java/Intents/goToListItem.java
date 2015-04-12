@@ -11,10 +11,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import model.Login;
-import product_exp.discountshop.ConsumerLogin;
-import product_exp.discountshop.ConsumerRegister;
-import product_exp.discountshop.ItemListPage;
-import product_exp.discountshop.RetailerItemListPage;
+import product_exp.view.ConsumerLogin;
+import product_exp.view.ConsumerRegister;
+import product_exp.view.ItemListPage;
+import product_exp.view.RetailerItemListPage;
 
 /**
  * Created by Ravi on 4/11/2015.

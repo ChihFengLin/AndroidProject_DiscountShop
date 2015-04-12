@@ -3,8 +3,7 @@ package intents;
 import android.content.Context;
 import android.content.Intent;
 
-import product_exp.discountshop.ConsumerLogin;
-import product_exp.discountshop.DisplayItemDetail;
+import product_exp.view.ConsumerLogin;
 
 /**
  * Created by Ravi on 4/11/2015.

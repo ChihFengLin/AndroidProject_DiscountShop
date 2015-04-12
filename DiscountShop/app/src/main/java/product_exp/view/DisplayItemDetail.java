@@ -1,39 +1,23 @@
-package product_exp.discountshop;
+package product_exp.view;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import intents.ClickInterface;
-import intents.IntentFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 
 
-public class MainActivity extends Activity {
-
+public class DisplayItemDetail extends FragmentActivity {
+    private GoogleMap map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //Intent intent = new Intent(this, DisplayItemDetail.class);
-        //startActivity(intent);
-
-    }
-
-
-    public void goConsumer(View v) {
-        ClickInterface click = IntentFactory.goToNext(this, ConsumerLogin.class, null, null);
-        //Intent goToConsumer = new Intent();
-        //goToConsumer.setClass(this, ConsumerLogin.class);
-        //startActivity(goToConsumer);
-    }
-
-    public void goRetailer(View v) {
-        ClickInterface click = IntentFactory.goToNext(this, RetailerLogin.class, null, null);
-        //Intent goToRetailer = new Intent();
-       // goToRetailer.setClass(this, retailerLogin.class);
-        //startActivity(goToRetailer);
+        setContentView(R.layout.activity_display_item_detail);
+       // Intent i = new Intent()
+        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+              .getMap();
     }
 
 
@@ -59,3 +43,4 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 }
+

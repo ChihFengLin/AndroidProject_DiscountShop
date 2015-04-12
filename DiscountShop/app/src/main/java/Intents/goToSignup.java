@@ -3,9 +3,9 @@ package intents;
 import android.content.Context;
 import android.content.Intent;
 
-import product_exp.discountshop.ConsumerRegister;
-import product_exp.discountshop.RetailerLogin;
-import product_exp.discountshop.RetailerRegister;
+import product_exp.view.ConsumerRegister;
+import product_exp.view.RetailerLogin;
+import product_exp.view.RetailerRegister;
 
 /**
  * Created by Ravi on 4/12/2015.

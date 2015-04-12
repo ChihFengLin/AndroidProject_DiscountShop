@@ -2,7 +2,7 @@ package intents;
 
 import android.content.Context;
 import android.content.Intent;
-import product_exp.discountshop.RetailerUpdateItem;
+import product_exp.view.RetailerUpdateItem;
 
 /**
  * Created by Ravi on 4/11/2015.

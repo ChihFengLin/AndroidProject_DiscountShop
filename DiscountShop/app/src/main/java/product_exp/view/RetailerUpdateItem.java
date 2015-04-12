@@ -1,31 +1,28 @@
-package product_exp.discountshop;
+package product_exp.view;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
+import intents.ClickInterface;
+import intents.IntentFactory;
 
 
-public class DisplayItemDetail extends FragmentActivity {
-    private GoogleMap map;
+public class RetailerUpdateItem extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_item_detail);
-       // Intent i = new Intent()
-        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-              .getMap();
+        setContentView(R.layout.activity_retailer_update_item);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_retailer_update_item, menu);
         return true;
     }
 
@@ -43,5 +40,11 @@ public class DisplayItemDetail extends FragmentActivity {
 
         return super.onOptionsItemSelected(item);
     }
-}
 
+    public void deleteItem(View v) {
+        ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, null);
+        //Intent delete = new Intent();
+        //delete.setClass(this, RetailerItemListPage.class);
+        //startActivity(delete);
+    }
+}

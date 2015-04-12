@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="product_exp.discountshop" >
+    package="product_exp.view" >
 
     <permission
         android:name="product_exp.discountshop.DisplayItemDetail.permission.MAPS_RECEIVE"
@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme">
         <service android:name="webservice.JSONRequest"/>
         <activity
-            android:name=".MainActivity"
+            android:name="product_exp.view.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,44 +29,44 @@
         </activity>
 
         <activity
-            android:name=".ItemListPage"
+            android:name="product_exp.view.ItemListPage"
             android:label="@string/title_activity_item_list_page" >
 
         </activity>
 
         <activity
-            android:name=".RetailerAddItem"
+            android:name="product_exp.view.RetailerAddItem"
             android:label="@string/title_activity_retailer_add_item" >
 
 
         </activity>
 
         <activity
-            android:name=".RetailerItemListPage"
+            android:name="product_exp.view.RetailerItemListPage"
             android:label="@string/title_activity_retailer_item_list_page" >
 
         </activity>
 
         <activity
-            android:name=".RetailerLogin"
+            android:name="product_exp.view.RetailerLogin"
             android:label="@string/title_activity_retailer_login" >
 
         </activity>
 
         <activity
-            android:name=".DisplayItemDetail"
+            android:name="product_exp.view.DisplayItemDetail"
             android:label="@string/title_activity_display_item_detail" >
 
         </activity>
 
         <activity
-            android:name=".RetailerSettings"
+            android:name="product_exp.view.RetailerSettings"
             android:label="@string/title_activity_retailer_settings" >
 
         </activity>
 
         <activity
-            android:name=".RetailerUpdateItem"
+            android:name="product_exp.view.RetailerUpdateItem"
             android:label="@string/title_activity_retailer_update_item" >
 
         </activity>
@@ -76,26 +76,26 @@
             android:value="AIzaSyDGHPsG-RrXYvczhQ3aI-k5B1CBbIs1WJc" />
 
          <activity
-            android:name=".ConsumerSetting"
+            android:name="product_exp.view.ConsumerSetting"
             android:label="@string/title_activity_consumer_setting" >
 
         </activity>
 
         <activity
-            android:name=".ConsumerRegister"
+            android:name="product_exp.view.ConsumerRegister"
             android:label="@string/title_activity_consumer_register" >
 
         </activity>
 
         <activity
-            android:name=".ConsumerLogin"
+            android:name="product_exp.view.ConsumerLogin"
             android:label="@string/title_activity_consumer_login"
             android:screenOrientation="portrait">
 
         </activity>
 
         <activity
-            android:name=".RetailerRegister"
+            android:name="product_exp.view.RetailerRegister"
             android:label="@string/title_activity_retailer_register" >
 
         </activity>

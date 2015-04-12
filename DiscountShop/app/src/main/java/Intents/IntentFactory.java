@@ -2,17 +2,17 @@ package intents;
 
 import android.content.Context;
 
-import product_exp.discountshop.ConsumerLogin;
-import product_exp.discountshop.ConsumerRegister;
-import product_exp.discountshop.DisplayItemDetail;
-import product_exp.discountshop.ItemListPage;
-import product_exp.discountshop.MainActivity;
-import product_exp.discountshop.RetailerAddItem;
-import product_exp.discountshop.RetailerItemListPage;
-import product_exp.discountshop.RetailerLogin;
-import product_exp.discountshop.RetailerRegister;
-import product_exp.discountshop.RetailerSettings;
-import product_exp.discountshop.RetailerUpdateItem;
+import product_exp.view.ConsumerLogin;
+import product_exp.view.ConsumerRegister;
+import product_exp.view.DisplayItemDetail;
+import product_exp.view.ItemListPage;
+import product_exp.view.MainActivity;
+import product_exp.view.RetailerAddItem;
+import product_exp.view.RetailerItemListPage;
+import product_exp.view.RetailerLogin;
+import product_exp.view.RetailerRegister;
+import product_exp.view.RetailerSettings;
+import product_exp.view.RetailerUpdateItem;
 
 /**
  * Created by Ravi on 4/11/2015.
