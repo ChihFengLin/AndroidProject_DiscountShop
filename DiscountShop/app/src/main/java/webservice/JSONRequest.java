@@ -41,40 +41,40 @@ public class JSONRequest extends IntentService {
         inMessage=intent.getStringExtra(IN_MSG).trim();
         switch(inMessage){
             case "getLoginInfo":
-            String loginType=intent.getStringExtra("loginType");
-            String username=intent.getStringExtra("username");
+                String loginType=intent.getStringExtra("loginType");
+                String username=intent.getStringExtra("username");
                 getLoginInfo(loginType,username);
                 break;
             case "createUser":
-            String userType=intent.getStringExtra("userType");
-            //consumer creating
-            if(userType.equals("consumer")){
-            String email=intent.getStringExtra("email");
-            String consumer_username = intent.getStringExtra("username");
-            String password=intent.getStringExtra("password");
-            createConsumer("consumer",email,consumer_username,password);
-            }
-            //retailer creating
-            else{
-            String email=intent.getStringExtra("email");
-            String retailer_username = intent.getStringExtra("username");
-            String password=intent.getStringExtra("password");
-            String retailerName=intent.getStringExtra("retailerName");
-            String address=intent.getStringExtra("address");
-            String zipCode=intent.getStringExtra("zipCode");
-            createRetailer("retailer",email,retailer_username,password,retailerName,address,zipCode);
-            }
-             break;
+                String userType=intent.getStringExtra("userType");
+                //consumer creating
+                if(userType.equals("consumer")){
+                    String email=intent.getStringExtra("email");
+                    String consumer_username = intent.getStringExtra("username");
+                    String password=intent.getStringExtra("password");
+                    createConsumer("consumer",email,consumer_username,password);
+                }
+                //retailer creating
+                else{
+                    String email=intent.getStringExtra("email");
+                    String retailer_username = intent.getStringExtra("username");
+                    String password=intent.getStringExtra("password");
+                    String retailerName=intent.getStringExtra("retailerName");
+                    String address=intent.getStringExtra("address");
+                    String zipCode=intent.getStringExtra("zipCode");
+                    createRetailer("retailer",email,retailer_username,password,retailerName,address,zipCode);
+                }
+                break;
 
             case "update":
-            String updateType=intent.getStringExtra("updateType");
-            if(updateType.equals("address")) {
-                String username_update = intent.getStringExtra("username");
-                String newAddress = intent.getStringExtra("newAddress");
-                Log.v("username_update","test:"+username_update);
-                Log.v("newAddress","test:"+newAddress);
-                update("address",username_update,"newAddress",newAddress);
-            }
+                String updateType=intent.getStringExtra("updateType");
+                if(updateType.equals("address")) {
+                    String username_update = intent.getStringExtra("username");
+                    String newAddress = intent.getStringExtra("newAddress");
+                    Log.v("username_update","test:"+username_update);
+                    Log.v("newAddress","test:"+newAddress);
+                    update("address",username_update,"newAddress",newAddress);
+                }
                 break;
 
 
@@ -85,7 +85,7 @@ public class JSONRequest extends IntentService {
     }
 
 
-// To get Login info: first, send http request; then receive response and finally broadcast the result
+    // To get Login info: first, send http request; then receive response and finally broadcast the result
     private void getLoginInfo(String loginType,String username){
         //add name value pair for the login info request
         List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(2);
@@ -98,7 +98,7 @@ public class JSONRequest extends IntentService {
         requestBroadcastProcess(url,nameValuePairs);
 
     }
-//create consumer, http request
+    //create consumer, http request
     private void createConsumer(String userType,String email,String username, String password){
         //add email, username, password for the create consumer request
         List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(4);
@@ -111,7 +111,7 @@ public class JSONRequest extends IntentService {
         // make http request and broadcast the request
         requestBroadcastProcess(url,nameValuePairs);
     }
-//create retailer, http request
+    //create retailer, http request
     private void createRetailer(String userType,String email,String username, String password, String retailerName, String address, String zipCode){
         List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(7);
         nameValuePairs.add(new BasicNameValuePair("userType",userType));
@@ -150,7 +150,7 @@ public class JSONRequest extends IntentService {
 
     }
 
-// send Http request to servlet by name value pair
+    // send Http request to servlet by name value pair
     private String sendHttpRequest(String url,List<NameValuePair> nameValuePairs){
         int REGISTRATION_TIMEOUT = 15 * 1000;
         int WAIT_TIMEOUT = 60 * 1000;

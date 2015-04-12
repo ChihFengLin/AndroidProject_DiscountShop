@@ -1,0 +1,27 @@
+CREATE DATABASE discountshop;
+use discountshop;
+CREATE TABLE discountshop.retailers(
+id INTEGER not NULL AUTO_INCREMENT,
+email VARCHAR(255),
+username VARCHAR(255),
+password VARCHAR(255),
+retailer_name VARCHAR(255),
+address VARCHAR(255),
+zip_code INTEGER,
+PRIMARY KEY ( id ));
+CREATE TABLE discountshop.items(
+id INTEGER not NULL AUTO_INCREMENT,
+item_name VARCHAR(255),
+price DECIMAL(6,2),
+image LONGBLOB NULL,
+retailer_id INTEGER not NULL,
+PRIMARY KEY ( id ),
+FOREIGN KEY (retailer_id) REFERENCES retailers(id) ON DELETE CASCADE);
+create unique index test on retailers (retailer_name);
+CREATE TABLE discountshop.consumers(
+id INTEGER not NULL AUTO_INCREMENT,
+email VARCHAR(255),
+username VARCHAR(255),
+password VARCHAR(255),
+PRIMARY KEY ( id ));
+create unique index test on consumers (username);

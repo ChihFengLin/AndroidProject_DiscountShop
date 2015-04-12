@@ -1,7 +1,6 @@
 package product_exp.discountshop;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +30,7 @@ public class MainActivity extends Activity {
     }
 
     public void goRetailer(View v) {
-        ClickInterface click = IntentFactory.goToNext(this, retailerLogin.class, null, null);
+        ClickInterface click = IntentFactory.goToNext(this, RetailerLogin.class, null, null);
         //Intent goToRetailer = new Intent();
        // goToRetailer.setClass(this, retailerLogin.class);
         //startActivity(goToRetailer);

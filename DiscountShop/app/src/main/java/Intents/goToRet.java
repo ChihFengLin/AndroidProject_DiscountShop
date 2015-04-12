@@ -2,7 +2,8 @@ package intents;
 
 import android.content.Context;
 import android.content.Intent;
-import product_exp.discountshop.retailerLogin;
+
+import product_exp.discountshop.RetailerLogin;
 
 /**
  * Created by Ravi on 4/11/2015.
@@ -12,7 +13,7 @@ public class goToRet implements ClickInterface {
     public goToRet(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo ){
         mContext = packageContext;
         Intent main = new Intent();
-        main.setClass(packageContext, retailerLogin.class);
+        main.setClass(packageContext, RetailerLogin.class);
         mContext.startActivity(main);
     }
 }

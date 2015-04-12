@@ -9,10 +9,10 @@ import product_exp.discountshop.ItemListPage;
 import product_exp.discountshop.MainActivity;
 import product_exp.discountshop.RetailerAddItem;
 import product_exp.discountshop.RetailerItemListPage;
+import product_exp.discountshop.RetailerLogin;
 import product_exp.discountshop.RetailerRegister;
 import product_exp.discountshop.RetailerSettings;
 import product_exp.discountshop.RetailerUpdateItem;
-import product_exp.discountshop.retailerLogin;
 
 /**
  * Created by Ravi on 4/11/2015.
@@ -23,7 +23,7 @@ public class IntentFactory {
         ClickInterface onclick = null;
         if (cl == null) {
             //its a service
-            if (packageContext.getClass().equals(ConsumerLogin.class) || packageContext.getClass().equals(retailerLogin.class)) {
+            if (packageContext.getClass().equals(ConsumerLogin.class) || packageContext.getClass().equals(RetailerLogin.class)) {
                 onclick = new LoginReq(packageContext, cl, one, two);
             } else {
                 onclick = new UserCreate(packageContext,cl,one,two);
@@ -41,7 +41,7 @@ public class IntentFactory {
             onclick = new goToItemDetailDisplay(packageContext, cl, one, two);
         } else if(cl.equals(ConsumerLogin.class)){
             onclick = new goToCon(packageContext, cl, one, two);
-        } else if(cl.equals(retailerLogin.class)){
+        } else if(cl.equals(RetailerLogin.class)){
             onclick = new goToRet(packageContext, cl, one, two);
         } else if (cl.equals(RetailerSettings.class)) {
             onclick = new goToRetailerSetting(packageContext, cl, one, two);

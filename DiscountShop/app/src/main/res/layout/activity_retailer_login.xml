@@ -39,7 +39,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="175dp"
             android:textSize="25sp"
-            android:text="@string/consumer"
             android:textColor="#000066"
             android:layout_below="@+id/Discount"
             />
@@ -60,7 +59,6 @@
             android:layout_marginTop="20dp"
             android:layout_alignStart="@+id/usernameinput"
             android:textSize="25sp"
-            android:text="@string/password"
             android:inputType="textPassword"
             android:textColor="#000066"
             android:layout_below="@+id/usernameinput"
