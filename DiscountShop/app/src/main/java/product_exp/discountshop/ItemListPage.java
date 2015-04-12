@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import intents.ClickInterface;
+import intents.IntentFactory;
 import utility.MyAdapter;
 
 
@@ -37,9 +39,10 @@ public class ItemListPage extends ListActivity implements AdapterView.OnItemClic
     /*Click different picture and jump to different item page*/
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-        Intent it = new Intent();
-        it.setClass(this, DisplayItemDetail.class);
-        startActivity(it);
+        ClickInterface click = IntentFactory.goToNext(this, DisplayItemDetail.class, null, null);
+        //Intent it = new Intent();
+        //it.setClass(this, DisplayItemDetail.class);
+        //startActivity(it);
     }
 
 

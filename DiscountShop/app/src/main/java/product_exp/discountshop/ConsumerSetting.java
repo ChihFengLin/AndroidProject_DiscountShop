@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import intents.ClickInterface;
+import intents.IntentFactory;
+
 
 public class ConsumerSetting extends Activity {
 
@@ -44,9 +47,11 @@ public class ConsumerSetting extends Activity {
     }
 
     public void goMain(View v) {
-        Intent goToMain = new Intent();
-        goToMain.setClass(this, MainActivity.class);
-        startActivity(goToMain);
+
+        ClickInterface click = IntentFactory.goToNext(this, MainActivity.class, null, null);
+        //Intent goToMain = new Intent();
+        //goToMain.setClass(this, MainActivity.class);
+        //startActivity(goToMain);
     }
 
     public void getSelfPicture(View v) {

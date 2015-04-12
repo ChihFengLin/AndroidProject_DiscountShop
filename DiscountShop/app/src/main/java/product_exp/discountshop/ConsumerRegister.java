@@ -16,6 +16,9 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import intents.ClickInterface;
+import intents.IntentFactory;
+import model.Consumer;
 import webservice.JSONRequest;
 import webservice.NetworkStatus;
 
@@ -29,6 +32,7 @@ public class ConsumerRegister extends Activity {
     private String email;
     private String username;
     private String password;
+    private Consumer consumerInput;
     private final String process_response_filter="action.createUser";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +40,12 @@ public class ConsumerRegister extends Activity {
         setContentView(R.layout.activity_consumer_register);
 
         emailText=(EditText)findViewById(R.id.cremailEditText);
+
         usernameText=(EditText)findViewById(R.id.crusernameEditText);
+
         passwordText=(EditText)findViewById(R.id.crpasswordEditText);
 
+        consumerInput = new Consumer();
         // Register receiver so that this Activity can be notified
         // when the JSON response came back
         //set the receiver filter
@@ -98,60 +105,68 @@ public class ConsumerRegister extends Activity {
     //sending...
     //ask to send JSON request
     private void askToCreateConsumer(){
-        NetworkStatus networkStatus = new NetworkStatus();
-        boolean internet = networkStatus.isNetworkAvailable(this);
-        if(internet){
-            email=emailText.getText().toString().trim();
-            username=usernameText.getText().toString().trim();
-            password=passwordText.getText().toString().trim();
+        consumerInput.setUsername(usernameText.getText().toString().trim());
+        consumerInput.setPassword(passwordText.getText().toString().trim());
+        consumerInput.setEmail(emailText.getText().toString().trim());
+        ClickInterface click = IntentFactory.goToNext(this, null, null, null);
+
+
+        //NetworkStatus networkStatus = new NetworkStatus();
+        //boolean internet = networkStatus.isNetworkAvailable(this);
+        //if(internet){
+          //  email=
+            //username=
+            //password=
             //if not username was entered
-            if (username.isEmpty()||password.isEmpty()||email.isEmpty()){
-                Toast toast = Toast.makeText(this, "Please enter the email, username and password!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP, 105, 50);
-                toast.show();
-            }else{
+            //if (username.isEmpty()||password.isEmpty()||email.isEmpty()){
+              //  Toast toast = Toast.makeText(this, "Please enter the email, username and password!", Toast.LENGTH_SHORT);
+               // toast.setGravity(Gravity.TOP, 105, 50);
+               // toast.show();
+            //}else{
                 //pass the request to web service so that it can
                 //run outside the scope of the main UI thread
-                Intent msgIntent= new Intent(this, JSONRequest.class);
-                msgIntent.putExtra(JSONRequest.IN_MSG,"createUser");
-                msgIntent.putExtra("email",email);
-                msgIntent.putExtra("username",username);
-                msgIntent.putExtra("password",password);
-                msgIntent.putExtra("userType","consumer");
-                msgIntent.putExtra("processType",process_response_filter);
-                startService(msgIntent);
-            }
-        }
+              //  Intent msgIntent= new Intent(this, JSONRequest.class);
+               // msgIntent.putExtra(JSONRequest.IN_MSG,"createUser");
+                //msgIntent.putExtra("email",email);
+               // msgIntent.putExtra("username",username);
+               // msgIntent.putExtra("password",password);
+               // msgIntent.putExtra("userType","consumer");
+                //msgIntent.putExtra("processType",process_response_filter);
+                //startService(msgIntent);
+            //}
+       // }
     }
 
     //receiving...
     //parse and display JSON response
     private void processJsonResponse(String response){
-        JSONObject responseObj=null;
-        try {
+        ClickInterface click = IntentFactory.goToNext(this, ItemListPage.class, null, (Object) response);
+
+        //JSONObject responseObj=null;
+        //try {
             //create JSON object from JSON string
-            responseObj = new JSONObject(response);
+          //  responseObj = new JSONObject(response);
             //get the success property
-            boolean success=responseObj.getBoolean("success");
-            if(success){
-                Toast toast = Toast.makeText(this, "Creating account is successful!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP, 105, 50);
-                toast.show();
-                Intent goToItemList = new Intent();
-                goToItemList.setClass(this, ItemListPage.class);
-                startActivity(goToItemList);
+           // boolean success=responseObj.getBoolean("success");
+            //if(success){
+              //  Toast toast = Toast.makeText(this, "Creating account is successful!", Toast.LENGTH_SHORT);
+                //toast.setGravity(Gravity.TOP, 105, 50);
+                //toast.show();
+                //Intent goToItemList = new Intent();
+                //goToItemList.setClass(this, ItemListPage.class);
+                //startActivity(goToItemList);
 
-            }else{
-                Toast toast = Toast.makeText(this, "Creating account failure, maybe username does exist, Please try again!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP, 105, 50);
-                toast.show();
+//            }else{
+  //              Toast toast = Toast.makeText(this, "Creating account failure, maybe username does exist, Please try again!", Toast.LENGTH_SHORT);
+    //            toast.setGravity(Gravity.TOP, 105, 50);
+      //          toast.show();
                 //  errorMessage.setText();
-            }
+        //    }
 
 
-        }catch(JSONException e){
-            e.printStackTrace();
-        }
+       // }catch(JSONException e){
+        //    e.printStackTrace();
+        //}
 
 
     }

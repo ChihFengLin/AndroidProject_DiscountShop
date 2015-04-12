@@ -16,6 +16,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import intents.ClickInterface;
+import intents.IntentFactory;
 import webservice.JSONRequest;
 import com.google.gson.Gson;
 import webservice.NetworkStatus;
@@ -30,13 +32,23 @@ public class ConsumerLogin extends Activity {
     private String username;
     private String password;
     private final String process_response_filter="action.getConsumerLoginInfo";
+    private Login loginInput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        loginInput = new Login();
         usernameText=(EditText)findViewById(R.id.usernameEditText);
+        if (usernameText.getText() == null) {
+            usernameText.setError("Cannot be empty");
+            return;
+        }
         passwordText=(EditText)findViewById(R.id.passwordEditText);
+        if (passwordText.getText() == null) {
+            passwordText.setError("Cannot be empty");
+            return;
+        }
+
 
         // Register receiver so that this Activity can be notified
         // when the JSON response came back
@@ -56,7 +68,6 @@ public class ConsumerLogin extends Activity {
                 }
             }
         };
-
         registerReceiver(receiver,filter);
     }
 
@@ -79,7 +90,6 @@ public class ConsumerLogin extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -89,23 +99,27 @@ public class ConsumerLogin extends Activity {
         super.onDestroy();
     }
     public void goItemList(View v) {
-
         askToGetLoginInfo();
-
     }
 
     public void goRegister(View v) {
-        Intent goToRegister = new Intent();
-        goToRegister.setClass(this, ConsumerRegister.class);
-        startActivity(goToRegister);
+        ClickInterface click = IntentFactory.goToNext(this, ConsumerRegister.class, null, null);
+        //Intent goToRegister = new Intent();
+        //goToRegister.setClass(this, ConsumerRegister.class);
+        //startActivity(goToRegister);
     }
 
     //sending...
     //ask to send JSON request
     private void askToGetLoginInfo(){
-        NetworkStatus networkStatus = new NetworkStatus();
-        boolean internet = networkStatus.isNetworkAvailable(this);
-        if(internet){
+
+        loginInput.setUsername(usernameText.getText().toString());
+        loginInput.setPassword(passwordText.getText().toString());
+        ClickInterface click = IntentFactory.goToNext(this, null, loginInput, null);
+
+        //NetworkStatus networkStatus = new NetworkStatus();
+        //boolean internet = networkStatus.isNetworkAvailable(this);
+        /*if(internet){
             username=usernameText.getText().toString();
             password=passwordText.getText().toString();
             //if not username was entered
@@ -114,6 +128,7 @@ public class ConsumerLogin extends Activity {
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
             }else{
+
                 //pass the request to web service so that it can
                 //run outside the scope of the main UI thread
                 Intent msgIntent= new Intent(this, JSONRequest.class);
@@ -124,49 +139,13 @@ public class ConsumerLogin extends Activity {
                 startService(msgIntent);
             }
         }
+        */
     }
 
     //receiving...
     //parse and display JSON response
-    private void processJsonResponse(String response){
-        JSONObject responseObj=null;
-        try {
-            //create JSON object from JSON string
-            responseObj = new JSONObject(response);
-            //get the success property
-            boolean success=responseObj.getBoolean("success");
-            if(success){
-                Gson gson = new Gson();
-                //get the login information property
-                String loginInfo=responseObj.getString("loginInfo");
-                //create java object from the JSON object
-                Login login = gson.fromJson(loginInfo,Login.class);
-                if(login.getPassword().equals(password)){
-                    Intent goToItemList = new Intent();
-                    goToItemList.setClass(this, ItemListPage.class);
-                    startActivity(goToItemList);
-                }
-                else{
-                    Toast toast = Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.TOP, 105, 50);
-                    toast.show();
-                 //   errorMessage.setText();
-                }
-
-
-
-            }else{
-                Toast toast = Toast.makeText(this, "Username doesn't exist! Please register!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP, 105, 50);
-                toast.show();
-              //  errorMessage.setText();
-            }
-
-
-        }catch(JSONException e){
-            e.printStackTrace();
-        }
-
+    private void processJsonResponse(String response) {
+        ClickInterface click = IntentFactory.goToNext(this, ItemListPage.class, loginInput, (Object)response);
 
     }
 

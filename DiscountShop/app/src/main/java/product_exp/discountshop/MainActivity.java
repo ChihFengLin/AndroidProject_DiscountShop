@@ -7,6 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import intents.ClickInterface;
+import intents.IntentFactory;
+
 
 public class MainActivity extends Activity {
 
@@ -21,15 +24,17 @@ public class MainActivity extends Activity {
 
 
     public void goConsumer(View v) {
-        Intent goToConsumer = new Intent();
-        goToConsumer.setClass(this, ConsumerLogin.class);
-        startActivity(goToConsumer);
+        ClickInterface click = IntentFactory.goToNext(this, ConsumerLogin.class, null, null);
+        //Intent goToConsumer = new Intent();
+        //goToConsumer.setClass(this, ConsumerLogin.class);
+        //startActivity(goToConsumer);
     }
 
     public void goRetailer(View v) {
-        Intent goToRetailer = new Intent();
-        goToRetailer.setClass(this, retailerLogin.class);
-        startActivity(goToRetailer);
+        ClickInterface click = IntentFactory.goToNext(this, retailerLogin.class, null, null);
+        //Intent goToRetailer = new Intent();
+       // goToRetailer.setClass(this, retailerLogin.class);
+        //startActivity(goToRetailer);
     }
 
 

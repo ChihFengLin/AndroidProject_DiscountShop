@@ -16,6 +16,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import intents.ClickInterface;
+import intents.IntentFactory;
 import webservice.JSONRequest;
 import webservice.NetworkStatus;
 
@@ -86,15 +88,17 @@ public class RetailerSettings extends Activity {
     askToUpdateAddress();
     }
     public void goAddItem(View v) {
-        Intent goToAddItem = new Intent();
-        goToAddItem.setClass(this, RetailerAddItem.class);
-        startActivity(goToAddItem);
+        ClickInterface click = IntentFactory.goToNext(this, RetailerAddItem.class, null, null);
+        //Intent goToAddItem = new Intent();
+        //goToAddItem.setClass(this, RetailerAddItem.class);
+        //startActivity(goToAddItem);
     }
 
     public void goMain(View v) {
-        Intent goToMain = new Intent();
-        goToMain.setClass(this, MainActivity.class);
-        startActivity(goToMain);
+        ClickInterface click = IntentFactory.goToNext(this, MainActivity.class, null, null);
+        //Intent goToMain = new Intent();
+        //goToMain.setClass(this, MainActivity.class);
+       // startActivity(goToMain);
     }
 
     //sending...

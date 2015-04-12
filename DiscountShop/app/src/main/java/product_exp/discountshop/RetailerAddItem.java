@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import intents.ClickInterface;
+import intents.IntentFactory;
+
 
 public class RetailerAddItem extends Activity {
 
@@ -45,10 +48,11 @@ public class RetailerAddItem extends Activity {
 
     /* The action for click "Add Item" button*/
     public void addItem(View v) {
-        Intent it = new Intent();
-        it.setClass(this, RetailerItemListPage.class);
-        it.putExtra("Add Item", true);
-        startActivity(it);
+        ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, null);
+        //Intent it = new Intent();
+        //it.setClass(this, RetailerItemListPage.class);
+        //it.putExtra("Add Item", true);
+        //startActivity(it);
     }
 
     /*When clicking the camera button, user can use camera to capture picture*/

@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import intents.ClickInterface;
+import intents.IntentFactory;
 import utility.MyAdapter;
 
 
@@ -42,9 +44,10 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
     /*Click different picture and jump to different item page*/
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-        Intent it = new Intent();
-        it.setClass(this, RetailerUpdateItem.class);
-        startActivity(it);
+        ClickInterface click = IntentFactory.goToNext(this, RetailerUpdateItem.class, null, null);
+        //Intent it = new Intent();
+        //it.setClass(this, RetailerUpdateItem.class);
+        //startActivity(it);
     }
 
     @Override
@@ -61,10 +64,11 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
         // TODO Auto-generated method stub
         switch(item.getItemId()){
             case Menu.FIRST:
-                Intent goToRetailerSetting = new Intent();
-                goToRetailerSetting.putExtra("username",username);
-                goToRetailerSetting.setClass(this, RetailerSettings.class);
-                startActivity(goToRetailerSetting);
+                ClickInterface click = IntentFactory.goToNext(this, RetailerSettings.class, null, (Object)username);
+                //Intent goToRetailerSetting = new Intent();
+                //goToRetailerSetting.putExtra("username",username);
+                //goToRetailerSetting.setClass(this, RetailerSettings.class);
+                //startActivity(goToRetailerSetting);
                 break;
             case Menu.FIRST+1:
                 finish();

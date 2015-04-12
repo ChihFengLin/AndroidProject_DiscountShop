@@ -16,6 +16,9 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import intents.ClickInterface;
+import intents.IntentFactory;
+import model.Retailer;
 import webservice.JSONRequest;
 import webservice.NetworkStatus;
 
@@ -35,12 +38,13 @@ public class RetailerRegister extends Activity {
     private String retailerName;
     private String address;
     private String zipCode;
+    private Retailer ret;
     private final String process_response_filter="action.createUser";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailer_register);
-
+        ret = new Retailer();
         emailText=(EditText)findViewById(R.id.rremailEditText);
         usernameText=(EditText)findViewById(R.id.rrusernameEditText);
         passwordText=(EditText)findViewById(R.id.rrpasswordEditText);
@@ -106,36 +110,44 @@ public class RetailerRegister extends Activity {
     //sending...
     //ask to send JSON request
     private void askToCreateRetailer(){
-        NetworkStatus networkStatus = new NetworkStatus();
-        boolean internet = networkStatus.isNetworkAvailable(this);
-        if(internet){
-            email=emailText.getText().toString().trim();
-            username=usernameText.getText().toString().trim();
-            password=passwordText.getText().toString().trim();
-            retailerName=retailerNameText.getText().toString().trim();
-            address=addressText.getText().toString().trim();
-            zipCode=zipCodeText.getText().toString().trim();
+        ret.setUsername(usernameText.getText().toString().trim());
+        ret.setPassword(passwordText.getText().toString().trim());
+        ret.setEmail(emailText.getText().toString().trim());
+        ret.setAddress(addressText.getText().toString().trim());
+        ret.setRetailerName(retailerNameText.getText().toString().trim());
+        ret.setZipCode(Integer.parseInt(zipCodeText.getText().toString().trim()));
+        ClickInterface click = IntentFactory.goToNext(this, null, null, null);
+
+        //NetworkStatus networkStatus = new NetworkStatus();
+        //boolean internet = networkStatus.isNetworkAvailable(this);
+        //if(internet){
+          //  email=emailText.getText().toString().trim();
+           // username=usernameText.getText().toString().trim();
+           // password=passwordText.getText().toString().trim();
+            //retailerName=retailerNameText.getText().toString().trim();
+            //address=addressText.getText().toString().trim();
+           // zipCode=zipCodeText.getText().toString().trim();
             //if not username was entered
-            if (username.isEmpty()||password.isEmpty()||email.isEmpty()||retailerName.isEmpty()||address.isEmpty()||zipCode.isEmpty()){
-                Toast toast = Toast.makeText(this, "Please don't leave the input blank!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP, 105, 50);
-                toast.show();
-            }else{
+            //if (username.isEmpty()||password.isEmpty()||email.isEmpty()||retailerName.isEmpty()||address.isEmpty()||zipCode.isEmpty()){
+              //  Toast toast = Toast.makeText(this, "Please don't leave the input blank!", Toast.LENGTH_SHORT);
+               // toast.setGravity(Gravity.TOP, 105, 50);
+                //toast.show();
+            //}else{
                 //pass the request to web service so that it can
                 //run outside the scope of the main UI thread
-                Intent msgIntent= new Intent(this, JSONRequest.class);
-                msgIntent.putExtra(JSONRequest.IN_MSG,"createUser");
-                msgIntent.putExtra("email",email);
-                msgIntent.putExtra("username",username);
-                msgIntent.putExtra("password",password);
-                msgIntent.putExtra("retailerName",retailerName);
-                msgIntent.putExtra("address",address);
-                msgIntent.putExtra("zipCode",zipCode);
-                msgIntent.putExtra("userType","retailer");
-                msgIntent.putExtra("processType",process_response_filter);
-                startService(msgIntent);
-            }
-        }
+              //  Intent msgIntent= new Intent(this, JSONRequest.class);
+               // msgIntent.putExtra(JSONRequest.IN_MSG,"createUser");
+                //msgIntent.putExtra("email",email);
+                //msgIntent.putExtra("username",username);
+                //msgIntent.putExtra("password",password);
+                //msgIntent.putExtra("retailerName",retailerName);
+                //msgIntent.putExtra("address",address);
+                //msgIntent.putExtra("zipCode",zipCode);
+                //msgIntent.putExtra("userType","retailer");
+                //msgIntent.putExtra("processType",process_response_filter);
+                //startService(msgIntent);
+            //}
+       // }
     }
 
     //receiving...
