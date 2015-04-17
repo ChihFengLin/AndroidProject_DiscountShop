@@ -5,9 +5,9 @@ import android.content.Intent;
 import product_exp.view.RetailerUpdateItem;
 
 
-public class goToRetailerUpdate implements ClickInterface {
+public class GoToRetailerUpdate implements ClickInterface {
     private Context mContext;
-    public goToRetailerUpdate(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo ){
+    public GoToRetailerUpdate(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo){
         mContext = packageContext;
         Intent main = new Intent();
         main.setClass(packageContext, RetailerUpdateItem.class);

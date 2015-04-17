@@ -6,9 +6,9 @@ import android.content.Intent;
 import product_exp.view.RetailerSettings;
 
 
-public class goToRetailerSetting implements ClickInterface {
+public class GoToRetailerSetting implements ClickInterface {
     private Context mContext;
-    public goToRetailerSetting(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo ){
+    public GoToRetailerSetting(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo){
         mContext = packageContext;
         String username = (String)inputTwo;
         Intent main = new Intent();

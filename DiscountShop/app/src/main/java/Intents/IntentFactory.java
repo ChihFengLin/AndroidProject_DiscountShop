@@ -29,25 +29,25 @@ public class IntentFactory {
             }
 
         } else if (cl.equals(ItemListPage.class)) {
-            onclick = new goToListItem(packageContext, cl, one, two);
+            onclick = new GoToListItem(packageContext, cl, one, two);
         } else if (cl.equals(RetailerItemListPage.class)) {
             onclick = new AddItem(packageContext, cl, one, two);
         } else if (cl.equals(RetailerAddItem.class)){
-            onclick = new goToAddItem(packageContext, cl, one, two);
+            onclick = new GoToAddItem(packageContext, cl, one, two);
         }else if(cl.equals(MainActivity.class)) {
-            onclick = new goToMain(packageContext, cl, one, two);
+            onclick = new GoToMain(packageContext, cl, one, two);
         } else if(cl.equals(DisplayItemDetail.class)) {
-            onclick = new goToItemDetailDisplay(packageContext, cl, one, two);
+            onclick = new GoToItemDetailDisplay(packageContext, cl, one, two);
         } else if(cl.equals(ConsumerLogin.class)){
-            onclick = new goToCon(packageContext, cl, one, two);
+            onclick = new GoToCon(packageContext, cl, one, two);
         } else if(cl.equals(RetailerLogin.class)){
-            onclick = new goToRet(packageContext, cl, one, two);
+            onclick = new GoToRet(packageContext, cl, one, two);
         } else if (cl.equals(RetailerSettings.class)) {
-            onclick = new goToRetailerSetting(packageContext, cl, one, two);
+            onclick = new GoToRetailerSetting(packageContext, cl, one, two);
         } else if (cl.equals( RetailerUpdateItem.class)) {
-            onclick = new goToRetailerUpdate(packageContext, cl, one, two);
+            onclick = new GoToRetailerUpdate(packageContext, cl, one, two);
         } else if(cl.equals(RetailerRegister.class) || cl.equals(ConsumerRegister.class)) {
-            onclick = new goToSignup(packageContext, cl, one, two);
+            onclick = new GoToSignup(packageContext, cl, one, two);
         } else {
             System.out.println("DS: blala");
         }

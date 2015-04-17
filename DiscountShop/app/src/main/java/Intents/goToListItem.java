@@ -19,9 +19,9 @@ import product_exp.view.RetailerItemListPage;
 
 
 
-public class goToListItem implements ClickInterface {
+public class GoToListItem implements ClickInterface {
     Context mcontext;
-    public goToListItem(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo){
+    public GoToListItem(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo){
         mcontext = packageContext;
         Class<?> myclass = packageContext.getClass();
         String response = (String) inputTwo;

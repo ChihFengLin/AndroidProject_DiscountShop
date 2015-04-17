@@ -7,9 +7,9 @@ import product_exp.view.DisplayItemDetail;
 
 
 
-public class goToItemDetailDisplay implements ClickInterface {
+public class GoToItemDetailDisplay implements ClickInterface {
     private Context mContext;
-    public goToItemDetailDisplay(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo ){
+    public GoToItemDetailDisplay(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo){
         mContext = packageContext;
         Intent main = new Intent();
         main.setClass(packageContext, DisplayItemDetail.class);
