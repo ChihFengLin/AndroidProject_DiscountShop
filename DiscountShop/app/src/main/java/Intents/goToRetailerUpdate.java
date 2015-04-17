@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import product_exp.view.RetailerUpdateItem;
 
-/**
- * Created by Ravi on 4/11/2015.
- */
+
 public class goToRetailerUpdate implements ClickInterface {
     private Context mContext;
     public goToRetailerUpdate(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo ){

@@ -7,9 +7,7 @@ import product_exp.view.ConsumerRegister;
 import product_exp.view.RetailerLogin;
 import product_exp.view.RetailerRegister;
 
-/**
- * Created by Ravi on 4/12/2015.
- */
+
 public class goToSignup implements ClickInterface {
     public goToSignup(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo) {
         Class<?> myclass = packageContext.getClass();

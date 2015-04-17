@@ -16,9 +16,9 @@ import product_exp.view.ConsumerRegister;
 import product_exp.view.ItemListPage;
 import product_exp.view.RetailerItemListPage;
 
-/**
- * Created by Ravi on 4/11/2015.
- */
+
+
+
 public class goToListItem implements ClickInterface {
     Context mcontext;
     public goToListItem(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo){

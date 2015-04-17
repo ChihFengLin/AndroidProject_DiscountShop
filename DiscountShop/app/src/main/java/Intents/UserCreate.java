@@ -12,9 +12,9 @@ import product_exp.view.RetailerRegister;
 import webservice.JSONRequest;
 import webservice.NetworkStatus;
 
-/**
- * Created by Ravi on 4/11/2015.
- */
+
+
+
 public class UserCreate implements ClickInterface {
     private final String process_response_filter="action.getConsumerLoginInfo";
     private Context mContext;

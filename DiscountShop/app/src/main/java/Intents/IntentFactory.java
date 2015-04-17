@@ -14,9 +14,8 @@ import product_exp.view.RetailerRegister;
 import product_exp.view.RetailerSettings;
 import product_exp.view.RetailerUpdateItem;
 
-/**
- * Created by Ravi on 4/11/2015.
- */
+
+
 public class IntentFactory {
     public static ClickInterface goToNext(Context packageContext, Class<?> cl, Object one, Object two) {
 

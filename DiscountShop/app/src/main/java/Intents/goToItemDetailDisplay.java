@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 
 import product_exp.view.DisplayItemDetail;
-;
 
-/**
- * Created by Ravi on 4/11/2015.
- */
+
+
 public class goToItemDetailDisplay implements ClickInterface {
     private Context mContext;
     public goToItemDetailDisplay(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo ){
