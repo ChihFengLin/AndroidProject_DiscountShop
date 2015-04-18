@@ -11,17 +11,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import model.Login;
+import product_exp.view.ConsumerItemListPage;
 import product_exp.view.ConsumerLogin;
 import product_exp.view.ConsumerRegister;
-import product_exp.view.ItemListPage;
 import product_exp.view.RetailerItemListPage;
 
-/**
- * Created by Ravi on 4/11/2015.
- */
-public class goToListItem implements ClickInterface {
+
+
+
+public class GoToListItem implements ClickInterface {
     Context mcontext;
-    public goToListItem(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo){
+    public GoToListItem(Context packageContext, Class<?> cl, Object inputOne, Object inputTwo){
         mcontext = packageContext;
         Class<?> myclass = packageContext.getClass();
         String response = (String) inputTwo;
@@ -41,7 +41,7 @@ public class goToListItem implements ClickInterface {
                     Login login = gson.fromJson(loginInfo, Login.class);
                     if (login.getPassword().equals(loginUI.getPassword())) {
                         Intent goToItemList = new Intent();
-                        goToItemList.setClass(packageContext, ItemListPage.class);
+                        goToItemList.setClass(packageContext, ConsumerItemListPage.class);
                         mcontext.startActivity(goToItemList);
                     } else {
                         Toast toast = Toast.makeText(packageContext, "Invalid password", Toast.LENGTH_SHORT);
@@ -72,7 +72,7 @@ public class goToListItem implements ClickInterface {
                     toast.show();
                     Intent goToItemList = new Intent();
                     if (packageContext.getClass().equals(ConsumerLogin.class)) {
-                        goToItemList.setClass(mcontext, ItemListPage.class);
+                        goToItemList.setClass(mcontext, ConsumerItemListPage.class);
                     } else {
                         goToItemList.setClass(mcontext, RetailerItemListPage.class);
                     }

@@ -16,6 +16,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import intents.ClickInterface;
+import intents.IntentFactory;
 import webservice.JSONRequest;
 import com.google.gson.Gson;
 import webservice.NetworkStatus;
@@ -95,9 +97,12 @@ public class ConsumerLogin extends Activity {
     }
 
     public void goRegister(View v) {
-        Intent goToRegister = new Intent();
-        goToRegister.setClass(this, ConsumerRegister.class);
-        startActivity(goToRegister);
+
+        ClickInterface click = IntentFactory.goToNext(this, ConsumerRegister.class, null, null);
+
+        //Intent goToRegister = new Intent();
+        //goToRegister.setClass(this, ConsumerRegister.class);
+        //startActivity(goToRegister);
     }
 
     //sending...
@@ -143,7 +148,7 @@ public class ConsumerLogin extends Activity {
                 Login login = gson.fromJson(loginInfo,Login.class);
                 if(login.getPassword().equals(password)){
                     Intent goToItemList = new Intent();
-                    goToItemList.setClass(this, ItemListPage.class);
+                    goToItemList.setClass(this, ConsumerItemListPage.class);
                     startActivity(goToItemList);
                 }
                 else{

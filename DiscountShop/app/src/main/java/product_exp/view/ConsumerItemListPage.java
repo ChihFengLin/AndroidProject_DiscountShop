@@ -14,7 +14,7 @@ import intents.IntentFactory;
 import utility.MyAdapter;
 
 
-public class ItemListPage extends ListActivity implements AdapterView.OnItemClickListener{
+public class ConsumerItemListPage extends ListActivity implements AdapterView.OnItemClickListener{
 
     private MyAdapter myAdapter;
 
@@ -40,9 +40,6 @@ public class ItemListPage extends ListActivity implements AdapterView.OnItemClic
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
         ClickInterface click = IntentFactory.goToNext(this, DisplayItemDetail.class, null, null);
-        //Intent it = new Intent();
-        //it.setClass(this, DisplayItemDetail.class);
-        //startActivity(it);
     }
 
 

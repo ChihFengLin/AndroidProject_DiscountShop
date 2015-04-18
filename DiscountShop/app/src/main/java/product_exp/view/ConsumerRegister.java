@@ -139,7 +139,7 @@ public class ConsumerRegister extends Activity {
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
                 Intent goToItemList = new Intent();
-                goToItemList.setClass(this, ItemListPage.class);
+                goToItemList.setClass(this, ConsumerItemListPage.class);
                 startActivity(goToItemList);
 
             }else{

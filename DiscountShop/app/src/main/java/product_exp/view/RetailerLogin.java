@@ -19,6 +19,8 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import intents.ClickInterface;
+import intents.IntentFactory;
 import webservice.JSONRequest;
 import webservice.NetworkStatus;
 import model.Login;
@@ -98,9 +100,12 @@ public class RetailerLogin extends Activity {
     }
 
     public void goSignUp(View v) {
-        Intent goToSignUp = new Intent();
-        goToSignUp.setClass(this, RetailerRegister.class);
-        startActivity(goToSignUp);
+
+        ClickInterface click = IntentFactory.goToNext(this, RetailerRegister.class, null, null);
+
+        //Intent goToSignUp = new Intent();
+        //goToSignUp.setClass(this, RetailerRegister.class);
+        //startActivity(goToSignUp);
     }
 
     //sending...

@@ -29,7 +29,7 @@
         </activity>
 
         <activity
-            android:name="product_exp.view.ItemListPage"
+            android:name=".ConsumerItemListPage"
             android:label="@string/title_activity_item_list_page" >
 
         </activity>
