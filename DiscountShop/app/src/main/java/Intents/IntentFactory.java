@@ -2,10 +2,10 @@ package intents;
 
 import android.content.Context;
 
+import product_exp.view.ConsumerItemListPage;
 import product_exp.view.ConsumerLogin;
 import product_exp.view.ConsumerRegister;
 import product_exp.view.DisplayItemDetail;
-import product_exp.view.ItemListPage;
 import product_exp.view.MainActivity;
 import product_exp.view.RetailerAddItem;
 import product_exp.view.RetailerItemListPage;
@@ -28,7 +28,7 @@ public class IntentFactory {
                 onclick = new UserCreate(packageContext,cl,one,two);
             }
 
-        } else if (cl.equals(ItemListPage.class)) {
+        } else if (cl.equals(ConsumerItemListPage.class)) {
             onclick = new GoToListItem(packageContext, cl, one, two);
         } else if (cl.equals(RetailerItemListPage.class)) {
             onclick = new AddItem(packageContext, cl, one, two);

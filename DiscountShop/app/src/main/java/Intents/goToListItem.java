@@ -11,9 +11,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import model.Login;
+import product_exp.view.ConsumerItemListPage;
 import product_exp.view.ConsumerLogin;
 import product_exp.view.ConsumerRegister;
-import product_exp.view.ItemListPage;
 import product_exp.view.RetailerItemListPage;
 
 
@@ -41,7 +41,7 @@ public class GoToListItem implements ClickInterface {
                     Login login = gson.fromJson(loginInfo, Login.class);
                     if (login.getPassword().equals(loginUI.getPassword())) {
                         Intent goToItemList = new Intent();
-                        goToItemList.setClass(packageContext, ItemListPage.class);
+                        goToItemList.setClass(packageContext, ConsumerItemListPage.class);
                         mcontext.startActivity(goToItemList);
                     } else {
                         Toast toast = Toast.makeText(packageContext, "Invalid password", Toast.LENGTH_SHORT);
@@ -72,7 +72,7 @@ public class GoToListItem implements ClickInterface {
                     toast.show();
                     Intent goToItemList = new Intent();
                     if (packageContext.getClass().equals(ConsumerLogin.class)) {
-                        goToItemList.setClass(mcontext, ItemListPage.class);
+                        goToItemList.setClass(mcontext, ConsumerItemListPage.class);
                     } else {
                         goToItemList.setClass(mcontext, RetailerItemListPage.class);
                     }
