@@ -77,6 +77,9 @@ public class JSONRequest extends IntentService {
                 }
                 break;
 
+            case "updateImage":
+
+                break;
 
             default:
                 break;
@@ -142,7 +145,6 @@ public class JSONRequest extends IntentService {
 
     }
 
-
     // integration of sendHttpRequest and broadcastResponse functions
     private void requestBroadcastProcess(String url, List<NameValuePair> nameValuePairs){
         String response=sendHttpRequest(url,nameValuePairs);
@@ -191,7 +193,7 @@ public class JSONRequest extends IntentService {
             Log.w("HTTP2:",e );
         } catch (IOException e) {
             Log.w("HTTP3:",e );
-        }catch (Exception e) {
+        } catch (Exception e) {
             Log.w("HTTP4:",e );
         }
 

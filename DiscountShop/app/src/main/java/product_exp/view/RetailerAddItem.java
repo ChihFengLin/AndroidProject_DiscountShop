@@ -1,29 +1,48 @@
 package product_exp.view;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import intents.ClickInterface;
 import intents.IntentFactory;
-
+import model.Base64;
 
 public class RetailerAddItem extends Activity {
 
+    private Bitmap bmp;
+    private String picturePath;
+    private Uri selectedImage;
+    private String ba1;
+    public static String URL = "http://www.codeee.com:8080/DiscountShopWebService/AddItemServlet";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailer_add_item);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,7 +67,21 @@ public class RetailerAddItem extends Activity {
 
     /* The action for click "Add Item" button*/
     public void addItem(View v) {
-        ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, null);
+        // upload item
+        Log.e("path", "---------" + picturePath);
+
+        // Image
+        //Bitmap bm = BitmapFactory.decodeFile(picturePath);
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 90, bao);
+        byte[] ba = bao.toByteArray();
+        ba1 = Base64.encodeBytes(ba);
+
+        Log.e("base64", "------" + ba1);
+
+        // upload image to server
+        new uploadToServer().execute();
+      //  ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, null);
         //Intent it = new Intent();
         //it.setClass(this, RetailerItemListPage.class);
         //it.putExtra("Add Item", true);
@@ -71,26 +104,73 @@ public class RetailerAddItem extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == 100) {
-
             //switch(requestCode) {
             //case 100:
             //    Intent it = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, imgUri);
             //    sendBroadcast(it);
             //    break;
-
             //case 101:
             //    imgUri = convertUri(data.getData());
             //    break;
             //}
 
+            selectedImage = data.getData();
             /*Transform Intent object into Bundle object*/
             Bundle bd1 = data.getExtras();
-            Bitmap bmp = (Bitmap) bd1.get("data");
-
+            bmp = (Bitmap) bd1.get("data");
             ImageView imv = (ImageView) findViewById(R.id.imageView);
             imv.setImageBitmap(bmp);
+
+//            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+//            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+//            cursor.moveToFirst();
+//            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//            picturePath = cursor.getString(columnIndex);
+//            cursor.close();
+
+
+
         } else {
             Toast.makeText(this, "You Take Picture Unsuccessfully!", Toast.LENGTH_LONG).show();
         }
     }
+
+
+    public class uploadToServer extends AsyncTask<Void, Void, String> {
+        private ProgressDialog pd = new ProgressDialog(RetailerAddItem.this);
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pd.setMessage("Wait for image uploading!");
+            pd.show();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+            nameValuePairs.add(new BasicNameValuePair("base64", ba1));
+            nameValuePairs.add(new BasicNameValuePair("imageName", System.currentTimeMillis() + ".jpg"));
+            try {
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost httpPost = new HttpPost(URL);
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                HttpResponse response = httpClient.execute(httpPost);
+                String st = EntityUtils.toString(response.getEntity());
+                Log.v("log_tag", "In the try Loop" + st);
+
+            } catch (Exception e) {
+                Log.v("log_tag", "Error in http connection" + e.toString());
+            }
+
+            return "Success";
+        }
+
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            pd.hide();
+            pd.dismiss();
+        }
+    }
+
+
 }
