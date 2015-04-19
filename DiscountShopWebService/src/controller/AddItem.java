@@ -35,10 +35,11 @@ public class AddItem {
 					.lookup("java:comp/env");
 			connection = ((DataSource) ctx.lookup("jdbc/mysql"))
 					.getConnection();
-			sql = "INSERT INTO imageTest (imageName, image) VALUES (?, ?)";
+			sql = "INSERT INTO items (itemName, price, image) VALUES (?, ?, ?)";
 			statement = connection.prepareStatement(sql);
-			statement.setString(1, item.getImageName());
-			statement.setString(2, item.getImageBase64());
+			statement.setString(1, item.getItemName());
+			statement.setFloat(2, item.getItemPrice());
+			statement.setString(3, item.getImage());
 
 			int count = statement.executeUpdate();
 			

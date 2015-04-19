@@ -53,7 +53,7 @@ public class GetItemServlet extends HttpServlet {
 		Item item = retrieveItem.getItem(imageName);
 
 		// if invalid username
-		if (item.getImageName() == null) {
+		if (item.getItemName() == null) {
 			JsonObject myObj = new JsonObject();
 			myObj.addProperty("success", false);
 			out.println(myObj.toString());

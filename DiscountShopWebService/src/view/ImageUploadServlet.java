@@ -55,7 +55,7 @@ public class ImageUploadServlet extends HttpServlet {
 
 		// get user info and populate user
 		boolean successStatus = false;
-		Item item = new Item("test", 3.3f, imageName, base64);
+		Item item = new Item("test", 3.3f, base64);
 		AddItem addItem= new AddItem();
 		
 		// if success

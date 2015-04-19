@@ -19,7 +19,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/editTextItemName"
         android:layout_below="@+id/txv1"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
@@ -28,21 +28,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/new_price"
+        android:text="@string/itemPrice"
         android:id="@+id/txv2"
         android:layout_marginTop="62dp"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/editTextItemName"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/editTextItemPrice"
         android:layout_alignBottom="@+id/txv2"
         android:layout_toEndOf="@+id/txv2"
         android:layout_marginLeft="30dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="30dp" />
+        android:layout_marginRight="30dp"
+        android:inputType="number" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -79,7 +80,7 @@
         android:layout_height="match_parent"
         android:id="@+id/imageView"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/editText"
+        android:layout_alignEnd="@+id/editTextItemName"
         android:layout_below="@+id/txv3"
         android:src="@drawable/cheesecake"
         android:layout_marginTop="15dp"

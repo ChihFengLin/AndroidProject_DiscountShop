@@ -1,6 +1,6 @@
 package model;
 
-public class Consumer {
+public class Consumer extends Login {
 	private String email;
 	private String username;
 	private String password;

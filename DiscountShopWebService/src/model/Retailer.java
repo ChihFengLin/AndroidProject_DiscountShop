@@ -1,6 +1,6 @@
 package model;
 
-public class Retailer {
+public class Retailer extends Login {
 	private String email;
 	private String username;
 	private String password;

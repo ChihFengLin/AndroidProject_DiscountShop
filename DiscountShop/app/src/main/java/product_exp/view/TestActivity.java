@@ -124,7 +124,7 @@ public class TestActivity extends Activity {
                 String itemInfo=responseObj.getString("itemInfo");
                 //create java object from the JSON object
                 Item item = gson.fromJson(itemInfo,Item.class);
-                String ba1= item.getImageBase64();
+                String ba1= item.getImage();
                 Log.v("ba111111", ba1);
 
                 try {

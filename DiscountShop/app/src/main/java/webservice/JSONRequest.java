@@ -24,7 +24,7 @@ import java.util.List;
 
 public class JSONRequest extends IntentService {
 
-    private final String webServiceUrl="http://www.codeee.com:8080/DiscountShopWebService/";
+    private final String webServiceUrl="http://10.0.0.100:8080/DiscountShopWebService/";
     ///////////////
     public static final String IN_MSG="requestType";
     private String inMessage;
@@ -87,6 +87,13 @@ public class JSONRequest extends IntentService {
                 String imageName=intent.getStringExtra("imageName");
                 Log.v("image Name","imageName"+imageName);
                 getItem("imageName",imageName);
+                break;
+
+            case "addItem":
+                String itemName=intent.getStringExtra("itemName");
+                String itemPrice=intent.getStringExtra("itemPrice");
+                String image=intent.getStringExtra("image");
+                addItem(itemName,itemPrice,image);
                 break;
 
             default:
@@ -173,6 +180,18 @@ public class JSONRequest extends IntentService {
         // make http request and broadcast the request
         requestBroadcastProcess(url,nameValuePairs);
     }
+
+    //add Item
+    private void addItem(String itemName, String itemPrice, String image){
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+        nameValuePairs.add(new BasicNameValuePair("itemName", itemName));
+        nameValuePairs.add(new BasicNameValuePair("itemPrice",itemPrice));
+        nameValuePairs.add(new BasicNameValuePair("image",image));
+        String url=webServiceUrl+"AddItemServlet";
+        requestBroadcastProcess(url,nameValuePairs);
+    }
+
+
 
     // integration of sendHttpRequest and broadcastResponse functions
     private void requestBroadcastProcess(String url, List<NameValuePair> nameValuePairs){

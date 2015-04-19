@@ -26,19 +26,28 @@ public class RetrieveLoginInfo {
 					.getConnection();
 			// consumer
 			if (loginType.equals("consumer")) {
-				sql = "Select * from consumers where username = ?";
+				sql = "Select DECODE(password, 'abcdefg') from consumers where username = ?";
+				
 			}
 			// retailer
 			else {
-				sql = "Select * from retailers where username = ?";
+				sql = "Select DECODE(password, 'hijklmn') from retailers where username = ?";
 			}
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, username);
 			ResultSet rs = statement.executeQuery();
 
-			while (rs.next()) {
-				login.setUsername(rs.getString("username").trim());
-				login.setPassword(rs.getString("password").trim());
+			login.setUsername(username.trim());
+			
+			
+			if(loginType.equals("consumer")) {
+				while (rs.next()) {
+					login.setPassword(rs.getString("DECODE(password, 'abcdefg')").trim());
+				}
+			} else {
+				while (rs.next()) {
+					login.setPassword(rs.getString("DECODE(password, 'hijklmn')").trim());
+				}	
 			}
 
 			rs.close();

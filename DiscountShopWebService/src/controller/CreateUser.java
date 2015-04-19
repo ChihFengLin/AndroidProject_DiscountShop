@@ -10,6 +10,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+
+
+
+import org.apache.tomcat.util.security.MD5Encoder;
+
 import model.Consumer;
 import model.Retailer;
 // already act as a web service
@@ -24,7 +29,7 @@ public class CreateUser {
 				"INSERT INTO consumers (email, username, password) VALUES (");
 		stringBuff.append("'" + consumer.getEmail() + "'" + " ,");
 		stringBuff.append("'" + consumer.getUsername() + "'" + " ,");
-		stringBuff.append("'" + consumer.getPassword() + "'" + ");");
+		stringBuff.append("ENCODE( '" + consumer.getPassword() + "'," + "'abcdefg'" + "));");
 		sql = stringBuff.toString();
 		return databaseUtil(sql);
 	}
@@ -36,7 +41,7 @@ public class CreateUser {
 				"INSERT INTO retailers (email, username, password, retailer_name, address, zip_code) VALUES (");
 		stringBuff.append("'" + retailer.getEmail() + "'" + " ,");
 		stringBuff.append("'" + retailer.getUsername() + "'" + " ,");
-		stringBuff.append("'" + retailer.getPassword() + "'" + " ,");
+		stringBuff.append("ENCODE( '" + retailer.getPassword() +"',"+ "'hijklmn'" + ") ,");
 		stringBuff.append("'" + retailer.getRetailerName() + "'" + " ,");
 		stringBuff.append("'" + retailer.getAddress() + "'" + " ,");
 		stringBuff.append(retailer.getZipCode() + ");");

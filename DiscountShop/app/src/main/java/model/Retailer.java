@@ -6,18 +6,22 @@ import entities.RetailerInterface;
 public class Retailer extends Login implements RetailerInterface{
 
     private String email;
+    private String username;
+    private String password;
     private String retailerName;
     private String address;
     private int zipCode;
+
 
     /*Constructor*/
     public Retailer() {
         super();
     }
 
-    public Retailer(String Email, String RetailerName, String Address, int ZipCode) {
+    public Retailer(String Email, String UserName, String PassWord, String RetailerName, String Address, int ZipCode) {
         this.email = Email;
-
+        this.username = UserName;
+        this.password = PassWord;
         this.retailerName = RetailerName;
         this.address = Address;
         this.zipCode = ZipCode;
@@ -26,6 +30,14 @@ public class Retailer extends Login implements RetailerInterface{
 
     public void setEmail(String Email) {
         this.email = Email;
+    }
+
+    public void setUsername(String UserName) {
+        this.username = UserName;
+    }
+
+    public void setPassword(String PassWord) {
+        this.password = PassWord;
     }
 
     public void setRetailerName(String RetailerName) {
@@ -44,6 +56,14 @@ public class Retailer extends Login implements RetailerInterface{
         return this.email;
     }
 
+    public String getUsername() {
+        return this.username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
     public String getRetailerName() {
         return this.retailerName;
     }
@@ -56,4 +76,3 @@ public class Retailer extends Login implements RetailerInterface{
         return this.zipCode;
     }
 }
-

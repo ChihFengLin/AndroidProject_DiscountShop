@@ -31,8 +31,8 @@ public class RetrieveItem {
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
-				item.setImageName(rs.getString("imageName").trim());
-				item.setImageBase64(rs.getString("image").trim());
+				item.setItemName(rs.getString("imageName").trim());
+				item.setImage(rs.getString("image").trim());
 			}
 
 			rs.close();

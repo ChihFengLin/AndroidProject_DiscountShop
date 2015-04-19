@@ -52,6 +52,7 @@
     <string name="price">Y $</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="Search">search</string>
+    <string name="itemPrice">Item Price</string>
 
 
 </resources>
