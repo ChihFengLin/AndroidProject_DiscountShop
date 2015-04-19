@@ -50,6 +50,8 @@
     <string name="retailer">Retailer</string>
     <string name="distanceRange">X.X</string>
     <string name="price">Y $</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="Search">search</string>
 
 
 </resources>

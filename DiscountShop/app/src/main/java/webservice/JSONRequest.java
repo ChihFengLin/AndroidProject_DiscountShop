@@ -24,7 +24,7 @@ import java.util.List;
 
 public class JSONRequest extends IntentService {
 
-    private final String webServiceUrl="http://www.codeee.com:8080/DiscountShopWebService/";
+    private final String webServiceUrl="http://10.0.0.100:8080/DiscountShopWebService/";
     ///////////////
     public static final String IN_MSG="requestType";
     private String inMessage;
@@ -45,6 +45,12 @@ public class JSONRequest extends IntentService {
                 String username=intent.getStringExtra("username");
                 getLoginInfo(loginType,username);
                 break;
+            case "getSearchItemList":
+                String searchItemName=intent.getStringExtra("searchItemName");
+                getSearchItemList(searchItemName);
+
+                break;
+
             case "createUser":
                 String userType=intent.getStringExtra("userType");
                 //consumer creating
@@ -77,8 +83,10 @@ public class JSONRequest extends IntentService {
                 }
                 break;
 
-            case "updateImage":
-
+            case "getItem":
+                String imageName=intent.getStringExtra("imageName");
+                Log.v("image Name","imageName"+imageName);
+                getItem("imageName",imageName);
                 break;
 
             default:
@@ -101,6 +109,17 @@ public class JSONRequest extends IntentService {
         requestBroadcastProcess(url,nameValuePairs);
 
     }
+
+    private void getSearchItemList(String searchItemName) {
+        List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(1);
+        nameValuePairs.add(new BasicNameValuePair("searchItemName",searchItemName));
+
+        //prepare to make HTTP request
+        String url=webServiceUrl+"SearchItemServlet";
+        // make http request and broadcast the request
+        requestBroadcastProcess(url,nameValuePairs);
+    }
+
     //create consumer, http request
     private void createConsumer(String userType,String email,String username, String password){
         //add email, username, password for the create consumer request
@@ -143,6 +162,16 @@ public class JSONRequest extends IntentService {
             requestBroadcastProcess(url,nameValuePairs);
         }
 
+    }
+
+    // get Item
+    private void getItem(String imageName, String imageNameValue){
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+        nameValuePairs.add(new BasicNameValuePair(imageName, imageNameValue));
+        //prepare to make HTTP request
+        String url=webServiceUrl+"GetItemServlet";
+        // make http request and broadcast the request
+        requestBroadcastProcess(url,nameValuePairs);
     }
 
     // integration of sendHttpRequest and broadcastResponse functions

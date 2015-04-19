@@ -6,100 +6,83 @@
         android:name="product_exp.discountshop.DisplayItemDetail.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="product_exp.discountshop.DisplayItemDetail.permission.MAPS_RECEIVE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-        <service android:name="webservice.JSONRequest"/>
+        android:theme="@style/AppTheme" >
+        <service android:name="webservice.JSONRequest" />
+
         <activity
-            android:name="product_exp.view.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ConsumerItemListPage"
             android:label="@string/title_activity_item_list_page" >
-
         </activity>
-
         <activity
-            android:name="product_exp.view.RetailerAddItem"
+            android:name=".RetailerAddItem"
             android:label="@string/title_activity_retailer_add_item" >
-
-
         </activity>
-
         <activity
-            android:name="product_exp.view.RetailerItemListPage"
+            android:name=".RetailerItemListPage"
             android:label="@string/title_activity_retailer_item_list_page" >
-
         </activity>
-
         <activity
-            android:name="product_exp.view.RetailerLogin"
+            android:name=".RetailerLogin"
             android:label="@string/title_activity_retailer_login" >
-
         </activity>
-
         <activity
-            android:name="product_exp.view.DisplayItemDetail"
+            android:name=".DisplayItemDetail"
             android:label="@string/title_activity_display_item_detail" >
-
         </activity>
-
         <activity
-            android:name="product_exp.view.RetailerSettings"
+            android:name=".RetailerSettings"
             android:label="@string/title_activity_retailer_settings" >
-
         </activity>
-
         <activity
-            android:name="product_exp.view.RetailerUpdateItem"
+            android:name=".RetailerUpdateItem"
             android:label="@string/title_activity_retailer_update_item" >
-
         </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDGHPsG-RrXYvczhQ3aI-k5B1CBbIs1WJc" />
 
-         <activity
-            android:name="product_exp.view.ConsumerSetting"
+        <activity
+            android:name=".ConsumerSetting"
             android:label="@string/title_activity_consumer_setting" >
-
         </activity>
-
         <activity
-            android:name="product_exp.view.ConsumerRegister"
+            android:name=".ConsumerRegister"
             android:label="@string/title_activity_consumer_register" >
-
         </activity>
-
         <activity
-            android:name="product_exp.view.ConsumerLogin"
+            android:name=".ConsumerLogin"
             android:label="@string/title_activity_consumer_login"
-            android:screenOrientation="portrait">
-
+            android:screenOrientation="portrait" >
         </activity>
-
         <activity
-            android:name="product_exp.view.RetailerRegister"
+            android:name=".RetailerRegister"
             android:label="@string/title_activity_retailer_register" >
-
         </activity>
-
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test" >
+        </activity>
     </application>
 
 </manifest>

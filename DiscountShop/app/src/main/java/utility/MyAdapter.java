@@ -2,6 +2,7 @@ package utility;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,19 @@ public class MyAdapter extends BaseAdapter{
 
     private LayoutInflater adapterLayoutInflater;
     private  ArrayList<Integer> arrayList;
-
+    private Bitmap image;
     /*Constructor*/
     public MyAdapter(Context c){
         adapterLayoutInflater = LayoutInflater.from(c);
         arrayList = new ArrayList<Integer>();
+    }
+
+/*
+////////////please modify this snippet, I just test retrieving image from database///////////
+
+ */
+    public void setImage(Bitmap image){
+        this.image=image;
     }
 
 
@@ -73,7 +82,8 @@ public class MyAdapter extends BaseAdapter{
             tag = (TagView)view.getTag();
         }
         /*Set the content on the widget*/
-        tag.image.setBackgroundResource(R.drawable.cheesecake);
+        tag.image.setImageBitmap(image);
+       // tag.image.setBackgroundResource(R.drawable.cheesecake);
         tag.itemName.setText("Cheese Cake");
         tag.itemPrice.setText("Price " + arrayList.get(position));
         tag.itemDistance.setText("Distance " + arrayList.get(position));

@@ -25,6 +25,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import intents.ClickInterface;
 import intents.IntentFactory;
@@ -36,7 +37,7 @@ public class RetailerAddItem extends Activity {
     private String picturePath;
     private Uri selectedImage;
     private String ba1;
-    public static String URL = "http://www.codeee.com:8080/DiscountShopWebService/AddItemServlet";
+    public static String URL = "http://10.0.0.100:8080/DiscountShopWebService/AddItemServlet";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,15 +78,27 @@ public class RetailerAddItem extends Activity {
         byte[] ba = bao.toByteArray();
         ba1 = Base64.encodeBytes(ba);
 
+
         Log.e("base64", "------" + ba1);
 
         // upload image to server
         new uploadToServer().execute();
-      //  ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, null);
-        //Intent it = new Intent();
-        //it.setClass(this, RetailerItemListPage.class);
-        //it.putExtra("Add Item", true);
-        //startActivity(it);
+        ImageView imvd = (ImageView) findViewById(R.id.imageView);
+        imvd.setImageResource(R.mipmap.ic_launcher);
+        Log.e("new", "------");
+        // test for fun
+        try {
+            byte[] decodedString = Base64.decode(ba1);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,0,decodedString.length);
+            ImageView imv = (ImageView) findViewById(R.id.imageView);
+            imv.setImageBitmap(decodedByte);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+          ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, null);
+
     }
 
     /*When clicking the camera button, user can use camera to capture picture*/
@@ -94,25 +107,9 @@ public class RetailerAddItem extends Activity {
         startActivityForResult(it, 100);
     }
 
-    /*Pick the pictures from cellphone*/
-    //public void onPick(View v) {
-    //    Intent it = new Intent(Intent.ACTION_GET_CONTENT);
-    //    it.setType("image/*");
-    //    startActivityForResult(it, 101);
-    //}
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == 100) {
-            //switch(requestCode) {
-            //case 100:
-            //    Intent it = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, imgUri);
-            //    sendBroadcast(it);
-            //    break;
-            //case 101:
-            //    imgUri = convertUri(data.getData());
-            //    break;
-            //}
 
             selectedImage = data.getData();
             /*Transform Intent object into Bundle object*/
@@ -121,22 +118,15 @@ public class RetailerAddItem extends Activity {
             ImageView imv = (ImageView) findViewById(R.id.imageView);
             imv.setImageBitmap(bmp);
 
-//            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-//            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-//            cursor.moveToFirst();
-//            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//            picturePath = cursor.getString(columnIndex);
-//            cursor.close();
-
-
-
         } else {
             Toast.makeText(this, "You Take Picture Unsuccessfully!", Toast.LENGTH_LONG).show();
         }
     }
 
 
-    public class uploadToServer extends AsyncTask<Void, Void, String> {
+
+
+    private class uploadToServer extends AsyncTask<Void, Void, String> {
         private ProgressDialog pd = new ProgressDialog(RetailerAddItem.this);
 
         protected void onPreExecute() {
@@ -149,7 +139,8 @@ public class RetailerAddItem extends Activity {
         protected String doInBackground(Void... params) {
             ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
             nameValuePairs.add(new BasicNameValuePair("base64", ba1));
-            nameValuePairs.add(new BasicNameValuePair("imageName", System.currentTimeMillis() + ".jpg"));
+            //nameValuePairs.add(new BasicNameValuePair("imageName", System.currentTimeMillis() + ".jpg"));
+            nameValuePairs.add(new BasicNameValuePair("imageName", "test"));
             try {
                 HttpClient httpClient = new DefaultHttpClient();
                 HttpPost httpPost = new HttpPost(URL);
