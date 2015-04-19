@@ -1,3 +1,7 @@
 # javaSmartPhoneMobileApp
 
-At current stage, we have implemented unit3's requirement including supporting different screen size, dividing into different package and creating interface. Especially, we primarily focus on webservice backend design and mysql database design. Although some of functions interacted with backend database haven't been fully implemented. However, now consumer and retailer can sign up an account and data will be stored into our backend database. Next time, user can log in with personal username and password. This demonstrates our web service can work well with our android device.
+At unit4 stage, we try to implement more difficult part such as retailer can upload item's picture to remote database and user can also search the item by ketwords from the remote database and return search result. After completing this part, retailer can use add item function to add anything into database.
+
+The other thing is we have slightly changed the table schema because we have found we can use String type to store image information via JSON encoding and decoding. Moreover, for the user and retailer's password colum, we have used md5() method to encode the information. And for the Login class, we make it as "pareant" so that it can be extended by Consumer and Retailer class. 
+
+
