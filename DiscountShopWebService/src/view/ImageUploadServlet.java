@@ -2,7 +2,6 @@ package view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,13 +18,14 @@ import com.google.gson.JsonObject;
 import controller.AddItem;
 import controller.CreateUser;
 
-// for future usage
-
-@WebServlet("/AddItemServlet")
-public class AddItemServlet extends HttpServlet {
+/**
+ * Servlet implementation class ImageUploadServlet
+ */
+@WebServlet("/ImageUploadServlet")
+public class ImageUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AddItemServlet() {
+	public ImageUploadServlet() {
 		super();
 	}
 
@@ -50,13 +50,13 @@ public class AddItemServlet extends HttpServlet {
 		String base64 = request.getParameter("base64").trim();
 		// imageName coming from Android
 		String imageName = request.getParameter("imageName").trim();
-		//
-		Item item = new Item("test", 4.6f, imageName, base64);
 
+		//
+
+		// get user info and populate user
 		boolean successStatus = false;
+		Item item = new Item("test", 3.3f, imageName, base64);
 		AddItem addItem= new AddItem();
-		successStatus=addItem.insertItem(item);
-		
 		
 		// if success
 		if (successStatus) {
@@ -72,5 +72,4 @@ public class AddItemServlet extends HttpServlet {
 		}
 		out.close();
 	}
-
 }

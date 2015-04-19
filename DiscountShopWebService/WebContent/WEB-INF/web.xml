@@ -37,6 +37,20 @@
 	</servlet>
 	
 	<servlet>
+	<description>GetItem Servlet</description>
+	<display-name>GetItemServlet</display-name>
+	<servlet-name>GetItemServlet</servlet-name>
+	<servlet-class>view.GetItemServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+	<description>SearchItem Servlet</description>
+	<display-name>SearchItemServlet</display-name>
+	<servlet-name>SearchItemServlet</servlet-name>
+	<servlet-class>view.SearchItemServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
 	<description>Update Servlet</description>
 	<display-name>UpdateServlet</display-name>
 	<servlet-name>UpdateServlet</servlet-name>
