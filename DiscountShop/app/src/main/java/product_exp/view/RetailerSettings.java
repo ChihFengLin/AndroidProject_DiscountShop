@@ -88,7 +88,7 @@ public class RetailerSettings extends Activity {
     askToUpdateAddress();
     }
     public void goAddItem(View v) {
-        ClickInterface click = IntentFactory.goToNext(this, RetailerAddItem.class, null, null);
+        ClickInterface click = IntentFactory.goToNext(this, RetailerAddItem.class, null, (Object)username);
         //Intent goToAddItem = new Intent();
         //goToAddItem.setClass(this, RetailerAddItem.class);
         //startActivity(goToAddItem);

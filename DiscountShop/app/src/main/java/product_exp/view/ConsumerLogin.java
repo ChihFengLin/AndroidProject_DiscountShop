@@ -22,7 +22,7 @@ import webservice.JSONRequest;
 import com.google.gson.Gson;
 import webservice.NetworkStatus;
 import model.Login;
-
+import android.util.Log;
 
 public class ConsumerLogin extends Activity {
 
@@ -134,6 +134,7 @@ public class ConsumerLogin extends Activity {
     //receiving...
     //parse and display JSON response
     private void processJsonResponse(String response){
+        Log.v("returned response: ",response);
         JSONObject responseObj=null;
         try {
             //create JSON object from JSON string

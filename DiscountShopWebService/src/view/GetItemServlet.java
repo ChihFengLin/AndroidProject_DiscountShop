@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Item;
+import model.ItemList;
 import model.Login;
 
 import com.google.gson.Gson;
@@ -48,12 +49,12 @@ public class GetItemServlet extends HttpServlet {
 		response.setHeader("Access-Control-Max-Age", "86400");
 
 		// imageName coming from Android
-		String imageName = request.getParameter("imageName").trim();
+		String retailerTag = request.getParameter("retailerTag").trim();
 		RetrieveItem retrieveItem = new RetrieveItem();
-		Item item = retrieveItem.getItem(imageName);
+		ItemList itemList = retrieveItem.getItem(retailerTag);
 
 		// if invalid username
-		if (item.getItemName() == null) {
+		if (itemList == null) {
 			JsonObject myObj = new JsonObject();
 			myObj.addProperty("success", false);
 			out.println(myObj.toString());
@@ -62,7 +63,7 @@ public class GetItemServlet extends HttpServlet {
 		else {
 			Gson gson = new Gson();
 			// create json from login object
-			JsonElement itemObj = gson.toJsonTree(item);
+			JsonElement itemObj = gson.toJsonTree(itemList);
 			// create a new JSON object
 			JsonObject myObj = new JsonObject();
 			// add property as success;

@@ -10,29 +10,34 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import model.Item;
+import model.ItemList;
 
 public class RetrieveItem {
 	private Connection connection = null;
 	private PreparedStatement statement = null;
 	private String sql = null;
 
-	public Item getItem(String imageName) {
-		Item item= new Item();
+	public ItemList getItem(String retailerTag) {
+		ItemList itemList= new ItemList();
 		try {
 			Context ctx = (Context) new InitialContext()
 					.lookup("java:comp/env");
 			connection = ((DataSource) ctx.lookup("jdbc/mysql"))
 					.getConnection();
-			// consumer
-				sql = "Select * from imageTest where imageName = ?";
+			// items
+				sql = "Select * from items where retailer_tag = ?";
 			
 			statement = connection.prepareStatement(sql);
-			statement.setString(1, imageName);
+			statement.setString(1, retailerTag);
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
-				item.setItemName(rs.getString("imageName").trim());
+				Item item= new Item();
+				item.setRetailerTag(rs.getString("retailer_tag").trim());
+				item.setItemName(rs.getString("item_name").trim());
+				item.setItemPrice(rs.getFloat("price"));
 				item.setImage(rs.getString("image").trim());
+				itemList.insertItem(item);
 			}
 
 			rs.close();
@@ -63,7 +68,7 @@ public class RetrieveItem {
 			}
 		}
 
-		return item;
+		return itemList;
 		
 	}
 }

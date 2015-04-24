@@ -47,6 +47,7 @@ import webservice.NetworkStatus;
 
 public class RetailerAddItem extends Activity {
 
+    private String retailerTag;
     private BroadcastReceiver receiver;
     private Bitmap bmp;
     private String ba1;
@@ -62,6 +63,9 @@ public class RetailerAddItem extends Activity {
         setContentView(R.layout.activity_retailer_add_item);
         itemNameText=(EditText) findViewById(R.id.editTextItemName);
         itemPriceText= (EditText) findViewById(R.id.editTextItemPrice);
+
+        Intent it= getIntent();
+        retailerTag=it.getStringExtra("username");
 
         IntentFilter filter = new IntentFilter(process_response_filter);
         filter.addCategory(Intent.CATEGORY_DEFAULT);
@@ -176,11 +180,18 @@ public class RetailerAddItem extends Activity {
                 Toast toast = Toast.makeText(this, "Please enter item Name and item Price!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
-            }else{
+            }
+            else if (Float.parseFloat(itemPrice)>9999){
+                Toast toast = Toast.makeText(this, "Please enter item price smaller than 10000!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 105, 50);
+                toast.show();
+            }
+            else{
                 //pass the request to web service so that it can
                 //run outside the scope of the main UI thread
                 Intent msgIntent= new Intent(this, JSONRequest.class);
                 msgIntent.putExtra(JSONRequest.IN_MSG,"addItem");
+                msgIntent.putExtra("retailerTag",retailerTag);
                 msgIntent.putExtra("itemName",itemName.trim());
                 msgIntent.putExtra("itemPrice",itemPrice.trim());
                 msgIntent.putExtra("image",ba1);

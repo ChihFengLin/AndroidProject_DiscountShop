@@ -82,8 +82,8 @@ public class MyAdapter extends BaseAdapter{
             tag = (TagView)view.getTag();
         }
         /*Set the content on the widget*/
-        tag.image.setImageBitmap(image);
-       // tag.image.setBackgroundResource(R.drawable.cheesecake);
+      //  tag.image.setImageBitmap(image);
+        tag.image.setBackgroundResource(R.drawable.cheesecake);
         tag.itemName.setText("Cheese Cake");
         tag.itemPrice.setText("Price " + arrayList.get(position));
         tag.itemDistance.setText("Distance " + arrayList.get(position));

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -137,6 +138,7 @@ public class RetailerLogin extends Activity {
     //receiving...
     //parse and display JSON response
     private void processJsonResponse(String response){
+        Log.v("returned response: ", response);
         JSONObject responseObj=null;
         try {
             //create JSON object from JSON string

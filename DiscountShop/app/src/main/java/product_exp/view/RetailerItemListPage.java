@@ -43,32 +43,33 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailer_item_list_page);
 
-        receiver= new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                String response= null;
-                String responseType=intent.getStringExtra(JSONRequest.IN_MSG);
-                if(responseType.trim().equalsIgnoreCase("getItem")){
-                    response=intent.getStringExtra(JSONRequest.OUT_MSG);
-                    // switch to another activity is included
-                    processJsonResponse(response);
-                }
-            }
-        };
-        IntentFilter filter = new IntentFilter(process_response_filter);
-        filter.addCategory(Intent.CATEGORY_DEFAULT);
-        registerReceiver(receiver,filter);
+//        receiver= new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                String response= null;
+//                String responseType=intent.getStringExtra(JSONRequest.IN_MSG);
+//                if(responseType.trim().equalsIgnoreCase("getItem")){
+//                    response=intent.getStringExtra(JSONRequest.OUT_MSG);
+//                    // switch to another activity is included
+//                    processJsonResponse(response);
+//                }
+//            }
+//        };
+//        IntentFilter filter = new IntentFilter(process_response_filter);
+//        filter.addCategory(Intent.CATEGORY_DEFAULT);
+     //   registerReceiver(receiver,filter);
 
 
-        askToGetItem();
-        askToGetItem();
+        //askToGetItem();
+       // askToGetItem();
         myAdapter = new MyAdapter(this);
-        myAdapter.setImage(image);
+      //  myAdapter.setImage(image);
         setListAdapter(myAdapter);
 
         /*Check whether a new item is added or not*/
         Intent it = getIntent();
         username=it.getStringExtra("username");
+
         if(it.getBooleanExtra("Add Item", false)) {
             myAdapter.addItem(myAdapter.getCount()+1);
             this.setSelection(myAdapter.getCount()+1);
@@ -81,10 +82,10 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
         lv.setOnItemClickListener(this);
     }
 
-    @Override
-    public void onResume(){
-
-    }
+//    @Override
+//    public void onResume(){
+//
+//    }
     /*Click different picture and jump to different item page*/
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {

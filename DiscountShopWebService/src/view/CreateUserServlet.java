@@ -65,6 +65,8 @@ public class CreateUserServlet extends HttpServlet {
 			String retailerName=request.getParameter("retailerName").trim();
 			String address=request.getParameter("address").trim();
 			int zipCode=Integer.parseInt(request.getParameter("zipCode").trim());
+			System.out.println("create retailer username input: "+username);
+			System.out.println("create retialer password input: "+password);
 			Retailer retailer= new Retailer(email,username,password,retailerName,address,zipCode);
 			successStatus=createUser.createRetailer(retailer);
 		}

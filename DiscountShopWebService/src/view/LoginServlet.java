@@ -43,8 +43,11 @@ public class LoginServlet extends HttpServlet{
 
 		//username coming from Android
 		String username= request.getParameter("username").trim();
+		System.out.println("username: "+username);
 		//login type comming from Android
 		String loginType=request.getParameter("loginType").trim();
+		System.out.println("loginType: "+username);
+		
 		//get login info based on username and loginType
 		RetrieveLoginInfo loginInfo = new RetrieveLoginInfo();
 		Login login = loginInfo.getInfo(loginType,username);
@@ -57,6 +60,8 @@ public class LoginServlet extends HttpServlet{
 		}
 		// if a valid username was sent
 		else{
+			System.out.println("valid username: "+username);
+			System.out.println("valid password: "+login.getPassword());
 			Gson gson = new Gson();
 			//create json from login object
 			JsonElement loginObj=gson.toJsonTree(login);

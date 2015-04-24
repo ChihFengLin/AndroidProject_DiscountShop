@@ -24,7 +24,7 @@ import java.util.List;
 
 public class JSONRequest extends IntentService {
 
-    private final String webServiceUrl="http://10.0.0.100:8080/DiscountShopWebService/";
+    private final String webServiceUrl="http://www.codeee.com:8080/DiscountShopWebService/";
     ///////////////
     public static final String IN_MSG="requestType";
     private String inMessage;
@@ -90,10 +90,11 @@ public class JSONRequest extends IntentService {
                 break;
 
             case "addItem":
+                String retailerTag=intent.getStringExtra("retailerTag");
                 String itemName=intent.getStringExtra("itemName");
                 String itemPrice=intent.getStringExtra("itemPrice");
                 String image=intent.getStringExtra("image");
-                addItem(itemName,itemPrice,image);
+                addItem(retailerTag,itemName,itemPrice,image);
                 break;
 
             default:
@@ -110,6 +111,8 @@ public class JSONRequest extends IntentService {
         nameValuePairs.add(new BasicNameValuePair("loginType",loginType));
         nameValuePairs.add(new BasicNameValuePair("username",username));
 
+        Log.v("loginType:",loginType);
+        Log.v("username:",username);
         //prepare to make HTTP request
         String url=webServiceUrl+"LoginServlet";
         // make http request and broadcast the request
@@ -182,8 +185,9 @@ public class JSONRequest extends IntentService {
     }
 
     //add Item
-    private void addItem(String itemName, String itemPrice, String image){
-        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+    private void addItem(String retailerTag, String itemName, String itemPrice, String image){
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
+        nameValuePairs.add(new BasicNameValuePair("retailerTag",retailerTag));
         nameValuePairs.add(new BasicNameValuePair("itemName", itemName));
         nameValuePairs.add(new BasicNameValuePair("itemPrice",itemPrice));
         nameValuePairs.add(new BasicNameValuePair("image",image));

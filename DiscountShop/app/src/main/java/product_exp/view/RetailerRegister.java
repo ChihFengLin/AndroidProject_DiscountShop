@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 import webservice.JSONRequest;
 import webservice.NetworkStatus;
-
+import android.util.Log;
 
 public class RetailerRegister extends Activity {
     private BroadcastReceiver receiver;
@@ -145,6 +145,7 @@ public class RetailerRegister extends Activity {
         try {
             //create JSON object from JSON string
             responseObj = new JSONObject(response);
+            Log.v("retailer register response : ",response);
             //get the success property
             boolean success=responseObj.getBoolean("success");
             if(success){

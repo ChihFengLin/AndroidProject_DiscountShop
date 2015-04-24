@@ -46,15 +46,16 @@ public class AddItemServlet extends HttpServlet {
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		response.setHeader("Access-Control-Max-Age", "86400");
 
-		// base64 coming from Android
-		String base64 = request.getParameter("image").trim();
+		// retailer tag coming from Android
+		String retailerTag= request.getParameter("retailerTag").trim();
 		// itemName coming from Android
 		String itemName = request.getParameter("itemName").trim();
 		// itemPrice coming from Android
-		String itemPrice = request.getParameter("itemPirce").trim();
+		String itemPrice = request.getParameter("itemPrice").trim();
+		// image coming from Android
+		String image = request.getParameter("image").trim();
 		
-		
-		Item item = new Item(itemName,Float.parseFloat(itemPrice),base64);
+		Item item = new Item(retailerTag,itemName,Float.parseFloat(itemPrice),image);
 
 		boolean successStatus = false;
 		AddItem addItem= new AddItem();
