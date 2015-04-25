@@ -6,7 +6,7 @@ import product_exp.view.ConsumerItemListPage;
 import product_exp.view.ConsumerLogin;
 import product_exp.view.ConsumerRegister;
 import product_exp.view.ConsumerSetting;
-import product_exp.view.DisplayItemDetail;
+import product_exp.view.ConsumerDisplayItemDetail;
 import product_exp.view.MainActivity;
 import product_exp.view.RetailerAddItem;
 import product_exp.view.RetailerItemListPage;
@@ -37,7 +37,7 @@ public class IntentFactory {
             onclick = new GoToAddItem(packageContext, cl, one, two);
         }else if(cl.equals(MainActivity.class)) {
             onclick = new GoToMain(packageContext, cl, one, two);
-        } else if(cl.equals(DisplayItemDetail.class)) {
+        } else if(cl.equals(ConsumerDisplayItemDetail.class)) {
             onclick = new GoToItemDetailDisplay(packageContext, cl, one, two);
         } else if(cl.equals(ConsumerLogin.class)){
             onclick = new GoToCon(packageContext, cl, one, two);

@@ -9,7 +9,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 
 
-public class DisplayItemDetail extends FragmentActivity {
+public class ConsumerDisplayItemDetail extends FragmentActivity {
     private GoogleMap map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

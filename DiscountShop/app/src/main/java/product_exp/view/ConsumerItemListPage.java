@@ -11,16 +11,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import intents.ClickInterface;
@@ -58,9 +59,8 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         ListView lv = (ListView) findViewById(android.R.id.list);
         lv.setOnItemClickListener(this);
 
-        /*Search bar*/
+        /*Search EditText*/
         search = (EditText) findViewById(R.id.edt1);
-        // searchButton = (Button) findViewById(R.id.btn1);
 
         /*Register receiver so that this Activity can be notified
          when the JSON response came back
@@ -87,7 +87,7 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
     /*Click different picture and jump to different item page*/
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-        ClickInterface click = IntentFactory.goToNext(this, DisplayItemDetail.class, null, null);
+        ClickInterface click = IntentFactory.goToNext(this, ConsumerDisplayItemDetail.class, null, null);
     }
 
 
@@ -106,10 +106,6 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         switch(item.getItemId()){
             case Menu.FIRST:
                 ClickInterface click = IntentFactory.goToNext(this, ConsumerSetting.class, null, (Object)username);
-                //Intent goToRetailerSetting = new Intent();
-                //goToRetailerSetting.putExtra("username",username);
-                //goToRetailerSetting.setClass(this, RetailerSettings.class);
-                //startActivity(goToRetailerSetting);
                 break;
             case Menu.FIRST+1:
                 finish();
@@ -117,6 +113,12 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /*Here should get item list from database based on setting distance*/
+    //@Override
+    //public void onResume() {
+    //}
+
 
     public void goSearch(View v) {
         askToGetSearchItemList();
@@ -159,13 +161,14 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
             if(success){
                 Gson gson = new Gson();
                 //get the information property from servlet
-                String searchItemList=responseObj.getString("searchItemList");
+                String searchItemList = responseObj.getString("searchItemList");
                 //create java object from the JSON object
-                ArrayList<Item> returnItemList = gson.fromJson(searchItemList, ArrayList.class);
+                Type listOfTestObject = new TypeToken<ArrayList<Item>>(){}.getType();
+                ArrayList<Item> returnItemList = gson.fromJson(searchItemList, listOfTestObject);
 
                 int count = returnItemList.size();
 
-                Toast toast = Toast.makeText(this, count, Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, Integer.toString(count), Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
 

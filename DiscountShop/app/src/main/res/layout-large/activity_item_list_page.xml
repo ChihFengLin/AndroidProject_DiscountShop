@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Search"
-        android:id="@+id/buttonSearch2"
+        android:id="@+id/buttonSearch1"
         android:layout_gravity="right"
         android:onClick="goSearch"/>
 

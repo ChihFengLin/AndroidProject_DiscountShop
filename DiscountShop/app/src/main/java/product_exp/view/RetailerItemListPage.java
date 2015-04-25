@@ -43,27 +43,7 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailer_item_list_page);
 
-//        receiver= new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                String response= null;
-//                String responseType=intent.getStringExtra(JSONRequest.IN_MSG);
-//                if(responseType.trim().equalsIgnoreCase("getItem")){
-//                    response=intent.getStringExtra(JSONRequest.OUT_MSG);
-//                    // switch to another activity is included
-//                    processJsonResponse(response);
-//                }
-//            }
-//        };
-//        IntentFilter filter = new IntentFilter(process_response_filter);
-//        filter.addCategory(Intent.CATEGORY_DEFAULT);
-     //   registerReceiver(receiver,filter);
-
-
-        //askToGetItem();
-       // askToGetItem();
         myAdapter = new MyAdapter(this);
-      //  myAdapter.setImage(image);
         setListAdapter(myAdapter);
 
         /*Check whether a new item is added or not*/
