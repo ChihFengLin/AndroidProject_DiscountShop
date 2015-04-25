@@ -60,7 +60,7 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
 
         /*Search bar*/
         search = (EditText) findViewById(R.id.edt1);
-      //  searchButton = (Button) findViewById(R.id.btn1);
+        // searchButton = (Button) findViewById(R.id.btn1);
 
         /*Register receiver so that this Activity can be notified
          when the JSON response came back
@@ -105,7 +105,7 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         // TODO Auto-generated method stub
         switch(item.getItemId()){
             case Menu.FIRST:
-                ClickInterface click = IntentFactory.goToNext(this, RetailerSettings.class, null, (Object)username);
+                ClickInterface click = IntentFactory.goToNext(this, ConsumerSetting.class, null, (Object)username);
                 //Intent goToRetailerSetting = new Intent();
                 //goToRetailerSetting.putExtra("username",username);
                 //goToRetailerSetting.setClass(this, RetailerSettings.class);

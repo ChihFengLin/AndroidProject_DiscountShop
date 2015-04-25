@@ -5,6 +5,7 @@ import android.content.Context;
 import product_exp.view.ConsumerItemListPage;
 import product_exp.view.ConsumerLogin;
 import product_exp.view.ConsumerRegister;
+import product_exp.view.ConsumerSetting;
 import product_exp.view.DisplayItemDetail;
 import product_exp.view.MainActivity;
 import product_exp.view.RetailerAddItem;
@@ -42,6 +43,8 @@ public class IntentFactory {
             onclick = new GoToCon(packageContext, cl, one, two);
         } else if(cl.equals(RetailerLogin.class)){
             onclick = new GoToRet(packageContext, cl, one, two);
+        } else if (cl.equals(ConsumerSetting.class)) {
+            onclick = new GoToConsumerSetting(packageContext, cl, one, two);
         } else if (cl.equals(RetailerSettings.class)) {
             onclick = new GoToRetailerSetting(packageContext, cl, one, two);
         } else if (cl.equals( RetailerUpdateItem.class)) {
