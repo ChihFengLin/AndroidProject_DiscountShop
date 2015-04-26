@@ -3,6 +3,7 @@ package view;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import model.Item;
 import model.Login;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -58,14 +60,21 @@ public class SearchItemServlet extends HttpServlet {
 			
 		String searchItemName= request.getParameter("searchItemName").trim();
 		ReturnSearchItem returnSearchItem = new ReturnSearchItem();
-		ArrayList<Item> searchItemList= returnSearchItem.getSearchItemList(searchItemName);		
+		List<Item> searchItemList= returnSearchItem.getSearchItemList(searchItemName);		
 		
-		Gson gson = new Gson();
-		JsonElement searchItemListObj=gson.toJsonTree(searchItemList);
-		JsonObject myObj=new JsonObject();
-		myObj.addProperty("success", true);
-		myObj.add("searchItemList", searchItemListObj);
-		out.println(myObj.toString());
+		if (searchItemList.size() == 0) {
+			JsonObject myObj=new JsonObject();
+			myObj.addProperty("success", false);
+			out.println(myObj.toString());
+		} else {
+			Gson gson = new GsonBuilder().create();
+			JsonElement arrayListToJson = gson.toJsonTree(searchItemList);
+			//JsonElement searchItemListObj=gson.toJsonTree(searchItemList);
+			JsonObject myObj=new JsonObject();
+			myObj.addProperty("success", true);
+			myObj.add("searchItemList", arrayListToJson);
+			out.println(myObj.toString());
+		}
 		
 		out.close();
 	}

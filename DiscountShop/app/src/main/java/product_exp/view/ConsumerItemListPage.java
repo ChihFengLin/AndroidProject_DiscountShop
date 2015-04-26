@@ -16,13 +16,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 import intents.ClickInterface;
 import intents.IntentFactory;
@@ -152,7 +149,7 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
     /*receiving...
       parse and display JSON response */
     private void processJsonResponse(String response){
-        JSONObject responseObj=null;
+        JSONObject responseObj = null;
         try {
             //create JSON object from JSON string
             responseObj = new JSONObject(response);
@@ -162,11 +159,9 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
                 Gson gson = new Gson();
                 //get the information property from servlet
                 String searchItemList = responseObj.getString("searchItemList");
-                //create java object from the JSON object
-                Type listOfTestObject = new TypeToken<ArrayList<Item>>(){}.getType();
-                ArrayList<Item> returnItemList = gson.fromJson(searchItemList, listOfTestObject);
+                Item[] returnItemList = gson.fromJson(searchItemList, Item[].class);
 
-                int count = returnItemList.size();
+                int count = returnItemList.length;
 
                 Toast toast = Toast.makeText(this, Integer.toString(count), Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);

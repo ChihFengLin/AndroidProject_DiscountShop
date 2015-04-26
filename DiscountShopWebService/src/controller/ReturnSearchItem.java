@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -17,10 +18,10 @@ public class ReturnSearchItem {
 	private Connection connection = null;
 	private PreparedStatement statement = null;
 	private String sql = null;
-	private ArrayList<Item> items = new ArrayList<Item>();
+	private List<Item> items = new ArrayList<Item>();
 	private Item item;
 
-	public ArrayList<Item> getSearchItemList(String itemName) {
+	public List<Item> getSearchItemList(String itemName) {
 		
 		try {
 			Context ctx = (Context) new InitialContext()
@@ -28,14 +29,17 @@ public class ReturnSearchItem {
 			connection = ((DataSource) ctx.lookup("jdbc/mysql"))
 					.getConnection();
 			
-			sql = "Select * from items where item_name LIKE '%?%'";
+			sql = "Select * from items where item_name LIKE '%" + itemName + "%'";
 			statement = connection.prepareStatement(sql);
-			statement.setString(1, itemName);
+			//statement.setString(1, itemName);
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
 				item = new Item();
+				item.setRetailerTag(rs.getString("retailer_tag").trim());
 				item.setItemName(rs.getString("item_name").trim());
+				item.setItemPrice(rs.getFloat("price"));
+				item.setImage(rs.getString("image").trim());
 				items.add(item);
 			}
 
