@@ -3,6 +3,8 @@ package utility;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +12,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import model.Base64;
 import product_exp.view.R;
 
 public class MyAdapter extends BaseAdapter{
@@ -19,6 +23,8 @@ public class MyAdapter extends BaseAdapter{
     private LayoutInflater adapterLayoutInflater;
     private  ArrayList<Integer> arrayList;
     private Bitmap image;
+    private String itemName;
+    private float itemPrice;
     /*Constructor*/
     public MyAdapter(Context c){
         adapterLayoutInflater = LayoutInflater.from(c);
@@ -29,8 +35,25 @@ public class MyAdapter extends BaseAdapter{
 ////////////please modify this snippet, I just test retrieving image from database///////////
 
  */
-    public void setImage(Bitmap image){
-        this.image=image;
+    public void setImage(String image){
+
+        try {
+            byte[] decodedString = Base64.decode(image, Base64.NO_OPTIONS);
+            this.image = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            if(image==null){
+                Log.v("error:", "imageERROR");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setItemPrice(float itemPrice) {
+        this.itemPrice = itemPrice;
     }
 
 
@@ -82,10 +105,13 @@ public class MyAdapter extends BaseAdapter{
             tag = (TagView)view.getTag();
         }
         /*Set the content on the widget*/
-      //  tag.image.setImageBitmap(image);
-        tag.image.setBackgroundResource(R.drawable.cheesecake);
-        tag.itemName.setText("Cheese Cake");
-        tag.itemPrice.setText("Price " + arrayList.get(position));
+        tag.image.setImageBitmap(image);
+        //tag.image.setBackgroundResource(R.drawable.cheesecake);
+
+        tag.itemName.setText(itemName);
+
+        tag.itemPrice.setText("Price " + Float.toString(itemPrice));
+
         tag.itemDistance.setText("Distance " + arrayList.get(position));
         return view;
     }

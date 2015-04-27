@@ -3,9 +3,8 @@ package product_exp.view;
 
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -53,8 +52,6 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
         if(it.getBooleanExtra("Add Item", false)) {
             myAdapter.addItem(myAdapter.getCount()+1);
             this.setSelection(myAdapter.getCount()+1);
-            myAdapter.addItem(myAdapter.getCount()+2);
-            this.setSelection(myAdapter.getCount()+2);
         }
 
         /*Special part: android.R.id.list*/
@@ -66,6 +63,8 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
 //    public void onResume(){
 //
 //    }
+
+
     /*Click different picture and jump to different item page*/
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {

@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 import model.Item;
 
-public class ReturnSearchItem {
+public class ReturnWholeItemList {
 	
 	private Connection connection = null;
 	private PreparedStatement statement = null;
@@ -21,7 +21,7 @@ public class ReturnSearchItem {
 	private List<Item> items = new ArrayList<Item>();
 	private Item item;
 
-	public List<Item> getSearchItemList(String itemName) {
+	public List<Item> getWholeItemList() {
 		
 		try {
 			Context ctx = (Context) new InitialContext()
@@ -29,12 +29,7 @@ public class ReturnSearchItem {
 			connection = ((DataSource) ctx.lookup("jdbc/mysql"))
 					.getConnection();
 			
-			if(itemName.equals("all")) {
-				sql = "Select * from items";
-			} else {
-				sql = "Select * from items where item_name LIKE '%" + itemName + "%'";
-			}
-			
+			sql = "Select * from items";
 			statement = connection.prepareStatement(sql);
 			//statement.setString(1, itemName);
 			ResultSet rs = statement.executeQuery();
@@ -78,5 +73,5 @@ public class ReturnSearchItem {
 
 		return items;
 	}
-
 }
+

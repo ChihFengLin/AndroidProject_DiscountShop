@@ -85,7 +85,7 @@ public class RetailerSettings extends Activity {
         super.onDestroy();
     }
     public void updateAddress(View v){
-    askToUpdateAddress();
+        askToUpdateAddress();
     }
     public void goAddItem(View v) {
         ClickInterface click = IntentFactory.goToNext(this, RetailerAddItem.class, null, (Object)username);
