@@ -24,7 +24,7 @@ import java.util.List;
 
 public class JSONRequest extends IntentService {
 
-    private final String webServiceUrl="http://www.codeee.com:8080/DiscountShopWebService/";
+    private final String webServiceUrl="http://10.0.0.111:8080/DiscountShopWebService/";
     ///////////////
     public static final String IN_MSG="requestType";
     private String inMessage;

@@ -12,12 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Consumer;
 import model.Item;
+import model.Location;
 import model.Retailer;
 
 import com.google.gson.JsonObject;
 
 import controller.AddItem;
 import controller.CreateUser;
+import controller.GeoParser;
+import controller.RetrieveLocation;
 
 // for future usage
 
@@ -47,20 +50,25 @@ public class AddItemServlet extends HttpServlet {
 		response.setHeader("Access-Control-Max-Age", "86400");
 
 		// retailer tag coming from Android
-		String retailerTag= request.getParameter("retailerTag").trim();
+		String retailerTag = request.getParameter("retailerTag").trim();
 		// itemName coming from Android
 		String itemName = request.getParameter("itemName").trim();
 		// itemPrice coming from Android
 		String itemPrice = request.getParameter("itemPrice").trim();
 		// image coming from Android
 		String image = request.getParameter("image").trim();
-		
-		Item item = new Item(retailerTag,itemName,Float.parseFloat(itemPrice),image);
+
+		// get location from retailers table
+		RetrieveLocation retrieveLocation = new RetrieveLocation();
+		Location location = retrieveLocation.getLocation(retailerTag);
+
+		Item item = new Item(retailerTag, itemName,
+				Float.parseFloat(itemPrice), image, location.getLat(),
+				location.getLng());
 
 		boolean successStatus = false;
-		AddItem addItem= new AddItem();
-		successStatus=addItem.insertItem(item);
-		
+		AddItem addItem = new AddItem();
+		successStatus = addItem.insertItem(item);
 		
 		// if success
 		if (successStatus) {
@@ -68,6 +76,7 @@ public class AddItemServlet extends HttpServlet {
 			myObj.addProperty("success", true);
 			out.println(myObj.toString());
 		}
+		
 		// if failure
 		else {
 			JsonObject myObj = new JsonObject();

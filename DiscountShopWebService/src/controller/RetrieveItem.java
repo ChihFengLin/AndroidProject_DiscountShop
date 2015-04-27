@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import model.Item;
 import model.ItemList;
+import model.Location;
 
 public class RetrieveItem {
 	private Connection connection = null;
@@ -37,6 +38,9 @@ public class RetrieveItem {
 				item.setItemName(rs.getString("item_name").trim());
 				item.setItemPrice(rs.getFloat("price"));
 				item.setImage(rs.getString("image").trim());
+				item.setLatitude(rs.getDouble("latitude"));
+				item.setLongitude(rs.getDouble("longitude"));
+				
 				itemList.insertItem(item);
 			}
 

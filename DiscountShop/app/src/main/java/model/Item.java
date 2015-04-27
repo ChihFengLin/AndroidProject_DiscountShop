@@ -5,16 +5,42 @@ public class Item {
     private String itemName;
     private float itemPrice;
     private String image;
+    private double latitude;
+    private double longitude;
     /*Constructor*/
     public Item() {
         super();
     }
-
     public Item(String retailerTag, String itemName, float itemPrice, String image){
         this.retailerTag=retailerTag;
         this.itemName=itemName;
         this.itemPrice=itemPrice;
         this.image=image;
+    }
+
+    public Item(String retailerTag, String itemName, float itemPrice, String image, double latitude, double longitude){
+        this.retailerTag=retailerTag;
+        this.itemName=itemName;
+        this.itemPrice=itemPrice;
+        this.image=image;
+        this.latitude=latitude;
+        this.longitude=longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getRetailerTag() {

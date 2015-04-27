@@ -51,7 +51,7 @@ public class RetailerAddItem extends Activity {
     private BroadcastReceiver receiver;
     private Bitmap bmp;
     private String ba1;
-    public static String URL = "http://wwww.codeee.com:8080/DiscountShopWebService/AddItemServlet";
+  //  public static String URL = "http://wwww.codeee.com:8080/DiscountShopWebService/AddItemServlet";
     private EditText itemNameText;
     private EditText itemPriceText;
     private String itemName;

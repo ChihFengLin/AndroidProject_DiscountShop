@@ -40,6 +40,8 @@ public class ReturnWholeItemList {
 				item.setItemName(rs.getString("item_name").trim());
 				item.setItemPrice(rs.getFloat("price"));
 				item.setImage(rs.getString("image").trim());
+				item.setLatitude(rs.getDouble("latitude"));
+				item.setLongitude(rs.getDouble("longitude"));
 				items.add(item);
 			}
 

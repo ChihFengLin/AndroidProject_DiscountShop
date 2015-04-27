@@ -7,8 +7,25 @@ public class Retailer extends Login {
 	private String retailerName;
 	private String address;
 	private int zipCode;
+	private double latitude;
+	private double longitude;
 	
-	
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
 	/*Constructor*/
 	public Retailer() {
 		super();
@@ -21,6 +38,16 @@ public class Retailer extends Login {
 		this.retailerName = RetailerName;
 		this.address = Address;
 		this.zipCode = ZipCode;
+	}
+	public Retailer(String Email, String UserName, String PassWord, String RetailerName, String Address, int ZipCode, double latitude, double longitude) {
+		this.email = Email;
+		this.username = UserName;
+		this.password = PassWord;
+		this.retailerName = RetailerName;
+		this.address = Address;
+		this.zipCode = ZipCode;
+		this.latitude=latitude;
+		this.longitude=longitude;
 	}
 	
 	

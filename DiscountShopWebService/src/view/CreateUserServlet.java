@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Consumer;
+import model.Location;
 import model.Login;
 import model.Retailer;
 
@@ -18,6 +19,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import controller.CreateUser;
+import controller.GeoParser;
 import controller.RetrieveLoginInfo;
 
 //already act as a web service
@@ -67,7 +69,16 @@ public class CreateUserServlet extends HttpServlet {
 			int zipCode=Integer.parseInt(request.getParameter("zipCode").trim());
 			System.out.println("create retailer username input: "+username);
 			System.out.println("create retialer password input: "+password);
+			// address coming from Android
+		//	String address= request.getParameter("address").trim();
+			GeoParser geoParser= new GeoParser();
+			Location location=geoParser.addressParser(address);
+			
 			Retailer retailer= new Retailer(email,username,password,retailerName,address,zipCode);
+			// adding location
+			retailer.setLatitude(location.getLat());
+			retailer.setLongitude(location.getLng());
+			
 			successStatus=createUser.createRetailer(retailer);
 		}
 		

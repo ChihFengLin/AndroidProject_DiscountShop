@@ -4,50 +4,37 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import model.Item;
+import model.Location;
 
-public class ReturnSearchItem {
-	
+public class RetrieveLocation {
 	private Connection connection = null;
 	private PreparedStatement statement = null;
 	private String sql = null;
-	private List<Item> items = new ArrayList<Item>();
-	private Item item;
 
-	public List<Item> getSearchItemList(String itemName) {
-		
+	public Location getLocation(String retailerTag) {
+		// itemList= new ItemList();
+		Location location= null;
 		try {
 			Context ctx = (Context) new InitialContext()
 					.lookup("java:comp/env");
 			connection = ((DataSource) ctx.lookup("jdbc/mysql"))
 					.getConnection();
-			
-			if(itemName.equals("all")) {
-				sql = "Select * from items";
-			} else {
-				sql = "Select * from items where item_name LIKE '%" + itemName + "%'";
-			}
+			// items
+				sql = "Select * from retailers where retailer_name = ?";
 			
 			statement = connection.prepareStatement(sql);
-			//statement.setString(1, itemName);
+			statement.setString(1, retailerTag);
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
-				item = new Item();
-				item.setRetailerTag(rs.getString("retailer_tag").trim());
-				item.setItemName(rs.getString("item_name").trim());
-				item.setItemPrice(rs.getFloat("price"));
-				item.setImage(rs.getString("image").trim());
-				item.setLatitude(rs.getDouble("latitude"));
-				item.setLongitude(rs.getDouble("longitude"));
-				items.add(item);
+				location=new Location();
+				location.setLat(rs.getDouble("latitude"));
+				location.setLng(rs.getDouble("longitude"));
 			}
 
 			rs.close();
@@ -78,7 +65,7 @@ public class ReturnSearchItem {
 			}
 		}
 
-		return items;
+		return location;
+		
 	}
-
 }

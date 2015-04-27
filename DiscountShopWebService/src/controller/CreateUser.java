@@ -38,13 +38,15 @@ public class CreateUser {
 		// INSERT INTO retailers VALUES (email, username, password,
 		// retailer_name, address, zip_code);
 		StringBuffer stringBuff = new StringBuffer(
-				"INSERT INTO retailers (email, username, password, retailer_name, address, zip_code) VALUES (");
+				"INSERT INTO retailers (email, username, password, retailer_name, address, zip_code, latitude, longitude) VALUES (");
 		stringBuff.append("'" + retailer.getEmail() + "'" + " ,");
 		stringBuff.append("'" + retailer.getUsername() + "'" + " ,");
 		stringBuff.append("ENCODE( '" + retailer.getPassword() +"',"+ "'hijklmn'" + ") ,");
 		stringBuff.append("'" + retailer.getRetailerName() + "'" + " ,");
 		stringBuff.append("'" + retailer.getAddress() + "'" + " ,");
-		stringBuff.append(retailer.getZipCode() + ");");
+		stringBuff.append(retailer.getZipCode() + " ,");
+		stringBuff.append(retailer.getLatitude() + " ,");
+		stringBuff.append(retailer.getLongitude() + ");");
 		sql = stringBuff.toString();
 		return databaseUtil(sql);
 
