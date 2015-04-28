@@ -8,8 +8,13 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class ConsumerDisplayItemDetail extends FragmentActivity {
@@ -27,9 +32,15 @@ public class ConsumerDisplayItemDetail extends FragmentActivity {
         Intent it= getIntent();
         txv1.setText(it.getStringExtra("item name"));
         //txv2.setText(it.getStringExtra("address"));
-
+        String retailerName = "Gaint Eagle";
+        //lat long set for trial
+        double lat = 40.433988;
+        double longt = -79.9226423;
+        LatLng latlng = new LatLng(lat, longt);
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
               .getMap();
+        Marker newmarker = map.addMarker(new MarkerOptions().position(latlng).title(retailerName));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 14));
     }
 
 
