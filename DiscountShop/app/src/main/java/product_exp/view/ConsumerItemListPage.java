@@ -1,11 +1,18 @@
 package product_exp.view;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -30,7 +38,7 @@ import webservice.JSONRequest;
 import webservice.NetworkStatus;
 
 
-public class ConsumerItemListPage extends ListActivity implements AdapterView.OnItemClickListener{
+public class ConsumerItemListPage extends ListActivity implements AdapterView.OnItemClickListener, LocationListener {
 
     private BroadcastReceiver receiver;
     private static MyAdapter myAdapter;
@@ -39,11 +47,15 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
     private final String process_response_filter="action.searchItemList";
     private final String process_response_filter1="action.getWholeItemList";
     private Item[] returnItemList;
+    private LocationManager locationManager;
+    private String provider;
+    private Location myLocation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list_page);
+        myLocation = new Location("my location");
 
         myAdapter = new MyAdapter(this);
         setListAdapter(myAdapter);
@@ -62,6 +74,83 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         myAdapter.addItem(myAdapter.getCount()+1);
         this.setSelection(myAdapter.getCount()+1);
 
+        //find my location
+        NetworkStatus networkStatus = new NetworkStatus();
+        boolean internet = networkStatus.isNetworkAvailable(this);
+        if(internet == false) {
+            Toast toast = Toast.makeText(this, "Device not connected to Internet!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP, 105, 50);
+            toast.show();
+            return;
+        }
+
+
+        LocationManager lm = null;
+        boolean gps_enabled = false,network_enabled = false;
+        if(lm==null)
+            lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        try{
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        }catch(Exception ex){}
+        try{
+            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        }catch(Exception ex){}
+
+        if(!gps_enabled && !network_enabled){
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setMessage(this.getResources().getString(R.string.gps_network_not_enabled));
+            dialog.setPositiveButton(this.getResources().getString(R.string.open_location_settings), new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                    // TODO Auto-generated method stub
+                    Intent myIntent = new Intent( Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(myIntent);
+                    //get gps
+                }
+            });
+            dialog.setNegativeButton(this.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                    // TODO Auto-generated method stub
+
+                }
+            });
+            dialog.show();
+
+        }
+
+        //get new items location
+        double lat = 40.433988;
+        double longt = -79.9226423;
+        LatLng latlng = new LatLng(lat, longt);
+        Location retailerLoc = new Location("retailer");
+        retailerLoc.setLatitude(lat);
+        retailerLoc.setLongitude(longt);
+        // Get the location manager
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        // Define the criteria how to select the locatioin provider -> use
+        // default
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+        Location location = locationManager.getLastKnownLocation(provider);
+        if (location != null) {
+            System.out.println("Provider " + provider + " has been selected.");
+            onLocationChanged(location);
+        }
+
+        //if the distance between them is less than what customer wants
+        double distance = myLocation.distanceTo(retailerLoc);
+        if (distance > 5) {
+            Toast.makeText(this, "greater than 5 ",
+                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Distance = "+distance,
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Distance = "+distance,
+                    Toast.LENGTH_SHORT).show();
+        }
 
         /*Special part: android.R.id.list*/
         ListView lv = (ListView) findViewById(android.R.id.list);
@@ -95,6 +184,44 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         registerReceiver(receiver, filter);
     }
 
+    /* Request updates at startup */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        locationManager.requestLocationUpdates(provider, 400, 1, this);
+    }
+
+    /* Remove the locationlistener updates when Activity is paused */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        locationManager.removeUpdates(this);
+        unregisterReceiver(receiver);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        myLocation = location;
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Toast.makeText(this, "Enabled new provider " + provider,
+                Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Toast.makeText(this, "Disabled provider " + provider,
+                Toast.LENGTH_SHORT).show();
+    }
     /*Click different picture and jump to different item page*/
     /*Hard Code! Later we can directly send Item object into next page*/
     @Override
@@ -277,4 +404,8 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
 
     }
     */
+
+    private void checkGPSStatus() {
+
+    }
 }

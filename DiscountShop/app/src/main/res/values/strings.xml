@@ -54,6 +54,9 @@
     <string name="Search">search</string>
     <string name="itemPrice">Item Price</string>
     <string name="searchItem">Search Item</string>
+    <string name="gps_network_not_enabled">gps not enabled</string>
+    <string name="open_location_settings">open location settings</string>
+    <string name="Cancel">cancel</string>
 
 
 </resources>
