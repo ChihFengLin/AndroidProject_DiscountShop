@@ -48,11 +48,12 @@
     <string name="added_item_info">Added Item Information</string>
     <string name="consumer">Consumer</string>
     <string name="retailer">Retailer</string>
-    <string name="distanceRange">X.X</string>
+    <string name="distanceRange">25</string>
     <string name="price">Y $</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="Search">search</string>
     <string name="itemPrice">Item Price</string>
+    <string name="searchItem">Search Item</string>
 
 
 </resources>
