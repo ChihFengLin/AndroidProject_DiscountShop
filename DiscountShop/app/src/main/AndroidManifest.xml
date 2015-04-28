@@ -46,7 +46,7 @@
             android:label="@string/title_activity_retailer_login" >
         </activity>
         <activity
-            android:name=".DisplayItemDetail"
+            android:name=".ConsumerDisplayItemDetail"
             android:label="@string/title_activity_display_item_detail" >
         </activity>
         <activity

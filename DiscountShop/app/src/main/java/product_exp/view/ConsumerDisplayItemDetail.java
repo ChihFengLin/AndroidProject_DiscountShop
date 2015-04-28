@@ -1,9 +1,12 @@
 package product_exp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -11,11 +14,20 @@ import com.google.android.gms.maps.MapFragment;
 
 public class ConsumerDisplayItemDetail extends FragmentActivity {
     private GoogleMap map;
+    private TextView txv1, txv2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_item_detail);
-       // Intent i = new Intent()
+
+        txv1 = (TextView)findViewById(R.id.item);
+        txv2 = (TextView)findViewById(R.id.price);
+
+        Intent it= getIntent();
+        txv1.setText(it.getStringExtra("item name"));
+        //txv2.setText(it.getStringExtra("address"));
+
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
               .getMap();
     }

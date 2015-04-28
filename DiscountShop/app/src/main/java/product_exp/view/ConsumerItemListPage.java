@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -55,6 +56,13 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         //    this.setSelection(myAdapter.getCount()+1);
         //}
 
+        /*Hard Code*/
+        myAdapter.setItemName("Cheese Cake");
+        myAdapter.setItemPrice(15);
+        myAdapter.addItem(myAdapter.getCount()+1);
+        this.setSelection(myAdapter.getCount()+1);
+
+
         /*Special part: android.R.id.list*/
         ListView lv = (ListView) findViewById(android.R.id.list);
         lv.setOnItemClickListener(this);
@@ -88,9 +96,10 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
     }
 
     /*Click different picture and jump to different item page*/
+    /*Hard Code! Later we can directly send Item object into next page*/
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-        ClickInterface click = IntentFactory.goToNext(this, ConsumerDisplayItemDetail.class, null, null);
+        ClickInterface click = IntentFactory.goToNext(this, ConsumerDisplayItemDetail.class, "Cheese Cake", "2558 Berryessa Rd San Jose, CA");
     }
 
 
