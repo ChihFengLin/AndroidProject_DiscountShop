@@ -1,9 +1,14 @@
 package product_exp.view;
 
 import android.content.Intent;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import android.location.LocationManager;
+
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -12,8 +17,13 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 
@@ -29,6 +39,17 @@ public class ConsumerDisplayItemDetail extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_item_detail);
+        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+        boolean enabled = service
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+// check if enabled and if not send user to the GSP settings
+// Better solution would be to display a dialog and suggesting to
+// go to the settings
+        if (!enabled) {
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(intent);
+        }
 
         txv1 = (TextView)findViewById(R.id.item);
         txv2 = (TextView)findViewById(R.id.price);
@@ -39,11 +60,19 @@ public class ConsumerDisplayItemDetail extends FragmentActivity {
         txv1.setText(it.getStringExtra("item name"));
         txv2.setText(it.getStringExtra("item price"));
         txv3.setText(it.getStringExtra("retailer name"));
-
         imv1.setImageBitmap(ImageToBitmap(it.getStringExtra("picture")));
+
+
+        String retailerName = it.getStringExtra("retailer name");
+        //lat long set for trial
+        double lat = 40.433988;
+        double longt = -79.9226423;
+        LatLng latlng = new LatLng(lat, longt);
 
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
               .getMap();
+        Marker newmarker = map.addMarker(new MarkerOptions().position(latlng).title(retailerName));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 14));
     }
 
 
