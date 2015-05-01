@@ -49,10 +49,10 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
         Intent it = getIntent();
         username=it.getStringExtra("username");
 
-        if(it.getBooleanExtra("Add Item", false)) {
-            myAdapter.addItem(myAdapter.getCount()+1);
-            this.setSelection(myAdapter.getCount()+1);
-        }
+        //if(it.getBooleanExtra("Add Item", false)) {
+        //    myAdapter.addItem(myAdapter.getCount()+1);
+        //    this.setSelection(myAdapter.getCount()+1);
+        //}
 
         /*Special part: android.R.id.list*/
         ListView lv = (ListView) findViewById(android.R.id.list);

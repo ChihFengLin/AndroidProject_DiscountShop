@@ -16,50 +16,42 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Base64;
+import model.Item;
 import product_exp.view.R;
 
 public class MyAdapter extends BaseAdapter{
 
     private LayoutInflater adapterLayoutInflater;
-    private  ArrayList<Integer> arrayList;
-    private Bitmap image;
-    private String itemName;
-    private float itemPrice;
+    private  ArrayList<Item> arrayList;
+
     /*Constructor*/
     public MyAdapter(Context c){
         adapterLayoutInflater = LayoutInflater.from(c);
-        arrayList = new ArrayList<Integer>();
+        arrayList = new ArrayList<Item>();
     }
 
-/*
-////////////please modify this snippet, I just test retrieving image from database///////////
 
- */
-    public void setImage(String image){
-
+    public Bitmap ImageToBitmap(String imageString){
+        Bitmap image = null;
         try {
-            byte[] decodedString = Base64.decode(image, Base64.NO_OPTIONS);
-            this.image = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            byte[] decodedString = Base64.decode(imageString, Base64.NO_OPTIONS);
+            image = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             if(image==null){
                 Log.v("error:", "imageERROR");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return image;
     }
 
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void addItem(int position, Item addedItem){
+        arrayList.add(position, addedItem);
+        this.notifyDataSetChanged();
     }
 
-    public void setItemPrice(float itemPrice) {
-        this.itemPrice = itemPrice;
-    }
-
-
-    public void addItem(int position){
-        arrayList.add(position);
+    public void removeAllItem(){
+        arrayList.clear();
         this.notifyDataSetChanged();
     }
 
@@ -106,14 +98,14 @@ public class MyAdapter extends BaseAdapter{
             tag = (TagView)view.getTag();
         }
         /*Set the content on the widget*/
-        //tag.image.setImageBitmap(image);
-        tag.image.setBackgroundResource(R.drawable.cheesecake);
+        //tag.image.setBackgroundResource(R.drawable.cheesecake);
+        tag.image.setImageBitmap(ImageToBitmap(arrayList.get(position).getImage()));
+        tag.itemName.setText(arrayList.get(position).getItemName());
+        tag.itemPrice.setText("Price " + Float.toString(arrayList.get(position).getItemPrice()));
 
-        tag.itemName.setText(itemName);
+        tag.itemDistance.setText("Distance " + Integer.toString(position));
 
-        tag.itemPrice.setText("Price " + Float.toString(itemPrice));
 
-        tag.itemDistance.setText("Distance " + arrayList.get(position));
         return view;
     }
 

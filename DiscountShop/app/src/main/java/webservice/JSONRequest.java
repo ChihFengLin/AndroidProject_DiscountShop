@@ -51,11 +51,6 @@ public class JSONRequest extends IntentService {
 
                 break;
 
-            case "getWholeItemList":
-                String confirm=intent.getStringExtra("wholeItemListTag");
-                getWholeItemList(confirm);
-                break;
-
             case "createUser":
                 String userType=intent.getStringExtra("userType");
                 //consumer creating
@@ -131,18 +126,6 @@ public class JSONRequest extends IntentService {
 
         //prepare to make HTTP request
         String url=webServiceUrl+"SearchItemServlet";
-        // make http request and broadcast the request
-        requestBroadcastProcess(url,nameValuePairs);
-    }
-
-    private void getWholeItemList(String confirm) {
-        List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(1);
-        nameValuePairs.add(new BasicNameValuePair("confirm",confirm));
-
-        Log.v("confirm:",confirm);
-
-        //prepare to make HTTP request
-        String url=webServiceUrl+"GetWholeItemListServlet";
         // make http request and broadcast the request
         requestBroadcastProcess(url,nameValuePairs);
     }

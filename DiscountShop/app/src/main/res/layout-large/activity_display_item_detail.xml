@@ -69,12 +69,13 @@
                 android:layout_alignParentLeft="true"/>
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="375dp"
-                android:layout_height="375dp"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
                 android:src="@drawable/cheesecake"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:layout_alignTop="@+id/distance"
+                android:layout_below="@+id/item"
+                android:layout_alignParentTop="false"
                 android:layout_alignParentEnd="true" />
 
         </RelativeLayout>

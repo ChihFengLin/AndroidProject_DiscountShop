@@ -43,8 +43,5 @@ public class RetailerUpdateItem extends Activity {
 
     public void deleteItem(View v) {
         ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, null);
-        //Intent delete = new Intent();
-        //delete.setClass(this, RetailerItemListPage.class);
-        //startActivity(delete);
     }
 }
