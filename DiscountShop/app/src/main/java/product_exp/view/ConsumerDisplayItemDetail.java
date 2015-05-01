@@ -20,7 +20,6 @@ import android.widget.TextView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -65,8 +64,10 @@ public class ConsumerDisplayItemDetail extends FragmentActivity {
 
         String retailerName = it.getStringExtra("retailer name");
         //lat long set for trial
-        double lat = 40.433988;
-        double longt = -79.9226423;
+        //double lat = 40.433988;
+        //double longt = -79.9226423;
+        double lat = it.getDoubleExtra("latitude", 0);
+        double longt = it.getDoubleExtra("longitude", 0);
         LatLng latlng = new LatLng(lat, longt);
 
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))

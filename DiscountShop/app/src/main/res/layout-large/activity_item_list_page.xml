@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/edt1"
         android:hint="@string/searchItem"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:text="all" />
 
     <Button
         android:layout_width="wrap_content"

@@ -59,11 +59,6 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         myAdapter = new MyAdapter(this);
         setListAdapter(myAdapter);
 
-        /*Hard Code*/
-        //myAdapter.setItemName("Cheese Cake");
-        //myAdapter.setItemPrice(15);
-        //myAdapter.addItem(myAdapter.getCount()+1);
-        //this.setSelection(myAdapter.getCount()+1);
 
         //find my location
         NetworkStatus networkStatus = new NetworkStatus();
@@ -78,14 +73,14 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
 
         LocationManager lm = null;
         boolean gps_enabled = false,network_enabled = false;
-        if(lm==null)
+        if(lm == null)
             lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        try{
+        try {
             gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        }catch(Exception ex){}
+        } catch(Exception ex){}
         try{
             network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        }catch(Exception ex){}
+        } catch(Exception ex){}
 
         if(!gps_enabled && !network_enabled){
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -176,6 +171,10 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
     @Override
     protected void onResume() {
         super.onResume();
+
+        myAdapter.removeAllItem();
+        askToGetSearchItemList();
+
         locationManager.requestLocationUpdates(provider, 400, 1, this);
     }
 
@@ -184,7 +183,7 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
     protected void onPause() {
         super.onPause();
         locationManager.removeUpdates(this);
-        unregisterReceiver(receiver);
+        //unregisterReceiver(receiver);
     }
 
     @Override
@@ -211,10 +210,10 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
                 Toast.LENGTH_SHORT).show();
     }
     /*Click different picture and jump to different item page*/
-    /*Hard Code! Later we can directly send Item object into next page*/
+    /*We can directly send Item object into next page*/
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-        ClickInterface click = IntentFactory.goToNext(this, ConsumerDisplayItemDetail.class, returnItemList[position], "2558 Berryessa Rd San Jose, CA");
+        ClickInterface click = IntentFactory.goToNext(this, ConsumerDisplayItemDetail.class, returnItemList[position], null);
     }
 
 
