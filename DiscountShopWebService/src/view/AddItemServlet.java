@@ -2,7 +2,6 @@ package view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,17 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Consumer;
 import model.Item;
 import model.Location;
-import model.Retailer;
 
 import com.google.gson.JsonObject;
 
-import controller.AddItem;
-import controller.CreateUser;
-import controller.GeoParser;
-import controller.RetrieveLocation;
+import controller.Create;
+import controller.Read;
 
 // for future usage
 
@@ -59,16 +54,16 @@ public class AddItemServlet extends HttpServlet {
 		String image = request.getParameter("image").trim();
 
 		// get location from retailers table
-		RetrieveLocation retrieveLocation = new RetrieveLocation();
-		Location location = retrieveLocation.getLocation(retailerTag);
+		Read read = new Read();
+		Location location = read.getLocation(retailerTag);
 
 		Item item = new Item(retailerTag, itemName,
 				Float.parseFloat(itemPrice), image, location.getLat(),
 				location.getLng());
 
 		boolean successStatus = false;
-		AddItem addItem = new AddItem();
-		successStatus = addItem.insertItem(item);
+		Create create = new Create();
+		successStatus = create.insertItem(item);
 		
 		// if success
 		if (successStatus) {

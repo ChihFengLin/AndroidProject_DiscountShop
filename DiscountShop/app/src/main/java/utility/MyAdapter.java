@@ -104,7 +104,9 @@ public class MyAdapter extends BaseAdapter{
         tag.itemPrice.setText("Price " + Float.toString(arrayList.get(position).getItemPrice()));
 
         tag.itemDistance.setText("Distance " + Integer.toString(position));
-
+        //
+        arrayList.get(position).getLongitude();
+        arrayList.get(position).getLatitude();
 
         return view;
     }

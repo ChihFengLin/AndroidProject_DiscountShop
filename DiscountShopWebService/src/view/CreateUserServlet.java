@@ -2,25 +2,17 @@ package view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import model.Consumer;
 import model.Location;
-import model.Login;
 import model.Retailer;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import controller.CreateUser;
+import controller.Create;
 import controller.GeoParser;
-import controller.RetrieveLoginInfo;
 
 //already act as a web service
 //////////////////////////////
@@ -51,14 +43,14 @@ public class CreateUserServlet extends HttpServlet {
 		String userType=request.getParameter("userType").trim();
 		//get user info and populate user
 		boolean successStatus=false;
-		CreateUser createUser=new CreateUser();
+		Create create=new Create();
 		if(userType.equals("consumer")){
 			String email=request.getParameter("email").trim();
 			String username=request.getParameter("username").trim();
 			String password=request.getParameter("password").trim();
 			Consumer consumer=new Consumer(email,username,password);
 		
-			successStatus=createUser.createConsumer(consumer);
+			successStatus=create.createConsumer(consumer);
 		}
 		else{
 			String email=request.getParameter("email").trim();
@@ -82,7 +74,7 @@ public class CreateUserServlet extends HttpServlet {
 			else{
 			retailer.setLatitude(location.getLat());
 			retailer.setLongitude(location.getLng());
-			successStatus=createUser.createRetailer(retailer);
+			successStatus=create.createRetailer(retailer);
 			}
 		}
 		

@@ -2,6 +2,7 @@ package view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,7 @@ import model.Login;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import controller.RetrieveLoginInfo;
+import controller.Read;
 
 
 //already act as a web service
@@ -49,11 +50,11 @@ public class LoginServlet extends HttpServlet{
 		System.out.println("loginType: "+username);
 		
 		//get login info based on username and loginType
-		RetrieveLoginInfo loginInfo = new RetrieveLoginInfo();
-		Login login = loginInfo.getInfo(loginType,username);
+		Read read = new Read();
+		Login login = read.getInfo(loginType,username);
 		
 		// if invalid username
-		if(login.getUsername()==null){
+		if(login.getPassword()==null){
 			JsonObject myObj=new JsonObject();
 			myObj.addProperty("success", false);
 			out.println(myObj.toString());
