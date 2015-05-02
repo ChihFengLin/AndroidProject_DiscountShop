@@ -152,10 +152,11 @@ public class RetailerLogin extends Activity {
                 //create java object from the JSON object
                 Login login = gson.fromJson(loginInfo,Login.class);
                 if(login.getPassword().equals(password)){
-                    Intent goToRetailerItemList = new Intent();
-                    goToRetailerItemList.setClass(this, RetailerItemListPage.class);
-                    goToRetailerItemList.putExtra("username",username);
-                    startActivity(goToRetailerItemList);
+                    ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, (Object)username);
+//                    Intent goToRetailerItemList = new Intent();
+//                    goToRetailerItemList.setClass(this, RetailerItemListPage.class);
+//                    goToRetailerItemList.putExtra("username",username);
+//                    startActivity(goToRetailerItemList);
                 }
                 else{
                     Toast toast = Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT);

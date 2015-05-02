@@ -215,7 +215,7 @@ public class RetailerAddItem extends Activity {
                     toast.setGravity(Gravity.TOP, 105, 50);
                     toast.show();
                     //   errorMessage.setText();
-                ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, null);
+                ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, (Object)retailerTag);
 
             }else{
                 Toast toast = Toast.makeText(this, "upload failed!", Toast.LENGTH_SHORT);

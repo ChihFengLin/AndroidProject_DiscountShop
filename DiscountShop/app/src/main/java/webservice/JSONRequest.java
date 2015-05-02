@@ -84,9 +84,9 @@ public class JSONRequest extends IntentService {
                 break;
 
             case "getItem":
-                String imageName=intent.getStringExtra("imageName");
-                Log.v("image Name","imageName"+imageName);
-                getItem("imageName",imageName);
+                String retailerName=intent.getStringExtra("retailerName");
+                Log.v("retailer Name","imageName"+retailerName);
+                getItem("retailerName",retailerName);
                 break;
 
             case "addItem":
@@ -97,12 +97,55 @@ public class JSONRequest extends IntentService {
                 addItem(retailerTag,itemName,itemPrice,image);
                 break;
 
+            case "updateItem":
+                String updateDelete=intent.getStringExtra("updateDelete");
+                if (updateDelete.equals("delete")){
+                    String itemName_updateItem = intent.getStringExtra("itemName");
+                    String retailerName_updateItem = intent.getStringExtra("retailerName");
+                    deleteItem(retailerName_updateItem,itemName_updateItem);
+                }
+                else{
+                    String itemName_updateItem = intent.getStringExtra("itemName");
+                    String retailerName_updateItem = intent.getStringExtra("retailerName");
+                    String newItemName = intent.getStringExtra("newItemName");
+                    String newItemPrice = intent.getStringExtra("newItemPrice");
+                    updateItem(retailerName_updateItem,itemName_updateItem,newItemName,newItemPrice);
+                }
+
+                break;
+
             default:
                 break;
         }
 
     }
 
+    private void deleteItem(String retailerName, String itemName){
+        List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(3);
+        nameValuePairs.add(new BasicNameValuePair("deleteUpdate","delete"));
+        nameValuePairs.add(new BasicNameValuePair("retailerName",retailerName));
+        nameValuePairs.add(new BasicNameValuePair("itemName",itemName));
+
+        Log.v("deleteUpdate:","delete");
+        Log.v("retailerName:",retailerName);
+        Log.v("itemName:",itemName);
+        //prepare to make HTTP request
+        String url=webServiceUrl+"UpdateDeleteItemServlet";
+        // make http request and broadcast the request
+        requestBroadcastProcess(url,nameValuePairs);
+    }
+
+    private void updateItem (String retailerName, String itemName, String newItemName, String newItemPrice ){
+        List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(5);
+        nameValuePairs.add(new BasicNameValuePair("deleteUpdate","update"));
+        nameValuePairs.add(new BasicNameValuePair("retailerName",retailerName));
+        nameValuePairs.add(new BasicNameValuePair("itemName",itemName));
+        nameValuePairs.add(new BasicNameValuePair("newItemName",newItemName));
+        nameValuePairs.add(new BasicNameValuePair("newItemPrice",newItemPrice));
+        String url=webServiceUrl+"UpdateDeleteItemServlet";
+        requestBroadcastProcess(url,nameValuePairs);
+
+    }
 
     // To get Login info: first, send http request; then receive response and finally broadcast the result
     private void getLoginInfo(String loginType,String username){
@@ -175,9 +218,9 @@ public class JSONRequest extends IntentService {
     }
 
     // get Item
-    private void getItem(String imageName, String imageNameValue){
+    private void getItem(String retailerName, String retailerNameValue){
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-        nameValuePairs.add(new BasicNameValuePair(imageName, imageNameValue));
+        nameValuePairs.add(new BasicNameValuePair(retailerName, retailerNameValue));
         //prepare to make HTTP request
         String url=webServiceUrl+"GetItemServlet";
         // make http request and broadcast the request

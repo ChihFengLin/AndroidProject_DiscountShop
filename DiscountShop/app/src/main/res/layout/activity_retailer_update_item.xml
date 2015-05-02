@@ -44,18 +44,17 @@
                 />
             <EditText
                 android:id="@+id/editprice"
-                android:layout_width="80dp"
+                android:layout_width="120dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:textSize="25sp"
                 android:gravity="left"
                 android:contentDescription="Price"
-                android:text="10$"
                 android:textColor="#000066"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/price"
-                />
+                android:inputType="numberDecimal" />
 
             <ImageView
                 android:layout_width="375dp"
@@ -73,7 +72,7 @@
 
             <Button
                 android:id="@+id/save_btn"
-                android:text="@string/save"
+                android:text="@string/update"
                 android:textColor="#CBD4CB"
                 android:textSize="30sp"
                 android:gravity="center"
@@ -88,6 +87,7 @@
                 android:shadowDy="0"
                 android:layout_marginLeft="10dp"
                 android:shadowRadius="5"
+                android:onClick="updateItem"
                 />
 
             <Button

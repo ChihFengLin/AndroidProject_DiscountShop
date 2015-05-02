@@ -33,7 +33,7 @@ public class GetItemServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request,
@@ -49,7 +49,7 @@ public class GetItemServlet extends HttpServlet {
 		response.setHeader("Access-Control-Max-Age", "86400");
 
 		// imageName coming from Android
-		String retailerTag = request.getParameter("retailerTag").trim();
+		String retailerTag = request.getParameter("retailerName").trim();
 		RetrieveItem retrieveItem = new RetrieveItem();
 		ItemList itemList = retrieveItem.getItem(retailerTag);
 
@@ -69,7 +69,7 @@ public class GetItemServlet extends HttpServlet {
 			// add property as success;
 			myObj.addProperty("success", true);
 			// add login object
-			myObj.add("itemInfo", itemObj);
+			myObj.add("itemList", itemObj);
 			// convert the JSON to string and send back
 			out.println(myObj.toString());
 		}

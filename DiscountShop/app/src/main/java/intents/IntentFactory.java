@@ -13,8 +13,7 @@ import product_exp.view.RetailerItemListPage;
 import product_exp.view.RetailerLogin;
 import product_exp.view.RetailerRegister;
 import product_exp.view.RetailerSettings;
-import product_exp.view.RetailerUpdateItem;
-
+import product_exp.view.RetailerUpdateDeleteItem;
 
 
 public class IntentFactory {
@@ -47,7 +46,7 @@ public class IntentFactory {
             onclick = new GoToConsumerSetting(packageContext, cl, one, two);
         } else if (cl.equals(RetailerSettings.class)) {
             onclick = new GoToRetailerSetting(packageContext, cl, one, two);
-        } else if (cl.equals( RetailerUpdateItem.class)) {
+        } else if (cl.equals( RetailerUpdateDeleteItem.class)) {
             onclick = new GoToRetailerUpdate(packageContext, cl, one, two);
         } else if(cl.equals(RetailerRegister.class) || cl.equals(ConsumerRegister.class)) {
             onclick = new GoToSignup(packageContext, cl, one, two);

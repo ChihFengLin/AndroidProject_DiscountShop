@@ -55,6 +55,14 @@
     <servlet-name>UpdateServlet</servlet-name>
     <servlet-class>view.UpdateServlet</servlet-class>
   </servlet>
+  
+    <servlet>
+    <description>UpdateDeleteItem Servlet</description>
+    <display-name>UpdateDeleteItemServlet</display-name>
+    <servlet-name>UpdateDeleteItemServlet</servlet-name>
+    <servlet-class>view.UpdateDeleteItemServlet</servlet-class>
+  </servlet>
+  
   <servlet>
     <description>Delete Servlet</description>
     <display-name>DeleteServlet</display-name>

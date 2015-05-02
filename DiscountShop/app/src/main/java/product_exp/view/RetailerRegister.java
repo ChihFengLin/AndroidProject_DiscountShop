@@ -157,7 +157,7 @@ public class RetailerRegister extends Activity {
                 goToRetailerItemList.putExtra("username",username);
                 startActivity(goToRetailerItemList);
             }else{
-                Toast toast = Toast.makeText(this, "Creating account failure, maybe username does exist, Please try again!", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, "Failure!! existing username or unreal address!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
                 //  errorMessage.setText();

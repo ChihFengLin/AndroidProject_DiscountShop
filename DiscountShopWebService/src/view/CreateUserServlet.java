@@ -76,10 +76,14 @@ public class CreateUserServlet extends HttpServlet {
 			
 			Retailer retailer= new Retailer(email,username,password,retailerName,address,zipCode);
 			// adding location
+			if(location==null){
+				successStatus=false;
+			}
+			else{
 			retailer.setLatitude(location.getLat());
 			retailer.setLongitude(location.getLng());
-			
 			successStatus=createUser.createRetailer(retailer);
+			}
 		}
 		
 		// if success

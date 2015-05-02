@@ -41,7 +41,7 @@ import webservice.NetworkStatus;
 public class ConsumerItemListPage extends ListActivity implements AdapterView.OnItemClickListener, LocationListener {
 
     private BroadcastReceiver receiver;
-    private static MyAdapter myAdapter;
+    private MyAdapter myAdapter;
     private String username, searchItemName;
     private EditText search;
     private final String process_response_filter="action.searchItemList";
@@ -55,11 +55,10 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list_page);
         myLocation = new Location("my location");
-
         myAdapter = new MyAdapter(this);
         setListAdapter(myAdapter);
 
-
+        /////////////////////////////////////////////////////
         //find my location
         NetworkStatus networkStatus = new NetworkStatus();
         boolean internet = networkStatus.isNetworkAvailable(this);
@@ -72,12 +71,14 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
 
 
         LocationManager lm = null;
-        boolean gps_enabled = false,network_enabled = false;
+        boolean gps_enabled = false, network_enabled = false;
         if(lm == null)
             lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
         try {
             gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
         } catch(Exception ex){}
+
         try{
             network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         } catch(Exception ex){}
@@ -137,6 +138,7 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
             Toast.makeText(this, "Distance = "+distance,
                     Toast.LENGTH_SHORT).show();
         }
+        //////////////////////////////////////////////////
 
         /*Special part: android.R.id.list*/
         ListView lv = (ListView) findViewById(android.R.id.list);
@@ -184,6 +186,12 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         super.onPause();
         locationManager.removeUpdates(this);
         //unregisterReceiver(receiver);
+    }
+// I think this is very important
+    @Override
+    protected void onDestroy(){
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 
     @Override

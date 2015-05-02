@@ -141,7 +141,7 @@ public class RetailerSettings extends Activity {
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
             }else{
-                Toast toast = Toast.makeText(this, "Updating address failure, Please try again!", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, "Failure, Please type in real address or try again!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
             }
