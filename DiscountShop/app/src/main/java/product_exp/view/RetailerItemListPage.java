@@ -162,7 +162,7 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
 
                 for(int i=0; i<returnItemList.getItemNum();i++){
                     Item newItem = returnItemList.getItem(i);
-                    myAdapter.addItem(i,newItem);
+                    myAdapter.addItem(i,newItem, 0);
                     this.setSelection(i);
                 }
 

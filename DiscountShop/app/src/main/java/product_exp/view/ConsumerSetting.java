@@ -18,6 +18,7 @@ import intents.IntentFactory;
 
 
 public class ConsumerSetting extends Activity {
+    static double itemRadius = 25;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class ConsumerSetting extends Activity {
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
                 seekBarValue.setText(String.valueOf(progress));
+                itemRadius = progress;
+                System.out.println("DiscountShop: itemDistance = "+progress);
             }
 
             @Override

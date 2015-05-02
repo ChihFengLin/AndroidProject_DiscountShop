@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import model.Base64;
 import model.Item;
@@ -23,11 +24,13 @@ public class MyAdapter extends BaseAdapter{
 
     private LayoutInflater adapterLayoutInflater;
     private  ArrayList<Item> arrayList;
+    private ArrayList<Double> distanceList;
 
     /*Constructor*/
     public MyAdapter(Context c){
         adapterLayoutInflater = LayoutInflater.from(c);
         arrayList = new ArrayList<Item>();
+        distanceList = new ArrayList<Double>();
     }
 
 
@@ -45,8 +48,9 @@ public class MyAdapter extends BaseAdapter{
         return image;
     }
 
-    public void addItem(int position, Item addedItem){
+    public void addItem(int position, Item addedItem, double distance){
         arrayList.add(position, addedItem);
+        distanceList.add(position, distance);
         this.notifyDataSetChanged();
     }
 
@@ -84,7 +88,7 @@ public class MyAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         // TODO Auto-generated method stub
-        final TagView tag;
+         TagView tag;
         if(view == null){
             view = adapterLayoutInflater.inflate(R.layout.custom_item_list_view, null);
             tag = new TagView(
@@ -102,9 +106,7 @@ public class MyAdapter extends BaseAdapter{
         tag.image.setImageBitmap(ImageToBitmap(arrayList.get(position).getImage()));
         tag.itemName.setText(arrayList.get(position).getItemName());
         tag.itemPrice.setText("Price " + Float.toString(arrayList.get(position).getItemPrice()));
-
-        tag.itemDistance.setText("Distance " + Integer.toString(position));
-
+        tag.itemDistance.setText("Distance " + Double.toString(distanceList.get(position)));
 
         return view;
     }

@@ -66,6 +66,7 @@
         android:layout_alignBottom="@+id/txv3"
         android:layout_centerHorizontal="true" />
 
+    <!--
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,6 +76,7 @@
         android:layout_toEndOf="@+id/button3"
         android:onClick="onPick"
         android:enabled="false" />
+    -->
 
     <ImageView
         android:layout_width="150dp"

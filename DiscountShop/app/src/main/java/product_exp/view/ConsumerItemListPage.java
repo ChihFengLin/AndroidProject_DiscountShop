@@ -46,6 +46,7 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
     private EditText search;
     private final String process_response_filter="action.searchItemList";
     private Item[] returnItemList;
+    private Item[] displayItemList;
     private LocationManager locationManager;
     private String provider;
     private Location myLocation;
@@ -54,10 +55,9 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list_page);
-        myLocation = new Location("my location");
+        myLocation = new Location("Consumer Location");
         myAdapter = new MyAdapter(this);
         setListAdapter(myAdapter);
-
         /////////////////////////////////////////////////////
         //find my location
         NetworkStatus networkStatus = new NetworkStatus();
@@ -108,13 +108,6 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
 
         }
 
-        //get new items location
-        double lat = 40.433988;
-        double longt = -79.9226423;
-        LatLng latlng = new LatLng(lat, longt);
-        Location retailerLoc = new Location("retailer");
-        retailerLoc.setLatitude(lat);
-        retailerLoc.setLongitude(longt);
         // Get the location manager
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // Define the criteria how to select the locatioin provider -> use
@@ -126,19 +119,6 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
             System.out.println("Provider " + provider + " has been selected.");
             onLocationChanged(location);
         }
-
-        //if the distance between them is less than what customer wants
-        double distance = myLocation.distanceTo(retailerLoc);
-        if (distance > 5) {
-            Toast.makeText(this, "greater than 5 ",
-                    Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "Distance = "+distance,
-                    Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Distance = "+distance,
-                    Toast.LENGTH_SHORT).show();
-        }
-        //////////////////////////////////////////////////
 
         /*Special part: android.R.id.list*/
         ListView lv = (ListView) findViewById(android.R.id.list);
@@ -185,7 +165,6 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
     protected void onPause() {
         super.onPause();
         locationManager.removeUpdates(this);
-        //unregisterReceiver(receiver);
     }
 // I think this is very important
     @Override
@@ -221,7 +200,7 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
     /*We can directly send Item object into next page*/
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-        ClickInterface click = IntentFactory.goToNext(this, ConsumerDisplayItemDetail.class, returnItemList[position], null);
+        ClickInterface click = IntentFactory.goToNext(this, ConsumerDisplayItemDetail.class, displayItemList[position], null);
     }
 
 
@@ -283,6 +262,7 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
       parse and display JSON response */
     private void processJsonResponse(String response){
         JSONObject responseObj = null;
+        double distance = -1;
         try {
             //create JSON object from JSON string
             responseObj = new JSONObject(response);
@@ -298,13 +278,34 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
                 //Toast toast = Toast.makeText(this, Integer.toString(count), Toast.LENGTH_SHORT);
                 //toast.setGravity(Gravity.TOP, 105, 50);
                 //toast.show();
-
+                int pos =0;
+                displayItemList = new Item[returnItemList.length];
                 for (int i = 0; i < returnItemList.length; i++) {
                     Item newItem = returnItemList[i];
-                    myAdapter.addItem(i, newItem);
-                    this.setSelection(i);
+                    //get the newItems location
+                    Location itemLoc = new Location("Item Location");
+                    itemLoc.setLatitude(newItem.getLatitude());
+                    itemLoc.setLongitude(newItem.getLongitude());
+                    distance = myLocation.distanceTo(itemLoc);
+                    //if the distance between the item and his location is less than what customer wants
+                    // show it to the consumer
+                    try {
+                        distance = distance / 1609.344;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        distance = ConsumerSetting.itemRadius;
+                    }
+                    System.out.println("Discount Shop: item number = "+i+ ": item = "+newItem.getItemName()+ " and distance = "+distance);
+                    if (distance < ConsumerSetting.itemRadius) {
+                        myAdapter.addItem(pos, newItem, distance);
+                        this.setSelection(pos);
+                        displayItemList[pos] = newItem;
+                        System.out.println("Discount Shop: pos = "+pos +": Added item = "+newItem.getItemName()+ " and distance = "+distance);
+                        pos++;
+                    } else {
+                        System.out.println("Discount Shop: item Not added to display "+newItem.getItemName()+ "distance = "+distance);
+                    }
                 }
-
 
             }else{
                 Toast toast = Toast.makeText(this, "There is no this item!", Toast.LENGTH_SHORT);
@@ -317,10 +318,6 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         }catch(JSONException e){
             e.printStackTrace();
         }
-
-    }
-
-    private void checkGPSStatus() {
 
     }
 }

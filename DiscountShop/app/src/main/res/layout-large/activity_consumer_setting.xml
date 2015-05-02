@@ -101,6 +101,7 @@
         android:layout_above="@+id/consumerImageView"
         android:layout_alignEnd="@+id/radarSeekBar" />
 
+    <!--
     <Button
         android:id="@+id/csalbumButton"
         android:layout_width="150dp"
@@ -111,5 +112,5 @@
         android:layout_alignBottom="@+id/consumerImageView"
         android:layout_alignStart="@+id/cscameraButton"
         android:enabled="false" />
-
+    -->
 </RelativeLayout>

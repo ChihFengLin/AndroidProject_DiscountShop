@@ -40,6 +40,9 @@ public class ConsumerLogin extends Activity {
         usernameText=(EditText)findViewById(R.id.usernameEditText);
         passwordText=(EditText)findViewById(R.id.passwordEditText);
 
+        //set the consumer radius to 25 each time user logs into app.
+        ConsumerSetting.itemRadius = 25;
+
         // Register receiver so that this Activity can be notified
         // when the JSON response came back
         //set the receiver filter
