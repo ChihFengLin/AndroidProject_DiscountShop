@@ -17,8 +17,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import controller.ReturnSearchItem;
-import controller.ReturnWholeItemList;
+import controller.Read;
 
 /**
  * Servlet implementation class GetWholeItemListServlet
@@ -57,14 +56,12 @@ public class GetWholeItemListServlet extends HttpServlet {
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		response.setHeader("Access-Control-Max-Age", "86400");
 			
-		String confirm= request.getParameter("confirm").trim();
-		ReturnWholeItemList returnWholeItemList = new ReturnWholeItemList();
-		
+		//String confirm= request.getParameter("confirm").trim();
+		Read read = new Read();
 		List<Item> wholeItemList = null;
 		
-		wholeItemList = returnWholeItemList.getWholeItemList();	
-		
-		
+		wholeItemList = read.getWholeItemList();	
+			
 		if (wholeItemList.size() == 0 || wholeItemList == null) {
 			JsonObject myObj=new JsonObject();
 			myObj.addProperty("success", false);

@@ -2,7 +2,6 @@ package view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,15 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Item;
-import model.Login;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import controller.RetrieveLoginInfo;
-import controller.ReturnSearchItem;
+import controller.Read;
 
 /**
  * Servlet implementation class SearchItemServlet
@@ -59,8 +56,8 @@ public class SearchItemServlet extends HttpServlet {
 		response.setHeader("Access-Control-Max-Age", "86400");
 			
 		String searchItemName= request.getParameter("searchItemName").trim();
-		ReturnSearchItem returnSearchItem = new ReturnSearchItem();
-		List<Item> searchItemList= returnSearchItem.getSearchItemList(searchItemName);		
+		Read read = new Read();
+		List<Item> searchItemList= read.getSearchItemList(searchItemName);		
 		
 		if (searchItemList.size() == 0) {
 			JsonObject myObj=new JsonObject();

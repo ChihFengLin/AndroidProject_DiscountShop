@@ -105,9 +105,8 @@ public class MyAdapter extends BaseAdapter{
         //tag.image.setBackgroundResource(R.drawable.cheesecake);
         tag.image.setImageBitmap(ImageToBitmap(arrayList.get(position).getImage()));
         tag.itemName.setText(arrayList.get(position).getItemName());
-        tag.itemPrice.setText("Price " + Float.toString(arrayList.get(position).getItemPrice()));
+        tag.itemPrice.setText("Price :" + Float.toString(arrayList.get(position).getItemPrice()));
         tag.itemDistance.setText("Distance " + Double.toString(distanceList.get(position)));
-
         return view;
     }
 

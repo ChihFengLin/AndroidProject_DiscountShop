@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.JsonObject;
 
-import controller.DeleteItem;
+import controller.Delete;
 import controller.Update;
-import controller.UpdateItem;
 
 /**
  * Servlet implementation class UpdateItemServlet
@@ -62,19 +61,22 @@ public class UpdateDeleteItemServlet extends HttpServlet {
 		
 		boolean isDelete = deleteUpdate.equals("delete");
 		if (isDelete) {
-			DeleteItem deleteItem=new DeleteItem();
+			//DeleteItem deleteItem=new DeleteItem();
+			Delete delete = new Delete();
+			
 			String retailerName = request.getParameter("retailerName").trim();
 			String itemName = request.getParameter("itemName").trim();
 
-			successStatus = deleteItem.delete(retailerName, itemName);
+			successStatus = delete.deleteItem(retailerName, itemName);
 		} else {
-			UpdateItem updateItem = new UpdateItem();
+			Update update = new Update();
+
 			String retailerName = request.getParameter("retailerName").trim();
 			String itemName = request.getParameter("itemName").trim();
 			String newItemName = request.getParameter("newItemName").trim();
 			String newItemPrice = request.getParameter("newItemPrice").trim();
 			System.out.println("new Item Price: "+newItemPrice);
-			successStatus = updateItem.update(retailerName, itemName,
+			successStatus = update.updateItem(retailerName, itemName,
 					newItemName, newItemPrice);
 		}
 

@@ -16,19 +16,19 @@ public class GeoParser {
 	public Location addressParser(String address){
 		//address = "1111 Lockheed Martin Way, Sunnyvale, CA 94089, United States";
 		GeoCoder gc = new GeoCoder();
+		Location location=null;
 		try {
 			GeocodeResponse resp = gc.getLocation(address);
 			System.out.println("STATUS = "+resp.getStatus());
 			List<Result> results = resp.getResults();
 			System.out.println("size = "+results.size());
-			Location location=null;
+			
 			for (int i=0; i<results.size(); i++){
 				location = results.get(i).getGeometry().getLocation();
 				System.out.println(" lat = "+ location.getLat());
 				System.out.println(" long = "+ location.getLng());
 			}
 			
-			return location;
 			
 		} catch (JsonSyntaxException e) {
 			// TODO Auto-generated catch block
@@ -43,7 +43,7 @@ public class GeoParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return location;
 		
 	
 	}

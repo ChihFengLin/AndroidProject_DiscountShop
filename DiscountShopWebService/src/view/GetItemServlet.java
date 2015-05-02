@@ -8,17 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import model.Item;
 import model.ItemList;
-import model.Login;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import controller.RetrieveItem;
-import controller.RetrieveLoginInfo;
+import controller.Read;
 
 /**
  * Servlet implementation class GetItemServlet
@@ -50,8 +44,10 @@ public class GetItemServlet extends HttpServlet {
 
 		// imageName coming from Android
 		String retailerTag = request.getParameter("retailerName").trim();
-		RetrieveItem retrieveItem = new RetrieveItem();
-		ItemList itemList = retrieveItem.getItem(retailerTag);
+		Read read = new Read();
+		
+		//RetrieveItem retrieveItem = new RetrieveItem();
+		ItemList itemList = read.getItem(retailerTag);
 
 		// if invalid username
 		if (itemList == null) {
