@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -54,6 +55,8 @@ public class RetailerAddItem extends Activity {
   //  public static String URL = "http://wwww.codeee.com:8080/DiscountShopWebService/AddItemServlet";
     private EditText itemNameText;
     private EditText itemPriceText;
+    private ImageView imv;
+
     private String itemName;
     private String itemPrice;
     private final String process_response_filter="action.addItem";
@@ -63,7 +66,8 @@ public class RetailerAddItem extends Activity {
         setContentView(R.layout.activity_retailer_add_item);
         itemNameText=(EditText) findViewById(R.id.editTextItemName);
         itemPriceText= (EditText) findViewById(R.id.editTextItemPrice);
-
+        imv = (ImageView) findViewById(R.id.imageView);
+        bmp = ((BitmapDrawable)imv.getDrawable()).getBitmap();
         Intent it= getIntent();
         retailerTag=it.getStringExtra("username");
 
@@ -152,7 +156,6 @@ public class RetailerAddItem extends Activity {
             /*Transform Intent object into Bundle object*/
             Bundle bd1 = data.getExtras();
             bmp = (Bitmap) bd1.get("data");
-            ImageView imv = (ImageView) findViewById(R.id.imageView);
             imv.setImageBitmap(bmp);
 
         } else {
