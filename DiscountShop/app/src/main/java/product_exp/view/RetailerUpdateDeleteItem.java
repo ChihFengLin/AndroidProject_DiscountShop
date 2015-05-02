@@ -57,6 +57,12 @@ public class RetailerUpdateDeleteItem extends FragmentActivity {
         itemImage.setImageBitmap(ImageToBitmap(it.getStringExtra("picture")));
         retailerName = it.getStringExtra("retailer name");
 
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
         //set the receiver filter
         IntentFilter filter = new IntentFilter(process_response_filter);
         filter.addCategory(Intent.CATEGORY_DEFAULT);
@@ -73,12 +79,14 @@ public class RetailerUpdateDeleteItem extends FragmentActivity {
                 }
             }
         };
-
         registerReceiver(receiver, filter);
-
-
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
+    }
 
 
     @Override
