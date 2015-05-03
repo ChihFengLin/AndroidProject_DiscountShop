@@ -1,8 +1,6 @@
 package model;
 
 
-import entities.ConsumerInterface;
-
 public class Consumer extends Login implements ConsumerInterface {
 
     private String email;

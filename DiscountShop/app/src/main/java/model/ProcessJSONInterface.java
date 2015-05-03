@@ -1,4 +1,4 @@
-package entities;
+package model;
 
 /**
  * Created by jingyuh on 15/5/2.

@@ -1,8 +1,6 @@
 package model;
 
 
-import entities.RetailerInterface;
-
 public class Retailer extends Login implements RetailerInterface{
 
     private String email;

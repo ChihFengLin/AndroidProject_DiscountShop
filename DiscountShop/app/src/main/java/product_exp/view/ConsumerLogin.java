@@ -18,8 +18,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import dsException.DiscountShopException;
-import entities.ProcessJSONInterface;
+import exception.DiscountShopException;
+import model.ProcessJSONInterface;
 import intents.ClickInterface;
 import intents.IntentFactory;
 import webservice.JSONRequest;
@@ -28,7 +28,7 @@ import webservice.NetworkStatus;
 import model.Login;
 import android.util.Log;
 
-import static dsException.DiscountShopException.myExceptions.GPS_NOT_ENABLED;
+import static exception.DiscountShopException.myExceptions.GPS_NOT_ENABLED;
 
 public class ConsumerLogin extends Activity implements ProcessJSONInterface {
 

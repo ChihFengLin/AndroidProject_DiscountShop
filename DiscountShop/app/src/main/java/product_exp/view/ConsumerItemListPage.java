@@ -22,7 +22,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -31,7 +30,7 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 
-import entities.ProcessJSONInterface;
+import model.ProcessJSONInterface;
 import intents.ClickInterface;
 import intents.IntentFactory;
 import model.Item;

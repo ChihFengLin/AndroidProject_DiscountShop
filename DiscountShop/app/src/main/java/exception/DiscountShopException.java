@@ -1,4 +1,4 @@
-package dsException;
+package exception;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -16,9 +16,7 @@ import java.util.Calendar;
 
 import product_exp.view.R;
 
-/**
- * Created by Ravi on 5/2/2015.
- */
+
 public class DiscountShopException extends Exception {
 
                 public enum myExceptions {NOT_CONNECTED, GPS_NOT_ENABLED, AUTH_FAILED, WIFI_NOT_ENABLED;}

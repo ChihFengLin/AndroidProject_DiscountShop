@@ -1,8 +1,6 @@
 package model;
 
 
-import entities.LoginInterface;
-
 public class Login implements LoginInterface{
     private String username = null;
     private String password = null;

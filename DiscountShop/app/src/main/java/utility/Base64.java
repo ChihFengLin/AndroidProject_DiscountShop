@@ -1,4 +1,4 @@
-package model;
+package utility;
 
 /**
  * Created by jingyuh on 15/4/17.

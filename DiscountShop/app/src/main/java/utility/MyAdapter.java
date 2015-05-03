@@ -14,9 +14,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
-import model.Base64;
 import model.Item;
 import product_exp.view.R;
 

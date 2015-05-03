@@ -13,21 +13,17 @@ import android.view.View;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import entities.ProcessJSONInterface;
+import model.ProcessJSONInterface;
 import intents.ClickInterface;
 import intents.IntentFactory;
 import android.widget.*;
 import android.content.Intent;
 import android.util.Log;
 
-import com.google.gson.Gson;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import model.Base64;
-import model.Item;
-import model.ItemList;
+import utility.Base64;
 import webservice.JSONRequest;
 import webservice.NetworkStatus;
 

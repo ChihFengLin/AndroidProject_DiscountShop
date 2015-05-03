@@ -27,7 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 
-import model.Base64;
+import utility.Base64;
 
 
 public class ConsumerDisplayItemDetail extends FragmentActivity {
