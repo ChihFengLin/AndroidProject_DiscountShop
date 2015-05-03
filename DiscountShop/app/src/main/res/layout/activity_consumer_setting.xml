@@ -59,7 +59,7 @@
         android:textSize="40sp"
         android:textColor="#218868"
         android:layout_alignTop="@+id/TextViewRadarRange"
-        android:layout_alignStart="@+id/csalbumButton" />
+        android:layout_alignStart="@+id/cscameraButton" />
 
     <Button
         android:id="@+id/logoutButton"

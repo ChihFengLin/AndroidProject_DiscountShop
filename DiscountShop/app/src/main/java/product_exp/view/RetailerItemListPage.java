@@ -34,7 +34,6 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
     private BroadcastReceiver receiver;
     private MyAdapter myAdapter;
     private String username;
-    //private Item[] returnItemList;
     private ItemList returnItemList;
 
     private final String process_response_filter="action.getItem";

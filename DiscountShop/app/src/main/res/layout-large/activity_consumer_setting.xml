@@ -68,10 +68,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/distanceRange"
-        android:layout_above="@+id/radarSeekBar"
-        android:layout_toEndOf="@+id/settingTextView"
         android:textSize="33sp"
-        android:textColor="#218868"/>
+        android:textColor="#218868"
+        android:layout_above="@+id/radarSeekBar"
+        android:layout_toEndOf="@+id/TextViewRadarRange" />
 
     <Button
         android:id="@+id/logoutButton"

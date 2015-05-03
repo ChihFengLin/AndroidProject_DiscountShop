@@ -59,6 +59,7 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
         myLocation = new Location("Consumer Location");
         myAdapter = new MyAdapter(this);
         setListAdapter(myAdapter);
+        username=null;
         /////////////////////////////////////////////////////
         //find my location
         NetworkStatus networkStatus = new NetworkStatus();
