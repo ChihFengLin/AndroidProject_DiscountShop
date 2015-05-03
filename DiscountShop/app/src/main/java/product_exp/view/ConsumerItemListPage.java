@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 
+import entities.ProcessJSONInterface;
 import intents.ClickInterface;
 import intents.IntentFactory;
 import model.Item;
@@ -39,7 +40,7 @@ import webservice.JSONRequest;
 import webservice.NetworkStatus;
 
 
-public class ConsumerItemListPage extends ListActivity implements AdapterView.OnItemClickListener, LocationListener {
+public class ConsumerItemListPage extends ListActivity implements AdapterView.OnItemClickListener, LocationListener, ProcessJSONInterface {
 
     private BroadcastReceiver receiver;
     private MyAdapter myAdapter;
@@ -261,7 +262,8 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
 
     /*receiving...
       parse and display JSON response */
-    private void processJsonResponse(String response){
+    @Override
+    public void processJsonResponse(String response){
         JSONObject responseObj = null;
         double distance = -1;
         try {
@@ -275,10 +277,6 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
                 String searchItemList = responseObj.getString("searchItemList");
                 returnItemList = gson.fromJson(searchItemList, Item[].class);
 
-                //int count = returnItemList.length;
-                //Toast toast = Toast.makeText(this, Integer.toString(count), Toast.LENGTH_SHORT);
-                //toast.setGravity(Gravity.TOP, 105, 50);
-                //toast.show();
                 int pos =0;
                 displayItemList = new Item[returnItemList.length];
                 for (int i = 0; i < returnItemList.length; i++) {
@@ -315,7 +313,6 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
                 toast.show();
                 //  errorMessage.setText();
             }
-
 
         }catch(JSONException e){
             e.printStackTrace();

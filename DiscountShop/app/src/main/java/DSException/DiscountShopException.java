@@ -1,4 +1,4 @@
-package DSException;
+package dsException;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -15,9 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import product_exp.view.R;
-
-import static android.provider.Settings.ACTION_WIRELESS_SETTINGS;
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 /**
  * Created by Ravi on 5/2/2015.

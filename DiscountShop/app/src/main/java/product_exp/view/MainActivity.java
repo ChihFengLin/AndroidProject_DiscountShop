@@ -16,24 +16,17 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Intent intent = new Intent(this, DisplayItemDetail.class);
-        //startActivity(intent);
+
 
     }
 
 
     public void goConsumer(View v) {
         ClickInterface click = IntentFactory.goToNext(this, ConsumerLogin.class, null, null);
-        //Intent goToConsumer = new Intent();
-        //goToConsumer.setClass(this, ConsumerLogin.class);
-        //startActivity(goToConsumer);
     }
 
     public void goRetailer(View v) {
         ClickInterface click = IntentFactory.goToNext(this, RetailerLogin.class, null, null);
-        //Intent goToRetailer = new Intent();
-       // goToRetailer.setClass(this, retailerLogin.class);
-        //startActivity(goToRetailer);
     }
 
 

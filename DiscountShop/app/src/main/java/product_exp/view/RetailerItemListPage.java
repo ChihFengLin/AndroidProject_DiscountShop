@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import entities.ProcessJSONInterface;
 import intents.ClickInterface;
 import intents.IntentFactory;
 import utility.MyAdapter;
@@ -28,7 +29,7 @@ import webservice.NetworkStatus;
 import model.Item;
 import model.ItemList;
 
-public class RetailerItemListPage extends ListActivity implements OnItemClickListener{
+public class RetailerItemListPage extends ListActivity implements OnItemClickListener, ProcessJSONInterface{
 
     private BroadcastReceiver receiver;
     private MyAdapter myAdapter;
@@ -146,7 +147,8 @@ public class RetailerItemListPage extends ListActivity implements OnItemClickLis
 
     //receiving...
     //parse and display JSON response
-    private void processJsonResponse(String response){
+    @Override
+    public void processJsonResponse(String response){
         JSONObject responseObj=null;
         try {
             //create JSON object from JSON string

@@ -12,6 +12,8 @@ import android.view.View;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import entities.ProcessJSONInterface;
 import intents.ClickInterface;
 import intents.IntentFactory;
 import android.widget.*;
@@ -31,7 +33,7 @@ import webservice.NetworkStatus;
 
 import java.io.IOException;
 
-public class RetailerUpdateDeleteItem extends FragmentActivity {
+public class RetailerUpdateDeleteItem extends FragmentActivity implements ProcessJSONInterface{
 
     private EditText itemNameEditText;
     private EditText itemPriceEditText;
@@ -187,7 +189,8 @@ public class RetailerUpdateDeleteItem extends FragmentActivity {
 
     //receiving...
     //parse and display JSON response
-    private void processJsonResponse(String response){
+    @Override
+    public void processJsonResponse(String response){
         JSONObject responseObj=null;
         try {
             //create JSON object from JSON string

@@ -16,11 +16,14 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import entities.ProcessJSONInterface;
+import intents.ClickInterface;
+import intents.IntentFactory;
 import webservice.JSONRequest;
 import webservice.NetworkStatus;
 import android.util.Log;
 
-public class RetailerRegister extends Activity {
+public class RetailerRegister extends Activity implements ProcessJSONInterface{
     private BroadcastReceiver receiver;
     private EditText emailText;
     private EditText usernameText;
@@ -162,7 +165,8 @@ public class RetailerRegister extends Activity {
 
     //receiving...
     //parse and display JSON response
-    private void processJsonResponse(String response){
+    @Override
+    public void processJsonResponse(String response){
         JSONObject responseObj=null;
         try {
             //create JSON object from JSON string
@@ -174,10 +178,11 @@ public class RetailerRegister extends Activity {
                 Toast toast = Toast.makeText(this, "Creating account is successful!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
-                Intent goToRetailerItemList = new Intent();
-                goToRetailerItemList.setClass(this, RetailerItemListPage.class);
-                goToRetailerItemList.putExtra("username",username);
-                startActivity(goToRetailerItemList);
+                ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, (Object) username);
+//                Intent goToRetailerItemList = new Intent();
+//                goToRetailerItemList.setClass(this, RetailerItemListPage.class);
+//                goToRetailerItemList.putExtra("username",username);
+//                startActivity(goToRetailerItemList);
             }else{
                 Toast toast = Toast.makeText(this, "Failure!! existing username or unreal address!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);

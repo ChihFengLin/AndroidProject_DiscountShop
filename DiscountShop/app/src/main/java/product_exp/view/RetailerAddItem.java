@@ -39,6 +39,8 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import entities.ProcessJSONInterface;
 import intents.ClickInterface;
 import intents.IntentFactory;
 import model.Base64;
@@ -46,13 +48,12 @@ import model.Login;
 import webservice.JSONRequest;
 import webservice.NetworkStatus;
 
-public class RetailerAddItem extends Activity {
+public class RetailerAddItem extends Activity implements ProcessJSONInterface{
 
     private String retailerTag;
     private BroadcastReceiver receiver;
     private Bitmap bmp;
     private String ba1;
-  //  public static String URL = "http://wwww.codeee.com:8080/DiscountShopWebService/AddItemServlet";
     private EditText itemNameText;
     private EditText itemPriceText;
     private ImageView imv;
@@ -121,26 +122,6 @@ public class RetailerAddItem extends Activity {
     public void addItem(View v) {
 
         askToAddItem();
-
-        // upload image to server
-//        new uploadToServer().execute();
-//        ImageView imvd = (ImageView) findViewById(R.id.imageView);
-//        imvd.setImageResource(R.mipmap.ic_launcher);
-//        Log.e("new", "------");
-//
-//
-//        // test for fun
-//        try {
-//            byte[] decodedString = Base64.decode(ba1);
-//            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,0,decodedString.length);
-//            ImageView imv = (ImageView) findViewById(R.id.imageView);
-//            imv.setImageBitmap(decodedByte);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
-
     }
 
     /*When clicking the camera button, user can use camera to capture picture*/
@@ -206,7 +187,8 @@ public class RetailerAddItem extends Activity {
 
     //receiving...
     //parse and display JSON response
-    private void processJsonResponse(String response){
+    @Override
+    public void processJsonResponse(String response){
         JSONObject responseObj=null;
         try {
             //create JSON object from JSON string
@@ -233,43 +215,5 @@ public class RetailerAddItem extends Activity {
         }
 
     }
-
-
-//    private class uploadToServer extends AsyncTask<Void, Void, String> {
-//        private ProgressDialog pd = new ProgressDialog(RetailerAddItem.this);
-//
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            pd.setMessage("Wait for image uploading!");
-//            pd.show();
-//        }
-//
-//        @Override
-//        protected String doInBackground(Void... params) {
-//            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-//            nameValuePairs.add(new BasicNameValuePair("base64", ba1));
-//            nameValuePairs.add(new BasicNameValuePair("imageName", "test"));
-//            try {
-//                HttpClient httpClient = new DefaultHttpClient();
-//                HttpPost httpPost = new HttpPost(URL);
-//                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-//                HttpResponse response = httpClient.execute(httpPost);
-//                String st = EntityUtils.toString(response.getEntity());
-//                Log.v("log_tag", "In the try Loop" + st);
-//
-//            } catch (Exception e) {
-//                Log.v("log_tag", "Error in http connection" + e.toString());
-//            }
-//
-//            return "Success";
-//        }
-//
-//        protected void onPostExecute(String result) {
-//            super.onPostExecute(result);
-//            pd.hide();
-//            pd.dismiss();
-//        }
-//    }
-
 
 }

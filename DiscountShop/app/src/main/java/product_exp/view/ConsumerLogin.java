@@ -18,7 +18,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import DSException.DiscountShopException;
+import dsException.DiscountShopException;
+import entities.ProcessJSONInterface;
 import intents.ClickInterface;
 import intents.IntentFactory;
 import webservice.JSONRequest;
@@ -27,9 +28,9 @@ import webservice.NetworkStatus;
 import model.Login;
 import android.util.Log;
 
-import static DSException.DiscountShopException.myExceptions.GPS_NOT_ENABLED;
+import static dsException.DiscountShopException.myExceptions.GPS_NOT_ENABLED;
 
-public class ConsumerLogin extends Activity {
+public class ConsumerLogin extends Activity implements ProcessJSONInterface {
 
     private BroadcastReceiver receiver;
     private EditText usernameText;
@@ -124,10 +125,6 @@ public class ConsumerLogin extends Activity {
     public void goRegister(View v) {
 
         ClickInterface click = IntentFactory.goToNext(this, ConsumerRegister.class, null, null);
-
-        //Intent goToRegister = new Intent();
-        //goToRegister.setClass(this, ConsumerRegister.class);
-        //startActivity(goToRegister);
     }
 
     //sending...
@@ -164,7 +161,8 @@ public class ConsumerLogin extends Activity {
 
     //receiving...
     //parse and display JSON response
-    private void processJsonResponse(String response){
+    @Override
+    public void processJsonResponse(String response){
         Log.v("returned response: ",response);
         JSONObject responseObj=null;
         try {
@@ -179,9 +177,10 @@ public class ConsumerLogin extends Activity {
                 //create java object from the JSON object
                 Login login = gson.fromJson(loginInfo,Login.class);
                 if(login.getPassword().equals(password)){
-                    Intent goToItemList = new Intent();
-                    goToItemList.setClass(this, ConsumerItemListPage.class);
-                    startActivity(goToItemList);
+                    ClickInterface click = IntentFactory.goToNext(this, ConsumerItemListPage.class, null, null);
+//                    Intent goToItemList = new Intent();
+//                    goToItemList.setClass(this, ConsumerItemListPage.class);
+//                    startActivity(goToItemList);
                 }
                 else{
                     Toast toast = Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT);

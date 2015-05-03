@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import entities.ProcessJSONInterface;
 import intents.ClickInterface;
 import intents.IntentFactory;
 import webservice.JSONRequest;
@@ -27,7 +28,7 @@ import webservice.NetworkStatus;
 import model.Login;
 
 
-public class RetailerLogin extends Activity {
+public class RetailerLogin extends Activity implements ProcessJSONInterface {
 
     private BroadcastReceiver receiver;
     private EditText usernameText;
@@ -103,10 +104,6 @@ public class RetailerLogin extends Activity {
     public void goSignUp(View v) {
 
         ClickInterface click = IntentFactory.goToNext(this, RetailerRegister.class, null, null);
-
-        //Intent goToSignUp = new Intent();
-        //goToSignUp.setClass(this, RetailerRegister.class);
-        //startActivity(goToSignUp);
     }
 
     //sending...
@@ -143,7 +140,8 @@ public class RetailerLogin extends Activity {
 
     //receiving...
     //parse and display JSON response
-    private void processJsonResponse(String response){
+    @Override
+    public void processJsonResponse(String response){
         Log.v("returned response: ", response);
         JSONObject responseObj=null;
         try {
@@ -159,10 +157,6 @@ public class RetailerLogin extends Activity {
                 Login login = gson.fromJson(loginInfo,Login.class);
                 if(login.getPassword().equals(password)){
                     ClickInterface click = IntentFactory.goToNext(this, RetailerItemListPage.class, null, (Object)username);
-//                    Intent goToRetailerItemList = new Intent();
-//                    goToRetailerItemList.setClass(this, RetailerItemListPage.class);
-//                    goToRetailerItemList.putExtra("username",username);
-//                    startActivity(goToRetailerItemList);
                 }
                 else{
                     Toast toast = Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT);

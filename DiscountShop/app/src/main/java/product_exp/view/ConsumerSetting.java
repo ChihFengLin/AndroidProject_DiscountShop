@@ -77,9 +77,7 @@ public class ConsumerSetting extends Activity {
     public void goMain(View v) {
 
         ClickInterface click = IntentFactory.goToNext(this, MainActivity.class, null, null);
-        //Intent goToMain = new Intent();
-        //goToMain.setClass(this, MainActivity.class);
-        //startActivity(goToMain);
+
     }
 
     public void getSelfPicture(View v) {
@@ -91,16 +89,6 @@ public class ConsumerSetting extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == 102) {
 
-            //switch(requestCode) {
-            //case 100:
-            //    Intent it = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, imgUri);
-            //    sendBroadcast(it);
-            //    break;
-
-            //case 101:
-            //    imgUri = convertUri(data.getData());
-            //    break;
-            //}
 
             /*Transform Intent object into Bundle object*/
             Bundle bd1 = data.getExtras();

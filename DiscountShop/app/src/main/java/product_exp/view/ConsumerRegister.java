@@ -16,11 +16,14 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import entities.ProcessJSONInterface;
+import intents.ClickInterface;
+import intents.IntentFactory;
 import webservice.JSONRequest;
 import webservice.NetworkStatus;
 import android.util.Log;
 
-public class ConsumerRegister extends Activity {
+public class ConsumerRegister extends Activity implements ProcessJSONInterface{
 
     private BroadcastReceiver receiver;
     private EditText emailText;
@@ -136,7 +139,8 @@ public class ConsumerRegister extends Activity {
 
     //receiving...
     //parse and display JSON response
-    private void processJsonResponse(String response){
+    @Override
+    public void processJsonResponse(String response){
         JSONObject responseObj=null;
         try {
             //create JSON object from JSON string
@@ -147,9 +151,10 @@ public class ConsumerRegister extends Activity {
                 Toast toast = Toast.makeText(this, "Creating account is successful!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);
                 toast.show();
-                Intent goToItemList = new Intent();
-                goToItemList.setClass(this, ConsumerItemListPage.class);
-                startActivity(goToItemList);
+                ClickInterface click = IntentFactory.goToNext(this, ConsumerItemListPage.class, null, null);
+//                Intent goToItemList = new Intent();
+//                goToItemList.setClass(this, ConsumerItemListPage.class);
+//                startActivity(goToItemList);
 
             }else{
                 Toast toast = Toast.makeText(this, "Creating account failure, maybe username does exist, Please try again!", Toast.LENGTH_SHORT);
