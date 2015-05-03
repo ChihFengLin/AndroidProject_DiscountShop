@@ -116,7 +116,13 @@ public class RetailerLogin extends Activity {
         boolean internet = networkStatus.isNetworkAvailable(this);
         if(internet){
             username=usernameText.getText().toString();
+            if (username.isEmpty()) {
+                usernameText.setError("Username cannot be empty");
+            }
             password=passwordText.getText().toString();
+            if (password.isEmpty()) {
+                passwordText.setError("Password cannot be empty");
+            }
             //if not username was entered
             if (username.trim().isEmpty()||password.trim().isEmpty()){
                 Toast toast = Toast.makeText(this, "Please enter your username and password!", Toast.LENGTH_SHORT);

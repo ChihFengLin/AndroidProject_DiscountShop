@@ -42,9 +42,13 @@ public class RetailerRegister extends Activity {
         setContentView(R.layout.activity_retailer_register);
 
         emailText=(EditText)findViewById(R.id.rremailEditText);
+
         usernameText=(EditText)findViewById(R.id.rrusernameEditText);
+
         passwordText=(EditText)findViewById(R.id.rrpasswordEditText);
+
         retailerNameText=(EditText)findViewById(R.id.rrshopnameEditText);
+
         addressText=(EditText)findViewById(R.id.rraddressEditText);
         zipCodeText=(EditText)findViewById(R.id.rrzipcodeEditText);
         // Register receiver so that this Activity can be notified
@@ -110,11 +114,29 @@ public class RetailerRegister extends Activity {
         boolean internet = networkStatus.isNetworkAvailable(this);
         if(internet){
             email=emailText.getText().toString().trim();
+            if (email.isEmpty()) {
+                emailText.setError("Email cannot be empty");
+            }
             username=usernameText.getText().toString().trim();
+            if (username.isEmpty()) {
+                usernameText.setError("username cannot be empty");
+            }
             password=passwordText.getText().toString().trim();
+            if (password.isEmpty()) {
+                passwordText.setError("Password cannot be empty");
+            }
             retailerName=retailerNameText.getText().toString().trim();
+            if (retailerName.isEmpty()) {
+                retailerNameText.setError("Password cannot be empty");
+            }
             address=addressText.getText().toString().trim();
+            if (address.isEmpty()) {
+                addressText.setError("Password cannot be empty");
+            }
             zipCode=zipCodeText.getText().toString().trim();
+            if (zipCode.isEmpty()) {
+                zipCodeText.setError("Password cannot be empty");
+            }
             //if not username was entered
             if (username.isEmpty()||password.isEmpty()||email.isEmpty()||retailerName.isEmpty()||address.isEmpty()||zipCode.isEmpty()){
                 Toast toast = Toast.makeText(this, "Please don't leave the input blank!", Toast.LENGTH_SHORT);

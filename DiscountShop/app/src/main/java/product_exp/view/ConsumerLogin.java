@@ -5,6 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.location.LocationManager;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import DSException.DiscountShopException;
 import intents.ClickInterface;
 import intents.IntentFactory;
 import webservice.JSONRequest;
@@ -23,6 +26,8 @@ import com.google.gson.Gson;
 import webservice.NetworkStatus;
 import model.Login;
 import android.util.Log;
+
+import static DSException.DiscountShopException.myExceptions.GPS_NOT_ENABLED;
 
 public class ConsumerLogin extends Activity {
 
@@ -42,6 +47,23 @@ public class ConsumerLogin extends Activity {
 
         //set the consumer radius to 25 each time user logs into app.
         ConsumerSetting.itemRadius = 25;
+        LocationManager lm = null;
+        boolean gps_enabled = false, network_enabled = false;
+        if(lm == null)
+            lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        try {
+            WifiManager mng = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+            if ( !mng.isWifiEnabled()) throw new DiscountShopException(DiscountShopException.myExceptions.WIFI_NOT_ENABLED, "Wifi not enabled", this);
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            if(!gps_enabled) throw new DiscountShopException(GPS_NOT_ENABLED, "GPS NOT enabled", this);
+            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            if(!network_enabled) throw new DiscountShopException(DiscountShopException.myExceptions.NOT_CONNECTED, "GPS NOT enabled", this);
+
+        } catch(DiscountShopException e) {
+               e.fix(e.getExceptionCaught());
+                e.printStackTrace();
+            }
 
         // Register receiver so that this Activity can be notified
         // when the JSON response came back
@@ -117,6 +139,12 @@ public class ConsumerLogin extends Activity {
             username=usernameText.getText().toString();
             password=passwordText.getText().toString();
             //if not username was entered
+            if (username.isEmpty()) {
+                usernameText.setError("Username cannot be empty");
+            }
+            if (password.isEmpty()) {
+                passwordText.setError("Password cannot be empty");
+            }
             if (username.trim().isEmpty()||password.trim().isEmpty()){
                 Toast toast = Toast.makeText(this, "Please enter your username and password!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 105, 50);

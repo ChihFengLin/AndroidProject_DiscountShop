@@ -102,8 +102,17 @@ public class ConsumerRegister extends Activity {
         boolean internet = networkStatus.isNetworkAvailable(this);
         if(internet){
             email=emailText.getText().toString().trim();
+            if (email.isEmpty()) {
+                emailText.setError("Email cannot be empty");
+            }
             username=usernameText.getText().toString().trim();
+            if (username.isEmpty()) {
+                usernameText.setError("username cannot be empty");
+            }
             password=passwordText.getText().toString().trim();
+            if (password.isEmpty()) {
+                passwordText.setError("Password cannot be empty");
+            }
             //if not username was entered
             if (username.isEmpty()||password.isEmpty()||email.isEmpty()){
                 Toast toast = Toast.makeText(this, "Please enter the email, username and password!", Toast.LENGTH_SHORT);
