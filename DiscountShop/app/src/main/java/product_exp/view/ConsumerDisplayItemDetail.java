@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import android.location.Location;
 import android.location.LocationManager;
 
 import android.os.Bundle;
@@ -31,7 +32,7 @@ import model.Base64;
 
 public class ConsumerDisplayItemDetail extends FragmentActivity {
     private GoogleMap map;
-    private TextView txv1, txv2, txv3;
+    private TextView txv1, txv2, txv3, txv4;
     private ImageView imv1;
 
     @Override
@@ -53,12 +54,19 @@ public class ConsumerDisplayItemDetail extends FragmentActivity {
         txv1 = (TextView)findViewById(R.id.item);
         txv2 = (TextView)findViewById(R.id.price);
         txv3 = (TextView)findViewById(R.id.Retailer);
+        txv4 = (TextView)findViewById(R.id.distance);
         imv1 = (ImageView)findViewById(R.id.imageView);
 
         Intent it= getIntent();
         txv1.setText(it.getStringExtra("item name"));
-        txv2.setText(it.getStringExtra("item price"));
+        txv2.setText(it.getStringExtra("item price") +" $");
         txv3.setText(it.getStringExtra("retailer name"));
+        Location itemLoc = new Location("Item Location");
+        itemLoc.setLatitude(it.getDoubleExtra("latitude",0));
+        itemLoc.setLongitude(it.getDoubleExtra("longitude",0));
+        Double distance = ConsumerItemListPage.myLocation.distanceTo(itemLoc)/1609.344;
+        txv4.setText(""+Double.valueOf(ConsumerItemListPage.newFormat.format(distance))+" Miles");
+
         imv1.setImageBitmap(ImageToBitmap(it.getStringExtra("picture")));
 
 

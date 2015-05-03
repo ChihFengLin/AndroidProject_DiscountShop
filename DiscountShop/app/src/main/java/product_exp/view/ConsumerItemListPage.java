@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.text.DecimalFormat;
 
 import intents.ClickInterface;
 import intents.IntentFactory;
@@ -49,8 +50,8 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
     private Item[] displayItemList;
     private LocationManager locationManager;
     private String provider;
-    private Location myLocation;
-
+    public static Location myLocation;
+    public static DecimalFormat newFormat = new DecimalFormat("#.##");
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -295,6 +296,7 @@ public class ConsumerItemListPage extends ListActivity implements AdapterView.On
                         e.printStackTrace();
                         distance = ConsumerSetting.itemRadius;
                     }
+                    distance =  Double.valueOf(newFormat.format(distance));
                     System.out.println("Discount Shop: item number = "+i+ ": item = "+newItem.getItemName()+ " and distance = "+distance);
                     if (distance < ConsumerSetting.itemRadius) {
                         myAdapter.addItem(pos, newItem, distance);
